@@ -105,11 +105,7 @@ namespace ShellDemo
             return (char)c; //返回转换后的字符
         }
 
-        #region 加密解密
-
         private static string encryptKey = "Oyea";
-
-        #region 加密字符串 public static string Encrypt(string str)
 
         /// <summary>
         /// 加密字符串
@@ -129,10 +125,6 @@ namespace ShellDemo
             return Convert.ToBase64String(MStream.ToArray());//返回加密后的字符串
         }
 
-        #endregion 加密字符串 public static string Encrypt(string str)
-
-        #region 解密字符串   public static string Decrypt(string str)
-
         /// <summary>
         /// 解密字符串
         /// </summary>
@@ -150,10 +142,6 @@ namespace ShellDemo
             CStream.FlushFinalBlock();              //释放解密流
             return Encoding.Unicode.GetString(MStream.ToArray());      //返回解密后的字符串
         }
-
-        #endregion 解密字符串   public static string Decrypt(string str)
-
-        #endregion 加密解密
     }
 }
 

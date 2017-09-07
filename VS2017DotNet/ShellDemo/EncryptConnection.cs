@@ -4,42 +4,56 @@ namespace ShellDemo
 {
     public static class EncryptConnection
     {
+        ////加密
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+        //    ConfigurationSection section = config.GetSection("connectionStrings");
+
+        //    if (section != null && !section.SectionInformation.IsProtected)
+        //    {
+        //        section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
+        //        config.Save();
+        //    }
+
+        //}
+        ////解密
+        //protected void Button2_Click(object sender, EventArgs e)
+        //{
+        //    Configuration config = WebConfigurationManager.OpenWebConfiguration(Request.ApplicationPath);
+        //    ConfigurationSection section = config.GetSection("connectionStrings");
+
+        //    if (section != null && section.SectionInformation.IsProtected)
+        //    {
+        //        section.SectionInformation.UnprotectSection();
+        //        config.Save();
+        //    }
+        //}
+
         /// <summary>
         /// 加密app.config
         /// </summary>
         /// <param name="encrypt"></param>
         public static void EncryptConnectionString(bool encrypt)
         {
-            Configuration configFile = null;
-            try
+            // Open the configuration file and retrieve the connectionStrings section.
+            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
+            ConfigurationSection section = config.GetSection("connectionStrings");
+            if ((!(section.ElementInformation.IsLocked)) && (!(section.SectionInformation.IsLocked)))
             {
-                // Open the configuration file and retrieve the connectionStrings section.
-                configFile = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-                ConnectionStringsSection configSection = configFile.GetSection("connectionStrings") as ConnectionStringsSection;
-                if ((!(configSection.ElementInformation.IsLocked)) && (!(configSection.SectionInformation.IsLocked)))
+                bool isProtected = section.SectionInformation.IsProtected;
+                if (encrypt && !isProtected)
                 {
-                    if (encrypt && !configSection.SectionInformation.IsProtected)
-                    //encrypt is false to unencrypt
-                    {
-                        configSection.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
-                    }
-                    if (!encrypt && configSection.SectionInformation.IsProtected)
-                    //encrypt is true so encrypt
-                    {
-                        configSection.SectionInformation.UnprotectSection();
-                    }
-                    //re-save the configuration file section
-                    configSection.SectionInformation.ForceSave = true;
-                    // Save the current configuration.
-                    configFile.Save();
+                    section.SectionInformation.ProtectSection("DataProtectionConfigurationProvider");
                 }
-            }
-            catch (System.Exception ex)
-            {
-                throw (ex);
-            }
-            finally
-            {
+                if (!encrypt && isProtected)
+                {
+                    section.SectionInformation.UnprotectSection();
+                }
+                ////re-save the configuration file section
+                section.SectionInformation.ForceSave = true;
+                // Save the current configuration.
+                config.Save();
             }
         }
     }

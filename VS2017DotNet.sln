@@ -29,8 +29,6 @@ Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "TemplatePatternUML", "VS201
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplatePatternUMLLib", "VS2017DotNet\TemplatePatternUMLLib\TemplatePatternUMLLib.csproj", "{3CDD8762-FE0D-4B1D-B2FD-FF21AE5132A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microsoft.AspNet.Identity.Samples", "VS2017DotNet\Microsoft.AspNet.Identity.Samples\Microsoft.AspNet.Identity.Samples.csproj", "{5A204799-5E51-41CF-8C2F-5C207E2F64FD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "反射实例1", "VS2017DotNet\反射实例1\反射实例1.csproj", "{B08042D8-4BBC-4A66-8732-933D6C66D700}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplicationDemo", "VS2017DotNet\WebApplicationDemo\WebApplicationDemo.csproj", "{5A96A93D-8B3B-430B-8A11-C9A03F8DAB8C}"
@@ -385,26 +383,6 @@ Global
 		{3CDD8762-FE0D-4B1D-B2FD-FF21AE5132A3}.Release|x64.Build.0 = Release|Any CPU
 		{3CDD8762-FE0D-4B1D-B2FD-FF21AE5132A3}.Release|x86.ActiveCfg = Release|Any CPU
 		{3CDD8762-FE0D-4B1D-B2FD-FF21AE5132A3}.Release|x86.Build.0 = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|Win32.ActiveCfg = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|Win32.Build.0 = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|x64.Build.0 = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Debug|x86.Build.0 = Debug|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|Win32.ActiveCfg = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|Win32.Build.0 = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|x64.ActiveCfg = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|x64.Build.0 = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|x86.ActiveCfg = Release|Any CPU
-		{5A204799-5E51-41CF-8C2F-5C207E2F64FD}.Release|x86.Build.0 = Release|Any CPU
 		{B08042D8-4BBC-4A66-8732-933D6C66D700}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B08042D8-4BBC-4A66-8732-933D6C66D700}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B08042D8-4BBC-4A66-8732-933D6C66D700}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU

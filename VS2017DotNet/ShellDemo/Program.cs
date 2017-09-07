@@ -21,29 +21,8 @@ namespace ShellDemo
             Marshal.FinalReleaseComObject(shell);
         }
 
-        private static void Main(string[] args)
+        public static void VerifyDataDemo()
         {
-            //try
-            //{
-            //    // Use the ProgID localhost\HKEY_CLASSES_ROOT\DirControl.DirList.1.
-            //    string theProgramID = "DirControl.DirList.1";
-            //    // Use the server name localhost.
-            //    string theServer = "localhost";
-            //    // Make a call to the method to get the type information for the given ProgID.
-            //    Type myType = Type.GetTypeFromProgID(theProgramID, theServer);
-            //    if (myType == null)
-            //    {
-            //        throw new Exception("Invalid ProgID or Server.");
-            //    }
-            //    Console.WriteLine("GUID for ProgID DirControl.DirList.1 is {0}.", myType.GUID);
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine("An exception occurred.");
-            //    Console.WriteLine("Source: {0}", e.Source);
-            //    Console.WriteLine("Message: {0}", e.Message);
-            //}
-
             //先要将字符串转换为字节数组，这与编码有关。
             string str = "this is a test.";
             byte[] bytes = Encoding.ASCII.GetBytes(str);
@@ -64,6 +43,35 @@ namespace ShellDemo
             {
                 Console.WriteLine("不能通过");
             }
+        }
+
+        public static void GetTypeFromProgIDDemo()
+        {
+            try
+            {
+                // Use the ProgID localhost\HKEY_CLASSES_ROOT\DirControl.DirList.1.
+                string theProgramID = "DirControl.DirList.1";
+                // Use the server name localhost.
+                string theServer = "localhost";
+                // Make a call to the method to get the type information for the given ProgID.
+                Type myType = Type.GetTypeFromProgID(theProgramID, theServer);
+                if (myType == null)
+                {
+                    throw new Exception("Invalid ProgID or Server.");
+                }
+                Console.WriteLine("GUID for ProgID DirControl.DirList.1 is {0}.", myType.GUID);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("An exception occurred.");
+                Console.WriteLine("Source: {0}", e.Source);
+                Console.WriteLine("Message: {0}", e.Message);
+            }
+        }
+
+        private static void Main(string[] args)
+        {
+            EncryptConnection.EncryptConnectionString(false);
 
             Console.ReadKey();
         }

@@ -65,7 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="AcspNet, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AcspNet.5.2.0.0\lib\net45\AcspNet.dll</HintPath>
+      <HintPath>..\..\..\packages\AcspNet.5.2.0.0\lib\net45\AcspNet.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=3.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -95,6 +95,10 @@
     <Content Include="App_Data\StringTable.en.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\..\..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

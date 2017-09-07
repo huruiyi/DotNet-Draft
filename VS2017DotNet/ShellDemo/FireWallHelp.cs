@@ -16,8 +16,7 @@ namespace ShellDemo
             //创建firewall管理类的实例
             INetFwMgr netFwMgr = (INetFwMgr)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwMgr"));
 
-            INetFwOpenPort objPort = (INetFwOpenPort)Activator.CreateInstance(
-                Type.GetTypeFromProgID("HNetCfg.FwOpenPort"));
+            INetFwOpenPort objPort = (INetFwOpenPort)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwOpenPort"));
 
             objPort.Name = name;
             objPort.Port = port;
@@ -59,8 +58,7 @@ namespace ShellDemo
             //创建firewall管理类的实例
             INetFwMgr netFwMgr = (INetFwMgr)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwMgr"));
 
-            INetFwAuthorizedApplication app = (INetFwAuthorizedApplication)Activator.CreateInstance(
-                Type.GetTypeFromProgID("HNetCfg.FwAuthorizedApplication"));
+            INetFwAuthorizedApplication app = (INetFwAuthorizedApplication)Activator.CreateInstance(Type.GetTypeFromProgID("HNetCfg.FwAuthorizedApplication"));
 
             //在例外列表里，程序显示的名称
             app.Name = name;
