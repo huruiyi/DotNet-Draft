@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="e7498dd4-91df-4bad-a1bd-69b6d9188a17" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://demo.1hai.cn/service/EhiService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="EhiService.xsd" MetadataType="Schema" ID="18b8d1f2-43a3-46d7-94ef-ec411d2e869f" SourceId="1" SourceUrl="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd1" />
+    <MetadataFile FileName="EhiService1.xsd" MetadataType="Schema" ID="1b6b9154-040b-4970-85b1-01d1b39efa27" SourceId="1" SourceUrl="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd2" />
+    <MetadataFile FileName="EhiService2.xsd" MetadataType="Schema" ID="4e9755a5-8d7e-4306-8b5d-ff8298c74923" SourceId="1" SourceUrl="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd0" />
+    <MetadataFile FileName="EhiService.wsdl" MetadataType="Wsdl" ID="0b4c30fe-a32a-4a5d-a867-414bdd10a92b" SourceId="1" SourceUrl="http://demo.1hai.cn/service/EhiService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -1,0 +1,419 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="EhiService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd2" namespace="EhiServiceDataContract" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IEhiService_GetCitiesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCitiesList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetCitiesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCitiesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetServiceAreasList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceAreasList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetServiceAreasList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetServiceAreasListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetDistrictsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictsList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetDistrictsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDistrictsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetStoresList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoresList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetStoresList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStoresListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_RegisterUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUser" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_RegisterUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetCarTypesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarTypesList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetCarTypesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCarTypesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CalculateOrderPrice_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateOrderPrice" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CalculateOrderPrice_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalculateOrderPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CreateOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CreateOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CancleOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancleOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CancleOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancleOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_ValidateOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_ValidateOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidateOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetOrdersList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetOrdersList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrdersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetOrderDetail_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetail" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetOrderDetail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderDetailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_NotifyPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPayment" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_NotifyPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:NotifyPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CreateNonRegOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNonRegOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CreateNonRegOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateNonRegOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_UserLogin_InputMessage">
+    <wsdl:part name="parameters" element="tns:UserLogin" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_UserLogin_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UserLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetDiscountsList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountsList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetDiscountsList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDiscountsListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetAddedServicesList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAddedServicesList" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetAddedServicesList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAddedServicesListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetUserInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfo" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_GetUserInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CreateLongRentOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateLongRentOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CreateLongRentOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateLongRentOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_UpdateLongRentOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLongRentOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_UpdateLongRentOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLongRentOrderResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CancelLongRentOrder_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelLongRentOrder" />
+  </wsdl:message>
+  <wsdl:message name="IEhiService_CancelLongRentOrder_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelLongRentOrderResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IEhiService">
+    <wsdl:operation name="GetCitiesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetCitiesList" message="tns:IEhiService_GetCitiesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetCitiesListResponse" message="tns:IEhiService_GetCitiesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceAreasList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetServiceAreasList" message="tns:IEhiService_GetServiceAreasList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetServiceAreasListResponse" message="tns:IEhiService_GetServiceAreasList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetDistrictsList" message="tns:IEhiService_GetDistrictsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetDistrictsListResponse" message="tns:IEhiService_GetDistrictsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStoresList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetStoresList" message="tns:IEhiService_GetStoresList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetStoresListResponse" message="tns:IEhiService_GetStoresList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/RegisterUser" message="tns:IEhiService_RegisterUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/RegisterUserResponse" message="tns:IEhiService_RegisterUser_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCarTypesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetCarTypesList" message="tns:IEhiService_GetCarTypesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetCarTypesListResponse" message="tns:IEhiService_GetCarTypesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CalculateOrderPrice">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/CalculateOrderPrice" message="tns:IEhiService_CalculateOrderPrice_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/CalculateOrderPriceResponse" message="tns:IEhiService_CalculateOrderPrice_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/CreateOrder" message="tns:IEhiService_CreateOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/CreateOrderResponse" message="tns:IEhiService_CreateOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancleOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/CancleOrder" message="tns:IEhiService_CancleOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/CancleOrderResponse" message="tns:IEhiService_CancleOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/ValidateOrder" message="tns:IEhiService_ValidateOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/ValidateOrderResponse" message="tns:IEhiService_ValidateOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetOrdersList" message="tns:IEhiService_GetOrdersList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetOrdersListResponse" message="tns:IEhiService_GetOrdersList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetOrderDetail" message="tns:IEhiService_GetOrderDetail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetOrderDetailResponse" message="tns:IEhiService_GetOrderDetail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/NotifyPayment" message="tns:IEhiService_NotifyPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/NotifyPaymentResponse" message="tns:IEhiService_NotifyPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateNonRegOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/CreateNonRegOrder" message="tns:IEhiService_CreateNonRegOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/CreateNonRegOrderResponse" message="tns:IEhiService_CreateNonRegOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UserLogin">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/UserLogin" message="tns:IEhiService_UserLogin_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/UserLoginResponse" message="tns:IEhiService_UserLogin_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountsList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetDiscountsList" message="tns:IEhiService_GetDiscountsList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetDiscountsListResponse" message="tns:IEhiService_GetDiscountsList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAddedServicesList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetAddedServicesList" message="tns:IEhiService_GetAddedServicesList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetAddedServicesListResponse" message="tns:IEhiService_GetAddedServicesList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/GetUserInfo" message="tns:IEhiService_GetUserInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/GetUserInfoResponse" message="tns:IEhiService_GetUserInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateLongRentOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/CreateLongRentOrder" message="tns:IEhiService_CreateLongRentOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/CreateLongRentOrderResponse" message="tns:IEhiService_CreateLongRentOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLongRentOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/UpdateLongRentOrder" message="tns:IEhiService_UpdateLongRentOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/UpdateLongRentOrderResponse" message="tns:IEhiService_UpdateLongRentOrder_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelLongRentOrder">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEhiService/CancelLongRentOrder" message="tns:IEhiService_CancelLongRentOrder_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEhiService/CancelLongRentOrderResponse" message="tns:IEhiService_CancelLongRentOrder_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IEhiService" type="tns:IEhiService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCitiesList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetCitiesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceAreasList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetServiceAreasList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDistrictsList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetDistrictsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetStoresList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetStoresList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterUser">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/RegisterUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCarTypesList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetCarTypesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CalculateOrderPrice">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/CalculateOrderPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/CreateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancleOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/CancleOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/ValidateOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrdersList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetOrdersList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderDetail">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetOrderDetail" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="NotifyPayment">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/NotifyPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateNonRegOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/CreateNonRegOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UserLogin">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/UserLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDiscountsList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetDiscountsList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAddedServicesList">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetAddedServicesList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserInfo">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/GetUserInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateLongRentOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/CreateLongRentOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLongRentOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/UpdateLongRentOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelLongRentOrder">
+      <soap:operation soapAction="http://tempuri.org/IEhiService/CancelLongRentOrder" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EhiService">
+    <wsdl:port name="BasicHttpBinding_IEhiService" binding="tns:BasicHttpBinding_IEhiService">
+      <soap:address location="http://demo.1hai.cn/service/EhiService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

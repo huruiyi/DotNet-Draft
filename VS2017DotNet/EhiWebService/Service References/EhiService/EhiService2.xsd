@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://demo.1hai.cn/service/EhiService.svc?xsd=xsd2" namespace="EhiServiceDataContract" />
+  <xs:element name="GetCitiesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q1:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCitiesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCitiesListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceAreasList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q2:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetServiceAreasListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetServiceAreasListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDistrictsList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q3:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDistrictsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDistrictsListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStoresList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q4:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStoresListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetStoresListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterUser">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q5:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegisterUserResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="RegisterUserResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarTypesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q6:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCarTypesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCarTypesListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CalculateOrderPrice">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q7:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CalculateOrderPriceResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CalculateOrderPriceResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q8:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancleOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q9:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancleOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CancleOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="EhiServiceDataContract" minOccurs="0" name="requesetData" nillable="true" type="q10:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidateOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ValidateOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrdersList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q11:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrdersListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOrdersListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderDetail">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q12:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderDetailResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOrderDetailResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NotifyPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q13:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="NotifyPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="NotifyPaymentResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNonRegOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q14:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateNonRegOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateNonRegOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLogin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q15:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UserLoginResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UserLoginResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountsList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q16:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDiscountsListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetDiscountsListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAddedServicesList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q17:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAddedServicesListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAddedServicesListResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q18:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetUserInfoResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateLongRentOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q19:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateLongRentOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CreateLongRentOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLongRentOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q20:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateLongRentOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="UpdateLongRentOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelLongRentOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="EhiServiceDataContract" minOccurs="0" name="requestData" nillable="true" type="q21:EhiServiceRequestData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelLongRentOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CancelLongRentOrderResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
