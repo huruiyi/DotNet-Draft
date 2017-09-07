@@ -1,6 +1,5 @@
 ﻿using EhiWebService.EhiService;
 using System.Xml.Serialization;
-using TC.Flight.CommonToolsLibrary.Tools;
 
 namespace EhiWebService
 {
@@ -350,7 +349,6 @@ namespace EhiWebService
                                                                                                 </GetCarTypesListRequest>"
             };
             string str = client.GetCarTypesList(ehiServiceRequestData);
-            var obj = Serializer.XMLToObject<GetCarTypesListResponse>(str);
             client.Close();
 
             #endregion 1)GetCarTypesList 读取车型列表
