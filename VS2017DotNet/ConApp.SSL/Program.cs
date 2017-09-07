@@ -330,8 +330,8 @@ namespace ConApp.SSL
 
             bool result = dsa.VerifySignature(rgbHash, rgbSignature);
 
-            //byte[] data = Encoding.UTF8.GetBytes(keyString);
-            //byte[] hashdata = dsa.SignData(data, HashAlgorithmName.SHA384);
+            byte[] data = Encoding.UTF8.GetBytes(keyString);
+            byte[] hashdata = dsa.SignData(data, HashAlgorithmName.SHA384);
 
             Console.WriteLine(result);
 

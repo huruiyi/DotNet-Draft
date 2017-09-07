@@ -1,9 +1,7 @@
 ﻿using ConApp.EnumModel;
 using ConApp.Model;
-using Microsoft.Management.Infrastructure;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Win32;
-using ServiceStack.Caching;
 using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
@@ -18,14 +16,12 @@ using System.Linq.Expressions;
 using System.Management;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using System.Management.Instrumentation;
 using System.Net;
 using System.Net.Security;
 using System.Reflection;
 using System.Reflection.Emit;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.ServiceModel.Channels;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -55,7 +51,6 @@ namespace ConApp
         public int a;
         public int b;
         public int c;
-        private bool b1;
     }
 
     internal class Player
@@ -372,8 +367,6 @@ namespace ConApp
         {
             FileSystem.MoveFile(args[0], args[1]);
 
-
-         
             //Console.ReadLine();
             Console.ReadKey();
         }
@@ -427,6 +420,7 @@ namespace ConApp
             //Console.WriteLine("Output Finished");
             //Console.WriteLine("输出完毕");
         }
+
         private static void DeleteRecentDemo()
         {
             string recentPath = Environment.GetFolderPath(Environment.SpecialFolder.Recent);
@@ -1656,39 +1650,55 @@ namespace ConApp
             sbyte xby = 123;
             Console.WriteLine(sbyte.MinValue + "\t\t\t\t" + sbyte.MaxValue);
             Console.WriteLine(sizeof(sbyte));
+            Console.WriteLine(sby);
+            Console.WriteLine(xby);
             Byte db = 123;
             byte xb = 123;
+            Console.WriteLine(db);
+            Console.WriteLine(xb);
 
             Console.WriteLine(byte.MinValue + "\t\t\t\t" + byte.MaxValue);
             Console.WriteLine(sizeof(byte));
 
-            Int16 i16 = 123;
-            short i161 = 123;
+            Int16 i16_1 = 123;
+            short i16_2 = 123;
             Console.WriteLine(Int16.MinValue + "\t\t\t\t" + Int16.MaxValue);
             Console.WriteLine(sizeof(Int16));
+            Console.WriteLine(i16_1);
+            Console.WriteLine(i16_2);
 
             UInt16 uint16 = 123;
             ushort ui16 = 123;
             Console.WriteLine(UInt16.MinValue + "\t\t\t\t" + UInt16.MaxValue);
             Console.WriteLine(sizeof(UInt16));
+            Console.WriteLine(uint16);
+            Console.WriteLine(ui16);
 
             Int32 i32 = 123;
             int i321 = 123;
             Console.WriteLine(Int32.MinValue + "\t\t\t\t" + Int32.MaxValue);
             Console.WriteLine(sizeof(Int32));
+            Console.WriteLine(i32);
+            Console.WriteLine(i321);
 
             uint uintx32 = 123;
             UInt32 uint32 = 123;
             Console.WriteLine(UInt32.MinValue + "\t\t\t\t" + UInt32.MaxValue);
             Console.WriteLine(sizeof(UInt32));
+            Console.WriteLine(uintx32);
+            Console.WriteLine(uint32);
 
             Int64 i64 = 123;
             long i641 = 123;
             Console.WriteLine(Int64.MinValue + "\t\t\t\t" + Int64.MaxValue);
             Console.WriteLine(sizeof(Int64));
+            Console.WriteLine(i64);
+            Console.WriteLine(i641);
 
             UInt64 uint64 = 123;
             ulong ulong64 = 123;
+            Console.WriteLine(uint64);
+            Console.WriteLine(ulong64);
 
             Console.WriteLine(UInt64.MinValue + "\t\t\t\t" + UInt64.MaxValue);
 
@@ -1696,10 +1706,16 @@ namespace ConApp
             String ds = "String";
 
             Char dc = 'A';
-            char xc = 'A';
+            char cc = 'A';
 
-            float f = 123.123F;
-            decimal d = 123.123M;
+            float fl = 123.123F;
+            decimal du = 123.123M;
+            Console.WriteLine(xs);
+            Console.WriteLine(ds);
+            Console.WriteLine(dc);
+            Console.WriteLine(cc);
+            Console.WriteLine(fl);
+            Console.WriteLine(du);
         }
 
         public static void DataTypeDemo1()
@@ -2912,17 +2928,15 @@ namespace ConApp
 
         #endregion 证书相关
 
-        void ThreadDemo1()
+        private void ThreadDemo1()
         {
-            Thread t1 = new Thread(delegate () 
+            Thread t1 = new Thread(delegate ()
             {
-                for (int i = 0; i <1000;  i++)
+                for (int i = 0; i < 1000; i++)
                 {
-
                 }
             });
             t1.DisableComObjectEagerCleanup();
-
         }
     }
 }
