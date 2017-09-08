@@ -628,7 +628,6 @@
     <Content Include="easyui\demo\treegrid\treegrid_data3.json" />
     <Content Include="easyui\demo\tree\tree_data1.json" />
     <Content Include="easyui\demo\tree\tree_data2.json" />
-    <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

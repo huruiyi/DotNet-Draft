@@ -63,8 +63,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <None Include="packages.config" />
     <None Include="Service References\EhiService\EhiService.wsdl" />
     <None Include="Service References\EhiService\EhiService.xsd">
       <SubType>Designer</SubType>

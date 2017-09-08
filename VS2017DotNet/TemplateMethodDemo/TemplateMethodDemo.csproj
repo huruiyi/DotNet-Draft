@@ -45,10 +45,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\TemplatePatternUMLLib\TemplatePatternUMLLib.csproj">
       <Project>{3cdd8762-fe0d-4b1d-b2fd-ff21ae5132a3}</Project>
       <Name>TemplatePatternUMLLib</Name>
