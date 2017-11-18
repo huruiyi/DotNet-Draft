@@ -60,6 +60,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\IndexClass.cs" />
     <Compile Include="Samples\CSVector.cs" />
     <Compile Include="EnumModel\BoilingPoints.cs" />
     <Compile Include="EnumModel\Colors.cs" />

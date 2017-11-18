@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 
 namespace ADO.Net
@@ -322,6 +325,202 @@ namespace ADO.Net
                 }
                 Console.ReadKey();
             }
+        }
+
+        private static void SqlAddTest()
+        {
+            string conString = "Data Source=.;Initial Catalog=ExampleDb;uid=sa;pwd=sa";
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                con.Open();
+                string cmdText =
+                    "insert into ExampleDb.dbo.Info ( UserId,ContentInfo,CreateTime ) values ( @UserId,@ContentInfo,@CreateTime )";
+
+                using (SqlCommand cmd = new SqlCommand(cmdText, con))
+                {
+                    for (int i = 0; i < 7; i++)
+                    {
+                        cmd.Parameters.Clear();
+                        cmd.Parameters.AddWithValue("@UserId", 1000 + i);
+                        cmd.Parameters.AddWithValue("@ContentInfo", $"ContentInfo{1000 + i}");
+                        cmd.Parameters.AddWithValue("@CreateTime", DateTime.Now.AddMinutes(-100 * i).AddMinutes(i + 35));
+                        int result = cmd.ExecuteNonQuery();
+                        Console.WriteLine(result > 0 ? "添加成功" : "添加失败");
+                    }
+                }
+            }
+        }
+
+        private static void SqlReadTest()
+        {
+            string conString = "Data Source=.;Initial Catalog=ExampleDb;uid=sa;pwd=sa";
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                con.Open();
+
+                string cmdText = "select * from [ExampleDb].[dbo].[Info] with(nolock)";
+
+                using (SqlCommand cmd = new SqlCommand(cmdText, con))
+                {
+                    IDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Console.Write(reader["Id"] + "\t");
+                        Console.Write(reader["UserId"] + "\t");
+                        Console.Write(reader["ContentInfo"] + "\t");
+                        Console.WriteLine(reader["CreateTime"] + "\t");
+                    }
+                }
+
+                Console.WriteLine(con.State);
+            }
+        }
+
+        public static void SqlDemo()
+        {
+            #region 获取插入WDModule表数据返回的ID
+
+            const string connectionString = "user id=TCLXSWD;password=I47kY7%vIK25@e$;DataBase=TCB2bTouristBasic;server=192.168.0.154,1441;";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                const string sql = @"INSERT    INTO dbo.WDModule
+                                ( Name, SortType, BasePath, DefaultOrder, GroupId, IfValid,
+                                  IfHaveCategory )
+                        OUTPUT    INSERTED.id,INSERTED.DefaultOrder
+                        VALUES  ( '自助游', 1, '/wd/lines/type2/4_', 130, 100, 1, 0 ),
+                                ( '出境游', 1, '/wd/lines/type2/3_', 131, 100, 1, 0 ),
+                                ( '国内游', 1, '/wd/lines/type2/2_', 132, 100, 1, 0 ),
+                                ( '周边游', 1, '/wd/lines/type2/1_', 133, 100, 1, 0 )
+                          ";
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                SqlDataReader sqlDataReader = cmd.ExecuteReader();
+                List<string> listMoudleIdList = new List<string>();
+                while (sqlDataReader.Read())
+                {
+                    listMoudleIdList.Add(sqlDataReader[0].ToString());
+                }
+            }
+
+            #endregion 获取插入WDModule表数据返回的ID
+
+            #region 获取WdMenu表 --会员的数量及会员Id集合
+
+            List<string> listB2BUserId = new List<string>();
+            int b2BUserCount = 0;
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                string sql = @"DECLARE @tempTable TABLE
+                                (
+                                  rownumber INT IDENTITY(1, 1)
+                                                PRIMARY KEY ,
+                                  B2bUserId INT
+                                )
+                            INSERT  INTO @tempTable
+                                    SELECT DISTINCT
+                                            ( B2bUserId )
+                                    FROM    dbo.WDMenu
+                            SELECT rownumber ,B2bUserId FROM @tempTable";
+                con.Open();
+                SqlCommand cmd = new SqlCommand(sql, con);
+                SqlDataReader dataReader = cmd.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    listB2BUserId.Add(dataReader["B2bUserId"].ToString());
+                }
+                b2BUserCount = listB2BUserId.Count;
+            }
+
+            #endregion 获取WdMenu表 --会员的数量及会员Id集合
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string sql = $@"DECLARE @maxOrderNumber INT
+                                            DECLARE @B2bUserId INT
+                                            DECLARE @rowNumber INT
+                                            SET @rowNumber = 1
+                                            WHILE @rowNumber <= {b2BUserCount}
+                                                BEGIN
+                                                    SELECT  @B2bUserId = B2bUserId
+                                                    FROM    @tempTable
+                                                    WHERE   rownumber = @rowNumber
+                                                    SELECT  @maxOrderNumber = MAX(ordernum)
+                                                    FROM    dbo.WDMenu
+                                                    WHERE   B2bUserId = @B2bUserId
+                                                    INSERT  INTO dbo.WDMenu
+                                                            ( B2bUserId, Name, ModuleId, LinkUrl, OrderNum, IfShow )
+                                                    VALUES  ( @B2bUserId, N'自助游', 53, N'', @maxOrderNumber + 1, 1 )
+                                                   ,        ( @B2bUserId, N'出境游', 54, N'', @maxOrderNumber + 2, 1 )
+                                                   ,        ( @B2bUserId, N'国内游', 55, N'', @maxOrderNumber + 3, 1 )
+                                                   ,        ( @B2bUserId, N'周边游', 56, N'', @maxOrderNumber + 4, 1 )
+                                                    SET @rowNumber = @rowNumber + 1
+                                                END";
+
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public static void StopwatchDemo()
+        {
+            DataTable dt = GetMainTable();
+
+            Stopwatch sw = new Stopwatch();
+            int doCount = 0;
+            var dataIEnum = dt.AsEnumerable();
+            sw.Start();
+            for (int i = 0; i < 50000; i++)
+            {
+                if (dataIEnum.Count() > 0)
+                    doCount++;
+            }
+            sw.Stop();
+            Console.WriteLine("Count() 耗費時間：" + sw.ElapsedMilliseconds / 1000d);
+
+            sw.Reset();
+            doCount = 0;
+            sw.Start();
+            for (int i = 0; i < 50000; i++)
+            {
+                if (dataIEnum.Any())
+                    doCount++;
+            }
+            sw.Stop();
+            Console.WriteLine("Any() 耗費時間：" + sw.ElapsedMilliseconds / 1000d);
+            List<DataRow> dataList = dataIEnum.ToList();
+            sw.Reset();
+            doCount = 0;
+            sw.Start();
+            for (int i = 0; i < 50000; i++)
+            {
+                if (dataList.Count > 0)
+                    doCount++;
+            }
+            sw.Stop();
+            Console.WriteLine("List.Count 耗費時間：" + sw.ElapsedMilliseconds / 1000d);
+        }
+
+        public static DataTable GetMainTable()
+        {
+            DataTable dt = new DataTable();
+            DataColumn dataColumn = new DataColumn("Id", typeof(int))
+            {
+                AutoIncrementSeed = 1,
+                AutoIncrementStep = 1,
+                AutoIncrement = true
+            };
+            dt.Columns.AddRange(new[]
+            {
+                dataColumn,
+                new DataColumn("Name", typeof (string)), new DataColumn("Age", typeof (int)),
+                new DataColumn("BirthDay", typeof (DateTime))
+            });
+            for (int i = 0; i < 100; i++)
+            {
+                dt.Rows.Add(i, "Name" + i, 2 * i, DateTime.Now);
+            }
+            return dt;
         }
     }
 }

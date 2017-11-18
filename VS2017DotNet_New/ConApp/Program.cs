@@ -2,12 +2,9 @@
 using ConApp.Model;
 using Microsoft.VisualBasic.FileIO;
 using Microsoft.Win32;
-using ServiceStack.Redis;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -19,6 +16,7 @@ using System.Net;
 using System.Net.Security;
 using System.Reflection;
 using System.Reflection.Emit;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -30,7 +28,7 @@ namespace ConApp
     /// <summary>
     /// 脚本参数
     /// </summary>
-    public class PSParam
+    public class PsParam
     {
         public string Key { get; set; }
 
@@ -39,19 +37,19 @@ namespace ConApp
 
     internal class Info
     {
-        public int x { get; set; }
-        public int y { get; set; }
-        public int z { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
+        public int Z { get; set; }
     }
 
-    public struct XYZ
+    public struct Xyz
     {
-        public int a;
-        public int b;
-        public int c;
+        public int A;
+        public int B;
+        public int C;
     }
 
-    internal class Player
+    internal abstract class Player
     {
         public void Play()
         {
@@ -307,8 +305,6 @@ namespace ConApp
             ////Console.WriteLine("删除文件夹完成");
         }
 
-      
-
         // stackalloc
         //TypeFilter
         //WeakReference
@@ -416,7 +412,7 @@ namespace ConApp
             }
         }
 
-        private static void RunPSDemo1()
+        private static void RunPsDemo1()
         {
             List<string> ps = new List<string>();
             ps.Add("Get-WmiObject -Class Win32_UserAccount");
@@ -433,7 +429,7 @@ namespace ConApp
             runspace.Close();
         }
 
-        private static void RunPSDemo2()
+        private static void RunPsDemo2()
         {
             List<string> ps = new List<string>();
             ps.Add("Set-ExecutionPolicy RemoteSigned");//先执行启动安全策略，，使系统可以执行powershell脚本文件
@@ -444,19 +440,19 @@ namespace ConApp
             ps.Add(pspath);//执行脚本文件
 
             Info psobj = new Info();
-            psobj.x = 20;
-            psobj.y = 10;
+            psobj.X = 20;
+            psobj.Y = 10;
 
-            PSParam par = new PSParam();
+            PsParam par = new PsParam();
             par.Key = "arg";
             par.Value = psobj;
 
-            RunScript(ps, new List<PSParam>() { par });
+            RunScript(ps, new List<PsParam>() { par });
 
-            Console.WriteLine(psobj.x + " + " + psobj.y + " = " + psobj.z);
+            Console.WriteLine(psobj.X + " + " + psobj.Y + " = " + psobj.Z);
         }
 
-        public static void InvokeSystemPS(string cmd)
+        public static void InvokeSystemPs(string cmd)
         {
             List<string> ps = new List<string>();
             ps.Add("Set-ExecutionPolicy RemoteSigned");
@@ -473,19 +469,18 @@ namespace ConApp
             runspace.Close();
         }
 
-        public static void InvokeVMMPS()
+        public static void InvokeVmmps()
         {
             RunspaceConfiguration rconfig = RunspaceConfiguration.Create();
-            PSSnapInException Pwarn = new PSSnapInException();
+            PSSnapInException pwarn = new PSSnapInException();
 
-            Runspace runspace = RunspaceFactory.CreateRunspace();
             string test = "Import-Module VirtualMachineManager\r\n";
-            runspace = RunspaceFactory.CreateRunspace(rconfig); runspace.Open();
+            var runspace = RunspaceFactory.CreateRunspace(rconfig); runspace.Open();
             Pipeline pipeline = runspace.CreatePipeline();
             pipeline.Commands.AddScript(test);
             try
             {
-                var results = pipeline.Invoke();
+                pipeline.Invoke();
 
                 using (Pipeline pipe = runspace.CreatePipeline())
                 {
@@ -493,7 +488,7 @@ namespace ConApp
                     Command cmd = new Command("Get-VM");
                     cmd.Parameters.Add("Name", "vm001");
                     pipe.Commands.Add(cmd);
-                    var result = pipe.Invoke();
+                    pipe.Invoke();
                 }
             }
             catch (Exception ex)
@@ -534,7 +529,7 @@ namespace ConApp
             return psObjects;
         }
 
-        public static string RunScript(List<string> scripts, List<PSParam> pars)
+        public static string RunScript(List<string> scripts, List<PsParam> pars)
         {
             Runspace runspace = RunspaceFactory.CreateRunspace();
 
@@ -575,69 +570,19 @@ namespace ConApp
         //等价于C/C++的 #define 语句，不分配内存
         public const int PI = 31415;
 
-        public static void RedisDemo()
-        {
-            var client = new RedisClient("127.0.0.1", 6379);
-
-            #region get/set
-
-            client.Set<string>("name", "huruiyi");
-            Console.WriteLine(client.Get<string>("name"));
-
-            //  client.Append("",);
-
-            //client.Set("question", "What's your name");
-            //string name = Encoding.UTF8.GetString(client.Get("question"));
-            //Console.WriteLine(name);
-
-            #endregion get/set
-
-            #region SetEntryInHash
-
-            //client.SetEntryInHash("id1", "name", "huruiyi");
-            //client.SetEntryInHash("id1", "sex", "nan");
-            //client.SetEntryInHash("id1", "age", "22");
-
-            //for (int i = 0; i < client.GetHashCount("id1"); i++)
-            //{
-            //    Console.WriteLine("keys:" + client.GetHashKeys("id1")[i] + "\tvalue:" + client.GetHashValues("id1")[i]);
-            //}
-
-            #endregion SetEntryInHash
-
-            #region SetEntry
-
-            //client.SetEntry("name", "huruiyi");
-            //string name = client.GetEntry("name");
-            //Console.WriteLine(name);
-
-            #endregion SetEntry
-
-            //client.Lists["listid1"].Add("1");
-            //client.Lists["listid1"].Add("2");
-            //long listid1Count = client.GetListCount("listid1");
-            //List<string> listEntry=client.Lists["listid1"].GetAll();
-            //foreach (string t in listEntry)
-            //{
-            //    Console.WriteLine(t);
-            //}
-
-            Console.ReadKey();
-        }
-
         public static void StringReplace1()
         {
             string greetingText = "Hello from all the guys at Wrox Press. ";
             greetingText += "We do hope you enjoy this book as much as we enjoyed writing it.";
 
-            for (int i = (int)'z'; i >= (int)'a'; i--)
+            for (int i = 'z'; i >= 'a'; i--)
             {
                 char old1 = (char)i;
                 char new1 = (char)(i + 1);
                 greetingText = greetingText.Replace(old1, new1);
             }
 
-            for (int i = (int)'Z'; i >= (int)'A'; i--)
+            for (int i = 'Z'; i >= 'A'; i--)
             {
                 char old1 = (char)i;
                 char new1 = (char)(i + 1);
@@ -786,153 +731,6 @@ namespace ConApp
                 Thread.Sleep(100);
             }
             return true;
-        }
-
-        public static void SqlDemo()
-        {
-            #region 获取插入WDModule表数据返回的ID
-
-            List<string> listMoudleIdList = new List<string>();
-            const string connectionString = "user id=TCLXSWD;password=I47kY7%vIK25@e$;DataBase=TCB2bTouristBasic;server=192.168.0.154,1441;";
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                const string sql = @"INSERT    INTO dbo.WDModule
-                                ( Name, SortType, BasePath, DefaultOrder, GroupId, IfValid,
-                                  IfHaveCategory )
-                        OUTPUT    INSERTED.id,INSERTED.DefaultOrder
-                        VALUES  ( '自助游', 1, '/wd/lines/type2/4_', 130, 100, 1, 0 ),
-                                ( '出境游', 1, '/wd/lines/type2/3_', 131, 100, 1, 0 ),
-                                ( '国内游', 1, '/wd/lines/type2/2_', 132, 100, 1, 0 ),
-                                ( '周边游', 1, '/wd/lines/type2/1_', 133, 100, 1, 0 )
-                          ";
-                SqlCommand cmd = new SqlCommand(sql, connection);
-                SqlDataReader sqlDataReader = cmd.ExecuteReader();
-                while (sqlDataReader.Read())
-                {
-                    listMoudleIdList.Add(sqlDataReader[0].ToString());
-                }
-            }
-
-            #endregion 获取插入WDModule表数据返回的ID
-
-            #region 获取WdMenu表 --会员的数量及会员Id集合
-
-            List<string> listB2bUserId = new List<string>();
-            int b2bUserCount = 0;
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                string sql = @"DECLARE @tempTable TABLE
-                                (
-                                  rownumber INT IDENTITY(1, 1)
-                                                PRIMARY KEY ,
-                                  B2bUserId INT
-                                )
-                            INSERT  INTO @tempTable
-                                    SELECT DISTINCT
-                                            ( B2bUserId )
-                                    FROM    dbo.WDMenu
-                            SELECT rownumber ,B2bUserId FROM @tempTable";
-                con.Open();
-                SqlCommand cmd = new SqlCommand(sql, con);
-                SqlDataReader dataReader = cmd.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    listB2bUserId.Add(dataReader["B2bUserId"].ToString());
-                }
-                b2bUserCount = listB2bUserId.Count;
-            }
-
-            #endregion 获取WdMenu表 --会员的数量及会员Id集合
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string sql = string.Format(@"DECLARE @maxOrderNumber INT
-                                            DECLARE @B2bUserId INT
-                                            DECLARE @rowNumber INT
-                                            SET @rowNumber = 1
-                                            WHILE @rowNumber <= {0}
-                                                BEGIN
-                                                    SELECT  @B2bUserId = B2bUserId
-                                                    FROM    @tempTable
-                                                    WHERE   rownumber = @rowNumber
-                                                    SELECT  @maxOrderNumber = MAX(ordernum)
-                                                    FROM    dbo.WDMenu
-                                                    WHERE   B2bUserId = @B2bUserId
-                                                    INSERT  INTO dbo.WDMenu
-                                                            ( B2bUserId, Name, ModuleId, LinkUrl, OrderNum, IfShow )
-                                                    VALUES  ( @B2bUserId, N'自助游', 53, N'', @maxOrderNumber + 1, 1 )
-                                                   ,        ( @B2bUserId, N'出境游', 54, N'', @maxOrderNumber + 2, 1 )
-                                                   ,        ( @B2bUserId, N'国内游', 55, N'', @maxOrderNumber + 3, 1 )
-                                                   ,        ( @B2bUserId, N'周边游', 56, N'', @maxOrderNumber + 4, 1 )
-                                                    SET @rowNumber = @rowNumber + 1
-                                                END", b2bUserCount);
-
-                connection.Open();
-                SqlCommand cmd = new SqlCommand(sql, connection);
-                cmd.ExecuteNonQuery();
-            }
-        }
-
-        public static void StopwatchDemo()
-        {
-            DataTable dt = GetMainTable();
-
-            Stopwatch sw = new Stopwatch();
-            int doCount = 0;
-            var dataIEnum = dt.AsEnumerable();
-            sw.Start();
-            for (int i = 0; i < 50000; i++)
-            {
-                if (dataIEnum.Count() > 0)
-                    doCount++;
-            }
-            sw.Stop();
-            Console.WriteLine("Count() 耗費時間：" + sw.ElapsedMilliseconds / 1000d);
-
-            sw.Reset();
-            doCount = 0;
-            sw.Start();
-            for (int i = 0; i < 50000; i++)
-            {
-                if (dataIEnum.Any())
-                    doCount++;
-            }
-            sw.Stop();
-            Console.WriteLine("Any() 耗費時間：" + sw.ElapsedMilliseconds / 1000d);
-            List<DataRow> dataList = dataIEnum.ToList();
-            sw.Reset();
-            doCount = 0;
-            sw.Start();
-            for (int i = 0; i < 50000; i++)
-            {
-                if (dataList.Count > 0)
-                    doCount++;
-            }
-            sw.Stop();
-            Console.WriteLine("List.Count 耗費時間：" + sw.ElapsedMilliseconds / 1000d);
-        }
-
-        public static DataTable GetMainTable()
-        {
-            DataTable dt = new DataTable();
-            DataColumn dataColumn = new DataColumn("Id", typeof(int))
-            {
-                AutoIncrementSeed = 1,
-                AutoIncrementStep = 1,
-                AutoIncrement = true
-            };
-            dt.Columns.AddRange(new[]
-            {
-                dataColumn,
-                new DataColumn("Name", typeof (string)), new DataColumn("Age", typeof (int)),
-                new DataColumn("BirthDay", typeof (DateTime))
-            });
-            for (int i = 0; i < 100; i++)
-            {
-                dt.Rows.Add(i, "Name" + i, 2 * i, DateTime.Now);
-            }
-            return dt;
         }
 
         public static void VectorDemo()
@@ -1195,7 +993,7 @@ namespace ConApp
             return validateResult;
         }
 
-        public static void CDROMManagement()
+        public static void CdromManagement()
         {
             ManagementEventWatcher watcher = null;
             WqlEventQuery q;
@@ -1211,7 +1009,7 @@ namespace ConApp
             q.Condition = @"TargetInstance ISA 'Win32_LogicalDisk' and TargetInstance.DriveType = 5";
             watcher = new ManagementEventWatcher(scope, q);
             // register async. event handler
-            watcher.EventArrived += new EventArrivedEventHandler(CDREventArrived);
+            watcher.EventArrived += new EventArrivedEventHandler(CdrEventArrived);
             watcher.Start();
             // Do something usefull,block thread for testing
             Console.ReadLine();
@@ -1219,7 +1017,7 @@ namespace ConApp
         }
 
         // Dump all properties
-        public static void CDREventArrived(object sender, EventArrivedEventArgs e)
+        public static void CdrEventArrived(object sender, EventArrivedEventArgs e)
         {
             // Get the Event object and display it
             PropertyData pd = e.NewEvent.Properties["TargetInstance"];
@@ -1625,6 +1423,11 @@ namespace ConApp
 
         public static SetValueDelegateHandler EmitSetValue;
 
+        public Program(int mNData)
+        {
+            m_nData = mNData;
+        }
+
         public static void BuildEmitMethod(Type entityType, string propertyName)
         {
             //Type entityType = entity.GetType();
@@ -1855,8 +1658,57 @@ namespace ConApp
             Console.WriteLine("Main thread: worker thread has terminated.");
         }
 
-      
+        private static void PerformanceDemo()
+        {
+            Console.Title = ("Simple CPU Monitor");
+            Console.ForegroundColor = ConsoleColor.Green;
+            PerformanceCounter perfCounter = new PerformanceCounter("Processor Information", "% Processor Time", "_Total");
 
-       
+            while (true)
+            {
+                Thread.Sleep(1000);
+                Console.Beep();
+                Console.WriteLine("CPU Load: {0}%", perfCounter.NextValue());
+            }
+        }
+
+        private static void Calc()
+        {
+            Thread th = new Thread(() =>
+            {
+                Console.WriteLine();
+            });
+            // [Obsolete("Thread.Resume has been deprecated.  Please use other classes in System.Threading,
+            // such as Monitor, Mutex, Event, and Semaphore,
+            //to synchronize Threads or protect resources.  http://go.microsoft.com/fwlink/?linkid=14202", false)]
+            th.Resume();
+        }
+
+        private static void Index()
+        {
+            IndexClass ic = new IndexClass
+            {
+                ListPerson = new List<PersonClass>
+                {
+                    new PersonClass {Id = 1, Name = "User1"},
+                    new PersonClass {Id = 2, Name = "User2"},
+                    new PersonClass {Id = 3, Name = "User3"}
+                }
+            };
+            Console.WriteLine(ic[2].Name);
+        }
+
+        private static void StrongBoxInt(StrongBox<int> sint)
+        {
+            sint.Value = 456789;
+        }
+
+        private static void StrongBoxDemo()
+        {
+            StrongBox<int> sint = new StrongBox<int>(123465);
+            Console.WriteLine(sint.Value);
+            StrongBoxInt(sint);
+            Console.WriteLine(sint.Value);
+        }
     }
 }
