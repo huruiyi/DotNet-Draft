@@ -1,10 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.Net", "ADO.Net\ADO.Net.csproj", "{2D27972C-7CCA-4335-8816-060ECCCBAAF8}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MEF", "MEF", "{4F6926C3-C8B7-4C84-8688-D5A5DCA39347}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "MEF0", "MEF0", "{A7EBFE3F-858E-4FC9-A5FC-2847AFD86A76}"
@@ -35,15 +33,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MEF.BankOfChina", "MEF\MEF3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MEF.BankInterface", "MEF\MEF3\MEF.BankInterface\MEF.BankInterface.csproj", "{975DD0F6-0ADC-4464-9B69-A2D04509662E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADO.NET_Import_Export", "ADO.NET_Import_Export\ADO.NET_Import_Export.csproj", "{31308E63-50D1-4A78-AB10-8146886961D1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "依赖倒置1", "依赖倒置1\依赖倒置1.csproj", "{4E2C29C9-E5C9-4058-AB88-3D47A812852D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "依赖倒置2", "依赖倒置2\依赖倒置2.csproj", "{06965D84-03D5-4281-8E78-003908C38B08}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConApp", "ConApp\ConApp.csproj", "{F01F85B6-F7A8-419D-9CEC-F2489E81E583}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOCUnity", "IOCUnity\IOCUnity.csproj", "{7A9AEA4D-BE18-4434-8AD7-EB01C5AF40F0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "单一职责原则SRP1", "单一职责原则SRP1\单一职责原则SRP1.csproj", "{56945193-665A-4FFA-9E30-8F291B1F0D77}"
 EndProject
@@ -55,16 +47,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "反射实例", "反射实�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "模版方法", "模版方法\模版方法.csproj", "{E801A8D5-C5E5-4543-A778-530B4947DCE9}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "观察者模式", "观察者模式", "{DC64BF57-69DF-4DB2-9343-A4F1DEBC7830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "观察者", "观察者模式\观察者\观察者.csproj", "{829051BB-7498-4659-A5F6-574F0F8EC772}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "实现窗体的翻译功能", "观察者模式\实现窗体的翻译功能\实现窗体的翻译功能.csproj", "{8E200DFC-DF8A-43DF-AE70-1C949494C3E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2D27972C-7CCA-4335-8816-060ECCCBAAF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2D27972C-7CCA-4335-8816-060ECCCBAAF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2D27972C-7CCA-4335-8816-060ECCCBAAF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2D27972C-7CCA-4335-8816-060ECCCBAAF8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B06D840A-8251-4164-835E-6D9229C5D6D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B06D840A-8251-4164-835E-6D9229C5D6D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B06D840A-8251-4164-835E-6D9229C5D6D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -105,10 +99,6 @@ Global
 		{975DD0F6-0ADC-4464-9B69-A2D04509662E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{975DD0F6-0ADC-4464-9B69-A2D04509662E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{975DD0F6-0ADC-4464-9B69-A2D04509662E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{31308E63-50D1-4A78-AB10-8146886961D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{31308E63-50D1-4A78-AB10-8146886961D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{31308E63-50D1-4A78-AB10-8146886961D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{31308E63-50D1-4A78-AB10-8146886961D1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4E2C29C9-E5C9-4058-AB88-3D47A812852D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4E2C29C9-E5C9-4058-AB88-3D47A812852D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E2C29C9-E5C9-4058-AB88-3D47A812852D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -117,14 +107,6 @@ Global
 		{06965D84-03D5-4281-8E78-003908C38B08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06965D84-03D5-4281-8E78-003908C38B08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06965D84-03D5-4281-8E78-003908C38B08}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F01F85B6-F7A8-419D-9CEC-F2489E81E583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F01F85B6-F7A8-419D-9CEC-F2489E81E583}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F01F85B6-F7A8-419D-9CEC-F2489E81E583}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F01F85B6-F7A8-419D-9CEC-F2489E81E583}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7A9AEA4D-BE18-4434-8AD7-EB01C5AF40F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7A9AEA4D-BE18-4434-8AD7-EB01C5AF40F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7A9AEA4D-BE18-4434-8AD7-EB01C5AF40F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7A9AEA4D-BE18-4434-8AD7-EB01C5AF40F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{56945193-665A-4FFA-9E30-8F291B1F0D77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{56945193-665A-4FFA-9E30-8F291B1F0D77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56945193-665A-4FFA-9E30-8F291B1F0D77}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -145,6 +127,14 @@ Global
 		{E801A8D5-C5E5-4543-A778-530B4947DCE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E801A8D5-C5E5-4543-A778-530B4947DCE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E801A8D5-C5E5-4543-A778-530B4947DCE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{829051BB-7498-4659-A5F6-574F0F8EC772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{829051BB-7498-4659-A5F6-574F0F8EC772}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{829051BB-7498-4659-A5F6-574F0F8EC772}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{829051BB-7498-4659-A5F6-574F0F8EC772}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E200DFC-DF8A-43DF-AE70-1C949494C3E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E200DFC-DF8A-43DF-AE70-1C949494C3E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E200DFC-DF8A-43DF-AE70-1C949494C3E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E200DFC-DF8A-43DF-AE70-1C949494C3E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -164,6 +154,8 @@ Global
 		{2AC32873-371F-43CC-9499-9D6D82DF9FCE} = {4EA4F63B-55A4-4F46-A24F-D3A9FC3E8447}
 		{FDA03248-A0BF-46A0-9350-5FB600FAF0F2} = {4EA4F63B-55A4-4F46-A24F-D3A9FC3E8447}
 		{975DD0F6-0ADC-4464-9B69-A2D04509662E} = {4EA4F63B-55A4-4F46-A24F-D3A9FC3E8447}
+		{829051BB-7498-4659-A5F6-574F0F8EC772} = {DC64BF57-69DF-4DB2-9343-A4F1DEBC7830}
+		{8E200DFC-DF8A-43DF-AE70-1C949494C3E6} = {DC64BF57-69DF-4DB2-9343-A4F1DEBC7830}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BA40836E-23B8-4B9E-80F7-6ED08A5F3519}

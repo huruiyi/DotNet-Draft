@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="Scripts/angular.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="siteCtrl">
+        <ul>
+            <li ng-repeat="x in users">
+                {{ x.Id + ', ' + x.Name }}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        //var app = angular.module('myApp', []);
+        //app.controller('siteCtrl',
+        //    function ($scope, $http) {
+        //        $http.get("./AjaxHandler.ashx?action=Demo1_Success")
+        //            .then(function (response) {
+        //                $scope.names = response.data.sites;
+        //            });
+        //    });
+
+        var app = angular.module('myApp', []);
+        app.controller('siteCtrl',
+            function($scope, $http) {
+                //$http.get("./AjaxHandler.ashx?action=Demo1_Success")
+                $http.get("./AjaxHandler.ashx?action=Demo2_Error")
+                    .then(function successCallback(response) {
+                            // 请求成功执行代码
+                            $scope.users = response.data;
+                        },
+                        function errorCallback(response) {
+                            // 请求失败执行代码
+                            console.log(response);
+                        });
+            });
+    </script>
+</body>
+</html>

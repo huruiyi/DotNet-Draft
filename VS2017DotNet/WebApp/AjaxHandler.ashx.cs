@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using Newtonsoft.Json;
 
 namespace WebApp
 {
@@ -16,15 +17,33 @@ namespace WebApp
             string action = context.Request["action"];
             switch (action)
             {
-                case "Demo1":
-                    Demo1Process(context);
+                case "Demo1_Success":
+                    Demo1_Success(context);
+                    break;
+
+                case "Demo2_Error":
+                    Demo2_Error(context);
                     break;
             }
         }
 
-        void Demo1Process(HttpContext context)
+        private void Demo2_Error(HttpContext context)
         {
-            
+            throw new NotImplementedException();
+        }
+
+        void Demo1_Success(HttpContext context)
+        {   
+            List<object> objList = new List<object>();
+            for (int i = 0; i < 10; i++)
+            {
+                objList.Add(new
+                {
+                    Id = i,
+                    Name = "Name" + i
+                });
+            }
+            context.Response.Write(JsonConvert.SerializeObject(objList));
         }
         public bool IsReusable
         {

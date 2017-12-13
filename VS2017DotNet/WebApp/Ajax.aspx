@@ -11,30 +11,71 @@
     <script src="Scripts/bootstrap.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            $("#btnDemo1").unbind("click").bind("click", Demo1);
+            $("#btnDemo1").unbind("click").bind("click",
+                function () {
+                    AjaxDemo("./AjaxHandler.ashx?action=Demo1_Success");
+                }
+            );
+            $("#btnDemo2").unbind("click").bind("click",
+                function () {
+                    AjaxDemo("./AjaxHandler.ashx?action=Demo2_Error");
+                }
+            );
         });
-        function Demo1() {
+        function AjaxDemo(url) {
             $.ajax({
                 type: "post",
-                url: "./AjaxHandler.ashx?action=Demo1",
-                data:{
+                url: url,
+                async: true,
+                data: {
                     "Id": 123,
                     "Name": "姓名",
                     "Age": "30"
                 },
                 dataType: "json",
-                success: function (data) {
-
+                beforeSend: function(data) {
+                    console.log(data);
+                    console.log("beforeSend");
+                },
+                error: function(data) {
+                    console.log(data);
+                    console.log("error");
+                },
+                complete: function(data) {
+                    console.log(data);
+                    console.log("complete");
+                },
+                success: function(data) {
+                    console.log(data);
+                    console.log("success");
+                },
+                ajaxSend: function(data) {
+                    console.log(data);
+                    console.log("ajaxSend");
+                },
+                ajaxSuccess: function(data) {
+                    console.log(data);
+                    console.log("ajaxSuccess");
+                },
+                ajaxError: function(data) {
+                    console.log(data);
+                    console.log("ajaxError");
+                },
+                ajaxComplete: function(data) {
+                    console.log(data);
+                    console.log("ajaxComplete");
                 }
             });
         }
     </script>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" onsubmit="return false;">
         <div class="panel text-center ">
-            <button class="btn btn-danger" id="btnDemo1">测试1</button>
+            <button class="btn btn-success" id="btnDemo1">测试请求成功</button>
+            <button class="btn btn-danger" id="btnDemo2">请求请求失败</button>
         </div>
     </form>
+    <%Response.Write(DateTime.Now); %>
 </body>
 </html>
