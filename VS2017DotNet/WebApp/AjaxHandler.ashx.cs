@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Web;
-using Newtonsoft.Json;
 
 namespace WebApp
 {
@@ -11,7 +10,6 @@ namespace WebApp
     /// </summary>
     public class AjaxHandler : IHttpHandler
     {
-
         public void ProcessRequest(HttpContext context)
         {
             string action = context.Request["action"];
@@ -32,8 +30,8 @@ namespace WebApp
             throw new NotImplementedException();
         }
 
-        void Demo1_Success(HttpContext context)
-        {   
+        private void Demo1_Success(HttpContext context)
+        {
             List<object> objList = new List<object>();
             for (int i = 0; i < 10; i++)
             {
@@ -45,6 +43,7 @@ namespace WebApp
             }
             context.Response.Write(JsonConvert.SerializeObject(objList));
         }
+
         public bool IsReusable
         {
             get

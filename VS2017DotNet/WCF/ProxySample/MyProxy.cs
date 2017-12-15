@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Runtime.Remoting;
 using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
@@ -9,85 +10,85 @@ namespace ProxySample
 {
     public class MyProxy : RealProxy
     {
-        private string myUrl;
-        private string myObjectURI;
-        private IMessageSink myMessageSink;
+        String myURIString;
+        MarshalByRefObject myMarshalByRefObject;
 
         [PermissionSet(SecurityAction.LinkDemand)]
-        public MyProxy(Type myType, string myUrl1)
-           : base(myType)
+        public MyProxy(Type myType) : base(myType)
         {
-            myUrl = myUrl1;
-
-            IChannel[] myRegisteredChannels = ChannelServices.RegisteredChannels;
-            foreach (IChannel channel in myRegisteredChannels)
-            {
-                if (channel is IChannelSender)
-                {
-                    IChannelSender myChannelSender = (IChannelSender)channel;
-
-                    myMessageSink = myChannelSender.CreateMessageSink(myUrl, null, out myObjectURI);
-                    if (myMessageSink != null)
-                        break;
-                }
-            }
-
-            if (myMessageSink == null)
-            {
-                throw new Exception("A supported channel could not be found for myUrl1:" + myUrl);
-            }
+            // RealProxy uses the Type to generate a transparent proxy.
+            myMarshalByRefObject = (MarshalByRefObject)Activator.CreateInstance((myType));
+            // Get 'ObjRef', for transmission serialization between application domains.
+            ObjRef myObjRef = RemotingServices.Marshal(myMarshalByRefObject);
+            // Get the 'URI' property of 'ObjRef' and store it.
+            myURIString = myObjRef.URI;
+            Console.WriteLine("URI :{0}", myObjRef.URI);
         }
 
-        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
-        public override IMessage Invoke(IMessage myMesg)
+        [SecurityPermissionAttribute(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+        public override IMessage Invoke(IMessage myIMessage)
         {
             Console.WriteLine("MyProxy.Invoke Start");
+            Console.WriteLine("");
 
-            if (myMesg is IMethodCallMessage)
+            if (myIMessage is IMethodCallMessage)
                 Console.WriteLine("IMethodCallMessage");
 
-            if (myMesg is IMethodReturnMessage)
+            if (myIMessage is IMethodReturnMessage)
                 Console.WriteLine("IMethodReturnMessage");
 
+            Type msgType = myIMessage.GetType();
+            Console.WriteLine("Message Type: {0}", msgType.ToString());
             Console.WriteLine("Message Properties");
-            IDictionary myDictionary = myMesg.Properties;
-            IDictionaryEnumerator myEnum = (IDictionaryEnumerator)myDictionary.GetEnumerator();
+            IDictionary myIDictionary = myIMessage.Properties;
+            // Set the '__Uri' property of 'IMessage' to 'URI' property of 'ObjRef'.
+            myIDictionary["__Uri"] = myURIString;
+            IDictionaryEnumerator myIDictionaryEnumerator =
+               (IDictionaryEnumerator)myIDictionary.GetEnumerator();
 
-            while (myEnum.MoveNext())
+            while (myIDictionaryEnumerator.MoveNext())
             {
-                object myKey = myEnum.Key;
-                string myKeyName = myKey.ToString();
-                object myValue = myEnum.Value;
+                Object myKey = myIDictionaryEnumerator.Key;
+                String myKeyName = myKey.ToString();
+                Object myValue = myIDictionaryEnumerator.Value;
 
-                Console.WriteLine("{0} : {1}", myKeyName, myEnum.Value);
+                Console.WriteLine("\t{0} : {1}", myKeyName,
+                   myIDictionaryEnumerator.Value);
                 if (myKeyName == "__Args")
                 {
-                    object[] myArgs = (object[])myValue;
-                    for (int myInt = 0; myInt < myArgs.Length; myInt++)
-                        Console.WriteLine("arg: {0} myValue: {1}", myInt, myArgs[myInt]);
+                    Object[] myObjectArray = (Object[])myValue;
+                    for (int aIndex = 0; aIndex < myObjectArray.Length; aIndex++)
+                        Console.WriteLine("\t\targ: {0} myValue: {1}", aIndex,
+                           myObjectArray[aIndex]);
                 }
 
                 if ((myKeyName == "__MethodSignature") && (null != myValue))
                 {
-                    object[] myArgs = (object[])myValue;
-                    for (int myInt = 0; myInt < myArgs.Length; myInt++)
-                        Console.WriteLine("arg: {0} myValue: {1}", myInt, myArgs[myInt]);
+                    Object[] myObjectArray = (Object[])myValue;
+                    for (int aIndex = 0; aIndex < myObjectArray.Length; aIndex++)
+                        Console.WriteLine("\t\targ: {0} myValue: {1}", aIndex,
+                           myObjectArray[aIndex]);
                 }
             }
 
-            Console.WriteLine("myUrl1 {0} object URI{1}", myUrl, myObjectURI);
+            IMessage myReturnMessage;
 
-            myDictionary["__Uri"] = myUrl;
-            Console.WriteLine("URI {0}", myDictionary["__URI"]);
-            IMessage myRetMsg = myMessageSink.SyncProcessMessage(myMesg);
+            myIDictionary["__Uri"] = myURIString;
+            Console.WriteLine("__Uri {0}", myIDictionary["__Uri"]);
 
-            if (myRetMsg is IMethodReturnMessage)
-            {
-                IMethodReturnMessage myMethodReturnMessage = (IMethodReturnMessage)myRetMsg;
-            }
+            Console.WriteLine("ChannelServices.SyncDispatchMessage");
+            myReturnMessage = ChannelServices.SyncDispatchMessage(myIMessage);
+
+            // Push return value and OUT parameters back onto stack.
+
+            IMethodReturnMessage myMethodReturnMessage = (IMethodReturnMessage)
+               myReturnMessage;
+            Console.WriteLine("IMethodReturnMessage.ReturnValue: {0}",
+               myMethodReturnMessage.ReturnValue);
 
             Console.WriteLine("MyProxy.Invoke - Finish");
-            return myRetMsg;
+
+            return myReturnMessage;
         }
     }
 }

@@ -13,9 +13,9 @@ namespace ProxySample
             Console.WriteLine("Remoting Sample:");
 
             Console.WriteLine("Generate a new MyProxy using the Type");
-            Type myType = typeof(Service1Client);
             string myUrl1 = "http://localhost:20133/Service1.svc";
-            MyProxy myProxy = new MyProxy(myType, myUrl1);
+            MyProxy myProxy = new MyProxy(typeof(Service1Client));
+
 
             Console.WriteLine("Obtain the transparent proxy from myProxy");
             Service1Client myService = (Service1Client)myProxy.GetTransparentProxy();

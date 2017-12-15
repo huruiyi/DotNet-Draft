@@ -19,7 +19,7 @@ namespace WebApp
             Response.BufferOutput = true;
 
             // Create a font style.
-            Font rectangleFont = new Font(                        "Arial", 10, FontStyle.Bold);
+            Font rectangleFont = new Font("Arial", 10, FontStyle.Bold);
 
             // Create integer variables.
             int height = 100;
