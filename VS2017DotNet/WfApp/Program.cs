@@ -16,7 +16,7 @@ namespace WfApp
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 硬盘信息获取());
+            Application.Run(new AndroidForm());
         }
     }
 }

@@ -33,35 +33,35 @@
                     "Age": "30"
                 },
                 dataType: "json",
-                beforeSend: function(data) {
+                beforeSend: function (data) {
                     console.log(data);
                     console.log("beforeSend");
                 },
-                error: function(data) {
+                error: function (data) {
                     console.log(data);
                     console.log("error");
                 },
-                complete: function(data) {
+                complete: function (data) {
                     console.log(data);
                     console.log("complete");
                 },
-                success: function(data) {
+                success: function (data) {
                     console.log(data);
                     console.log("success");
                 },
-                ajaxSend: function(data) {
+                ajaxSend: function (data) {
                     console.log(data);
                     console.log("ajaxSend");
                 },
-                ajaxSuccess: function(data) {
+                ajaxSuccess: function (data) {
                     console.log(data);
                     console.log("ajaxSuccess");
                 },
-                ajaxError: function(data) {
+                ajaxError: function (data) {
                     console.log(data);
                     console.log("ajaxError");
                 },
-                ajaxComplete: function(data) {
+                ajaxComplete: function (data) {
                     console.log(data);
                     console.log("ajaxComplete");
                 }

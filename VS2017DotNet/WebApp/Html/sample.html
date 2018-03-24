@@ -1,0 +1,50 @@
+<script>
+    var price = 100;
+    function doSomething() {
+        var doublePrice = price * 2;
+        var price = 200;
+        var halfPrice = price / 2;
+        alert(doublePrice);
+        alert(halfPrice);
+    }
+    //Nan,100
+    //doSomething();
+
+    function doSomething2() {
+        var price = 200;
+        var doublePrice = price * 2;
+        var halfPrice = price / 2;
+        alert(doublePrice);
+        alert(halfPrice);
+    }
+    //400,100
+    //doSomething2();
+</script>
+<div id="div1">
+    <input type="checkbox" name="dc11" />
+    <input type="checkbox" name="dc12" />
+    <input type="button" name="dc12" value="btn1" />
+    <input type="button" name="dc12" value="btn2" />
+</div>
+
+<div id="div2">
+    <input type="checkbox" name="dc21" />
+    <input type="checkbox" name="dc22" />
+</div>
+
+<div id="div3">
+    <input type="checkbox" name="dc31" />
+    <input type="checkbox" name="dc32" />
+</div>
+
+<input type="button" onclick="Get()" value="Get Checkbox" />
+<script type="text/javascript">
+    function Get() {
+        var childs = document.getElementById("div1").getElementsByTagName("input");
+        for (var i = 0; i < childs.length; i++) {
+            if (childs[i].type == "checkbox") {
+                childs[i].checked = true;
+            }
+        }
+    }
+</script>
