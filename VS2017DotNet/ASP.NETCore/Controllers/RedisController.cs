@@ -7,6 +7,9 @@ using StackExchange.Redis;
 
 namespace ASP.NETCore.Controllers
 {
+    /// <summary>
+    /// Redis
+    /// </summary>
     public class RedisController : Controller
     {
         private static readonly Lazy<ConnectionMultiplexer> LazyConnection = new Lazy<ConnectionMultiplexer>(() => ConnectionMultiplexer.Connect("localhost,abortConnect=false"));

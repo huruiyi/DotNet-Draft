@@ -4,6 +4,9 @@ using System;
 
 namespace ASP.NETCore.Controllers
 {
+    /// <summary>
+    /// Session
+    /// </summary>
     public class SessionController : Controller
     {
         private const string SessionKeyName = "_Name";

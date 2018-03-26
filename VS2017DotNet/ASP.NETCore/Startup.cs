@@ -3,23 +3,37 @@ using ASP.NETCore.Models;
 using ASP.NETCore.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Server.IISIntegration;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 
 namespace ASP.NETCore
 {
+    //public class Startup
+    //{
+    //    public void ConfigureServices(IServiceCollection services)
+    //    {
+    //        services.AddMvc();
+
+    //        // Adds a default in-memory implementation of IDistributedCache.
+    //        services.AddDistributedMemoryCache();
+
+    //        services.AddSession(options =>
+    //        {
+    //            // Set a short timeout for easy testing.
+    //            options.IdleTimeout = TimeSpan.FromSeconds(10);
+    //            options.Cookie.HttpOnly = true;
+    //        });
+    //    }
+
+    //    public void Configure(IApplicationBuilder app)
+    //    {
+    //        app.UseSession();
+    //        app.UseMvcWithDefaultRoute();
+    //    }
+    //}
+
     public class Startup
     {
-        public IConfiguration Configuration { get; }
-
-        public Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
         // 调用顺序是先ConfigureServices后Configure。
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
@@ -32,7 +46,6 @@ namespace ASP.NETCore
 
             services.AddSession(options =>
             {
-                options.Cookie.Name = ".AdventureWorks.Session";
                 // Set a short timeout for easy testing.
                 options.IdleTimeout = TimeSpan.FromSeconds(10);
                 options.Cookie.HttpOnly = true;
@@ -57,7 +70,7 @@ namespace ASP.NETCore
             //  IIS
             //  IISDefaults requires the following import:
             //  using Microsoft.AspNetCore.Server.IISIntegration;
-            services.AddAuthentication(IISDefaults.AuthenticationScheme);
+            //  services.AddAuthentication(IISDefaults.AuthenticationScheme);
 
             //  HTTP.sys
             //  HttpSysDefaults requires the following import:
@@ -68,7 +81,7 @@ namespace ASP.NETCore
 
             #region IOC
 
-            services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase());
+            //services.AddDbContext<ApplicationDbContext>(options => options.UseInMemoryDatabase());
 
             // Register application services.
             //services.AddScoped<ICharacterRepository, CharacterRepository>();
@@ -80,11 +93,8 @@ namespace ASP.NETCore
 
             services.AddTransient<IOperationTransient, Operation>();
             services.AddTransient<OperationService, OperationService>();
-
             services.AddScoped<ICharacterRepository, CharacterRepository>();
             services.AddScoped<IOperationScoped, Operation>();
-
-            //始终唯一
             services.AddSingleton<IOperationSingleton, Operation>();
             services.AddSingleton<IOperationSingletonInstance>(new Operation(Guid.NewGuid()));
 
@@ -131,15 +141,13 @@ namespace ASP.NETCore
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
-            //app.UseMvcWithDefaultRoute();
+            /*
+             * https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/app-state?tabs=aspnetcore2x
+             * https://docs.microsoft.com/zh-cn/aspnet/core/fundamentals/middleware/index?tabs=aspnetcore2x#ordering
+             排序对于中间件组件至关重要。 在前面的示例中，在 UseMvcWithDefaultRoute 之后调用 UseSession 时会发生 InvalidOperationException 类型的异常。 有关详细信息，请参阅中间件排序。
+             */
             app.UseSession();
+            app.UseMvcWithDefaultRoute();
             app.UseStaticFiles();
         }
     }
