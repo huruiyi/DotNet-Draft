@@ -2,11 +2,11 @@
 using System.Threading;
 using System.Windows.Forms;
 
-namespace WinformLog
+namespace WfApp
 {
-    public partial class Form1 : Form
+    public partial class LogForm : Form
     {
-        public Form1()
+        public LogForm()
         {
             InitializeComponent();
         }
