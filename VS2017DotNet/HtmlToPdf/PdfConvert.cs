@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -70,42 +69,11 @@ namespace Codaxy.WkHtmlToPdf
                     _e = new PdfConvertEnvironment
                     {
                         TempFolderPath = Path.GetTempPath(),
-                        WkHtmlToPdfPath = GetWkhtmlToPdfExeLocation(),
+                        WkHtmlToPdfPath = @"C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe",
                         Timeout = 60000
                     };
                 return _e;
             }
-        }
-
-        private static string GetWkhtmlToPdfExeLocation()
-        {
-            string filePath, customPath = ConfigurationManager.AppSettings["wkhtmltopdf:path"];
-
-            if (customPath != null)
-            {
-                filePath = Path.Combine(customPath, @"wkhtmltopdf.exe");
-
-                if (File.Exists(filePath))
-                    return filePath;
-            }
-
-            string programFilesPath = System.Environment.GetEnvironmentVariable("ProgramFiles");
-            filePath = Path.Combine(programFilesPath, @"wkhtmltopdf\wkhtmltopdf.exe");
-
-            if (File.Exists(filePath))
-                return filePath;
-
-            string programFilesx86Path = System.Environment.GetEnvironmentVariable("ProgramFiles(x86)");
-            filePath = Path.Combine(programFilesx86Path, @"wkhtmltopdf\wkhtmltopdf.exe");
-
-            if (File.Exists(filePath))
-                return filePath;
-
-            filePath = Path.Combine(programFilesPath, @"wkhtmltopdf\bin\wkhtmltopdf.exe");
-            if (File.Exists(filePath))
-                return filePath;
-
-            return Path.Combine(programFilesx86Path, @"wkhtmltopdf\bin\wkhtmltopdf.exe");
         }
 
         public static void ConvertHtmlToPdf(PdfDocument document, PdfOutput output)

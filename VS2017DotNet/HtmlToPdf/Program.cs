@@ -8,10 +8,10 @@ namespace HtmlToPdf
         {
             PdfConvert.ConvertHtmlToPdf(new PdfDocument
             {
-                Url = "http://www.sina.com/"
+                Url = @"layout.html"
             }, new PdfOutput
             {
-                OutputFilePath = "sina.pdf"
+                OutputFilePath = "layout.pdf"
             });
         }
     }
