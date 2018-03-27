@@ -2,7 +2,7 @@
 using System;
 using System.Threading;
 
-namespace ConApp.Samples
+namespace ConApp
 {
     internal class RedisDemo
     {

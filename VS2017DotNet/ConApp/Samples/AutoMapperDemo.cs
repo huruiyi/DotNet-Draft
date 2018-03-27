@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ConApp.Samples
+namespace ConApp
 {
     public class AutoMapperDemo
     {

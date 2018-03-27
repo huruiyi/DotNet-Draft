@@ -2,9 +2,9 @@
 using System;
 using System.Threading;
 
-namespace ConApp.Samples
+namespace ConApp
 {
-    internal class VolatileDemo
+    public class VolatileDemo
     {
         public static void DoAction()
         {

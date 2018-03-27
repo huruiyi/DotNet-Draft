@@ -1,16 +1,13 @@
 ﻿using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace ConApp
 {
-    class SecurityHelper
+    public class SecurityHelper
     {
         /// <summary>
         /// 生成公私钥
@@ -117,13 +114,13 @@ namespace ConApp
         /// <returns></returns>
         public bool SignatureDeformatter(string p_strKeyPublic, string p_strHashbyteDeformatter, string p_strDeformatterData)
         {
-                byte[] rgbHash = Convert.FromBase64String(p_strHashbyteDeformatter);
-                RSACryptoServiceProvider key = new RSACryptoServiceProvider();
-                key.FromXmlString(p_strKeyPublic);
-                RSAPKCS1SignatureDeformatter deformatter = new RSAPKCS1SignatureDeformatter(key);
-                deformatter.SetHashAlgorithm("MD5");
-                byte[] rgbSignature = Convert.FromBase64String(p_strDeformatterData);
-                return deformatter.VerifySignature(rgbHash, rgbSignature);
+            byte[] rgbHash = Convert.FromBase64String(p_strHashbyteDeformatter);
+            RSACryptoServiceProvider key = new RSACryptoServiceProvider();
+            key.FromXmlString(p_strKeyPublic);
+            RSAPKCS1SignatureDeformatter deformatter = new RSAPKCS1SignatureDeformatter(key);
+            deformatter.SetHashAlgorithm("MD5");
+            byte[] rgbSignature = Convert.FromBase64String(p_strDeformatterData);
+            return deformatter.VerifySignature(rgbHash, rgbSignature);
         }
 
         /// <summary>

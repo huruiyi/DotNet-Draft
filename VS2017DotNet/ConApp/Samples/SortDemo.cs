@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace ConApp.Samples
+namespace ConApp
 {
-    internal class SortDemo
+    public class SortDemo
     {
         public static void PrintArr(int[] arr)
         {

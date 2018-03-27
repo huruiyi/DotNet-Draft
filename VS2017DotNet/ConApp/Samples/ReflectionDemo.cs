@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-namespace ConApp.Samples
+namespace ConApp
 {
     public class ReflectionDemo
     {

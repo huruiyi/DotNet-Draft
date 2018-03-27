@@ -162,7 +162,6 @@ namespace ConApp
         {
             using (Timer fTimer = new Timer(new TimerCallback(DoTask), new AutoResetEvent(false), 0, 1000))
             {
-
             }
         }
     }

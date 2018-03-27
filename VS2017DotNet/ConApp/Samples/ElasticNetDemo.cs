@@ -1,16 +1,11 @@
 ﻿using ConApp.Model;
 using Nest;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Samples
+namespace ConApp
 {
-    class ElasticNetDemo
+    public class ElasticNetDemo
     {
-
         public static void ElasticNet()
         {
             var node = new Uri("http://127.0.0.1:9200");
@@ -27,6 +22,5 @@ namespace ConApp.Samples
 
             var response = client.Index(tweet, idx => idx.Index("mytweetindex")); //or specify index via settings.DefaultIndex("mytweetindex");
         }
-
     }
 }

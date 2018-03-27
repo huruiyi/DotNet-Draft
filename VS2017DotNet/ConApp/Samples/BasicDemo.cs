@@ -3,7 +3,7 @@ using System.Collections;
 
 namespace ConApp.Samples
 {
-    internal class BasicDemo
+    public class BasicDemo
     {
         private static void Demo1()
         {
@@ -35,7 +35,7 @@ namespace ConApp.Samples
             Console.WriteLine(iseven);							//输出结果
         }
 
-        private static void Demo2()
+        public static void Demo2()
         {
             int i = Convert.ToInt32(DateTime.Today.DayOfWeek);		//获取当前日期的数值
             switch (i)										        //调用switch语句
@@ -50,7 +50,7 @@ namespace ConApp.Samples
             }
         }
 
-        private static void Demo3()
+        public static void Demo3()
         {
             int[] arr = new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             ArrayList List = new ArrayList(arr);			//使用声明的一维数组实例化一个ArrayList对象
@@ -68,7 +68,7 @@ namespace ConApp.Samples
             }
         }
 
-        private static void Demo4()
+        public static void Demo4()
         {
             string StrA = "用^一生#下载,你";
             char[] separator = { '^', '#', ',' };
@@ -96,7 +96,7 @@ namespace ConApp.Samples
             Console.WriteLine(str6);
         }
 
-        private static void Demo5()
+        public static void Demo5()
         {
             for (int i = 0; i < 4; i++)					    	//调用for语句
             {
@@ -122,7 +122,7 @@ namespace ConApp.Samples
             }
         }
 
-        private static void Demo6()
+        public static void Demo6()
         {
             ArrayList list = new ArrayList();				//实例化一个ArrayList对象
             list.Add("TM");							        //向ArrayList集合中添加元素
@@ -133,7 +133,7 @@ namespace ConApp.Samples
             }
         }
 
-        private static void Demo7()
+        public static void Demo7()
         {
             string str1 = "下载";					        	//声明字符串变量str1并赋值为“下载”
             string str2;							        	//声明字符串变量str2
@@ -142,7 +142,7 @@ namespace ConApp.Samples
             Console.WriteLine(str3);						    //输出字符串变量str3
         }
 
-        private static void Demo8()
+        public static void Demo8()
         {
             Hashtable hashtable = new Hashtable();				//实例化Hashtable对象
             hashtable.Add("id", "BH0001");					    //向Hashtable哈希表中添加元素
@@ -152,7 +152,7 @@ namespace ConApp.Samples
             Console.WriteLine(hashtable.Count);				    //获得Hashtable哈希表中的元素个数
         }
 
-        private static void Demo9()
+        public static void Demo9()
         {
             Console.WriteLine("请输入要查找的文字：");				//输出提示信息
             string inputstr = Console.ReadLine();					//获取输入值
@@ -179,14 +179,14 @@ namespace ConApp.Samples
             Console.ReadLine();
         }
 
-        private static string MyStr(string str)
+        public static string MyStr(string str)
         {
             string OutStr;								//声明一个字符串变量
             OutStr = "您输入的数据是：" + str;				//为字符串变量赋值
             return OutStr;							//使用return语句返回字符串变量
         }
 
-        private static void Demo10()
+        public static void Demo10()
         {
             Console.WriteLine("请您输入内容：");			//输出提示信息
             string inputstr = Console.ReadLine();			//获取输入的数据

@@ -3,7 +3,7 @@ using System;
 
 namespace ConApp.Samples
 {
-    internal class DokanDemo
+    public class DokanDemo
     {
         public static void DokanOperationDemo()
         {

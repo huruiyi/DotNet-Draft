@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConApp.Samples
+namespace ConApp
 {
     public class ContextBoundClass : ContextBoundObject
     {

@@ -7,7 +7,7 @@ using static System.Management.PropertyDataCollection;
 
 namespace ConApp
 {
-    internal class VMIManagement
+    public class VMIManagement
     {
         public static void ManagementDemo0()
         {

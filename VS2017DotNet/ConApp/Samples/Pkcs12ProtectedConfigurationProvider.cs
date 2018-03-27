@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 
-namespace ConApp.Samples
+namespace ConApp
 {
     public class Pkcs12ProtectedConfigurationProvider : ProtectedConfigurationProvider
     {

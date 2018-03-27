@@ -1,13 +1,9 @@
 ﻿using Npgsql;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Samples
+namespace ConApp
 {
-    class NpgsqlDemo
+    public class NpgsqlDemo
     {
         private static void Npgsql_Insert_Demo()
         {
@@ -52,6 +48,5 @@ namespace ConApp.Samples
                 throw;
             }
         }
-
     }
 }

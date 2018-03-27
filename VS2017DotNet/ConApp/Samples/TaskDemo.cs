@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace ConApp.Samples
+namespace ConApp
 {
-    class TaskDemo
+    public class TaskDemo
     {
         private static volatile int _number;
 

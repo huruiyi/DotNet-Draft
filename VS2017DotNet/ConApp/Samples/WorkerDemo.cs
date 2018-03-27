@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Samples
+namespace ConApp
 {
-    class WorkerDemo
+    public class WorkerDemo
     {
         // This method is called when the thread is started.
         public void DoWork()
