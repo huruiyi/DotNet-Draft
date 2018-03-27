@@ -3,7 +3,7 @@
 using namespace concurrency;
 using namespace std;
 
-int main()
+void basicAgent()
 {
 	// An event object that signals the end of processing.
 	event e;
@@ -26,7 +26,7 @@ int main()
 	});
 
 	// Create the agent.
-	file_reader reader("test.txt", calculate_checksum);
+	file_reader reader("demo.cpp", calculate_checksum);
 
 	// Start the agent and wait for it to complete.
 	reader.start();

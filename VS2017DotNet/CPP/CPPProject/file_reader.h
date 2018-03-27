@@ -1,8 +1,11 @@
 #pragma once
 #include <agents.h>
 #include <string>
+#include <array>
 #include <iostream>
 #include <algorithm>
+#include <concrt.h>
+#include <sstream>
 
 class file_reader : public concurrency::agent
 {
@@ -45,7 +48,7 @@ protected:
 			// Open the file.
 			if (fopen_s(&stream, _file_name.c_str(), "r") != 0)
 			{
-				// Throw an exception if an error occurs.            
+				// Throw an exception if an error occurs.
 				throw std::exception("Failed to open input file.");
 			}
 

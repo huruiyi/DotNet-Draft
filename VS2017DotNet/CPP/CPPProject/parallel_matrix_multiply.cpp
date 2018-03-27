@@ -81,13 +81,15 @@ int wmain()
 
 	// Print to the console the time it takes to multiply the
 	// matrices serially.
-	wcout << L"serial: " << time_call([&] {
+	wcout << L"serial: " << time_call([&]
+	{
 		matrix_multiply(m1, m2, result, size);
 	}) << endl;
 
 	// Print to the console the time it takes to multiply the
 	// matrices in parallel.
-	wcout << L"parallel: " << time_call([&] {
+	wcout << L"parallel: " << time_call([&]
+	{
 		parallel_matrix_multiply(m1, m2, result, size);
 	}) << endl;
 

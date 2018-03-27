@@ -79,7 +79,6 @@ void DemoCpoint4()
 	printf("s5=[%s]\n", *s5);//打印结果：s5=[hello]
 }
 
-
 int index = 0;
 // 临界区结构对象
 CRITICAL_SECTION g_cs;
@@ -121,7 +120,6 @@ DWORD WINAPI th2(LPVOID lpParameter)
 {
 	while (1)
 	{
-
 		Sleep(2000); //sleep 2 s
 					 // 进入临界区
 		EnterCriticalSection(&g_cs);
@@ -141,7 +139,6 @@ DWORD WINAPI th2(LPVOID lpParameter)
 	return 0;
 }
 
-
 void ThreadDemo()
 {
 	// 创建互斥对象
@@ -157,7 +154,6 @@ void ThreadDemo()
 }
 int main()
 {
-
 	system("pause");
 	return 0;
 }

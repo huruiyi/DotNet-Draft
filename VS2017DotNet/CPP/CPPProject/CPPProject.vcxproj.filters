@@ -27,5 +27,28 @@
     <ClCompile Include="4.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="demo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="parallel_matrix_multiply.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cgi_hello.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cgi_querystring.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="cgi_serverinfo.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="basicAgent.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="file_reader.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

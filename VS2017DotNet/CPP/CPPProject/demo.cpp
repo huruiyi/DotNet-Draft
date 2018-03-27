@@ -1,47 +1,37 @@
-﻿#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <conio.h>//输入输出文件
-#include <iostream>
+﻿#include <agents.h>
+#include <string>
 #include <array>
+#include <iostream>
+#include <algorithm>
+#include <concrt.h>
+#include <sstream>
+
+using namespace concurrency;
 using namespace std;
-void main()
-{
-	struct  Student
-	{
-		int Id;
-		char UserName[10];
-		char MobilePhoe[20];
-		char UserPassword[20];
-	} stu1, stu2;
 
-	stu1.Id = 123456;
-	strcpy_s(stu1.UserName, "胡睿毅");
-	strcpy_s(stu1.MobilePhoe, "13612340000");
-	strcpy_s(stu1.UserPassword, "Passord");
-
-	printf("Id=%d\nUserName=%s\nMobilePhoe=%s\nUserPassword=%s\n", stu1.Id, stu1.UserName, stu1.MobilePhoe, stu1.UserPassword);
-
-	stu2 = stu1;
-	if (stu2.Id == NULL)
-	{
-		printf("为.0");
-	}
-	printf("Id=%d\nUserName=%s\nMobilePhoe=%s\nUserPassword=%s\n", stu2.Id, stu2.UserName, stu2.MobilePhoe, stu2.UserPassword);
-
-	system("pause");
-}
-
+typedef char* PChar0;
+#define PChar1 char*
+FILE * stream, *stream2;
 struct info
 {
 	int a;
 	char b[30];
 };
-void main01()
+
+void concurrencydemo()
 {
-	FILE *pf;//建立好文件的指针
-	//指定读写的打开方式
-	fopen_s(&pf, "G:\\传智播客\\C 基础课\\C++TEST\\2013-10-17\\上午\Test01\\Debug\\bin1.txt", "rb");//r==read,fopen打开一个文件
+	concurrency::reader_writer_lock().lock();
+	concurrency::reader_writer_lock().lock_read();
+	concurrency::reader_writer_lock().unlock();
+	concurrency::reader_writer_lock().try_lock();
+	concurrency::reader_writer_lock().try_lock_read();
+	concurrency::reader_writer_lock().~reader_writer_lock();
+}
+
+void demo01()
+{
+	FILE *pf;
+	fopen_s(&pf, "bin1.txt", "rb");//r==read,fopen打开一个文件
 	if (pf == NULL)
 	{
 		printf("文件打开失败");
@@ -67,15 +57,15 @@ void main01()
 		fwrite(&a2, sizeof(a2), 1, pf);
 		fwrite(&a3, sizeof(a3), 1, pf);
 
-		fclose(pf);//关闭文件
+		fclose(pf);
 	}
 	system("pause");
 }
 
-void main02()
+void demo02()
 {
 	FILE *fp;
-	fopen_s(&fp, "G:\\传智播客\\C 基础课\\C++TEST\\2013-10-17\\上午\\Test01\\Debug\\bin1.txt", "rb");//r==read,fopen打开一个文件
+	fopen_s(&fp, "bin1.txt", "rb");
 
 	if (fp == NULL)
 	{
@@ -120,36 +110,38 @@ void main02()
 	system("pause");
 }
 
-int main03()
+void demo03()
 {
-	array<int, 3> arr = { 9, 8, 7 };
+	std::array<int, 3> arr = { 9, 8, 7 };
 	cout << "Array size = " << arr.size() << endl;
 	for (auto i : arr)
 		cout << i << endl;
 
 	system("pause");
-	return 0;
 }
-FILE * stream, *stream2;
 
-void main04()
+void demo04()
 {
 	int numclosed;
 	errno_t err;
 
 	// Open for read (will fail if file "crt_fopen_s.c" does not exist)
 	if ((err = fopen_s(&stream, "crt_fopen_s.c", "r")) != 0)
+	{
 		printf("The file 'data.txt' was not opened\n");
+	}
 	else
+	{
 		printf("The file 'crt_fopen_s.c' was opened\n");
-
-	// Open for write 
+	}
 	if ((err = fopen_s(&stream2, "data2", "w+")) != 0)
+	{
 		printf("The file 'data2' was not opened\n");
+	}
 	else
+	{
 		printf("The file 'data2' was opened\n");
-
-	// Close stream if it is not NULL 
+	}
 	if (stream)
 	{
 		if (fclose(stream))
@@ -157,25 +149,71 @@ void main04()
 			printf("The file 'crt_fopen_s.c' was not closed\n");
 		}
 	}
-
-	// All other files are closed:
 	numclosed = _fcloseall();
 	printf("Number of files closed by _fcloseall: %u\n", numclosed);
 	system("pause");
 }
 
-void main05()
+void ddemo05()
 {
 	FILE *fp;
-	int re = fopen_s(&fp, "data.txt", "w");//==0打开成功
+	int re = fopen_s(&fp, "data.txt", "w");
 	fputs("你好吗", fp);
 	fclose(fp);
 }
 
-void main6()
+void demo06()
 {
 	char str[1024] = {};
 	gets_s(str);
 	puts(str);
 	system(str);
+}
+
+void demo07()
+{
+	struct  Student
+	{
+		int Id;
+		char UserName[10];
+		char MobilePhoe[20];
+		char UserPassword[20];
+	} stu1, stu2;
+
+	stu1.Id = 123456;
+	strcpy_s(stu1.UserName, "胡睿毅");
+	strcpy_s(stu1.MobilePhoe, "13612340000");
+	strcpy_s(stu1.UserPassword, "Passord");
+
+	printf("Id=%d\nUserName=%s\nMobilePhoe=%s\nUserPassword=%s\n", stu1.Id, stu1.UserName, stu1.MobilePhoe, stu1.UserPassword);
+
+	stu2 = stu1;
+	if (stu2.Id == NULL)
+	{
+		printf("为.0");
+	}
+	printf("Id=%d\nUserName=%s\nMobilePhoe=%s\nUserPassword=%s\n", stu2.Id, stu2.UserName, stu2.MobilePhoe, stu2.UserPassword);
+}
+
+void demo08()
+{
+	PChar0 p1, p2;
+	char c = 'a';
+	p1 = &c;
+	p2 = &c;
+}
+
+void demo09()
+{
+	PChar1 p3;
+	PChar1 p4;
+
+	char c = 2;
+	p3 = &c;
+	p4 = &c;
+}
+
+int main()
+{
+	return  0;
 }

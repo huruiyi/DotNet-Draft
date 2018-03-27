@@ -23,11 +23,20 @@
     <ClCompile Include="2.cpp" />
     <ClCompile Include="3.cpp" />
     <ClCompile Include="4.cpp" />
+    <ClCompile Include="basicAgent.cpp" />
+    <ClCompile Include="cgi_hello.cpp" />
+    <ClCompile Include="cgi_querystring.cpp" />
+    <ClCompile Include="cgi_serverinfo.cpp" />
+    <ClCompile Include="demo.cpp" />
+    <ClCompile Include="parallel_matrix_multiply.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="file_reader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{32BC073F-DD87-451B-85E1-888125C6964D}</ProjectGuid>
     <RootNamespace>CPPProject</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
