@@ -40,6 +40,24 @@ namespace ConApp.DesignPattern
 
             private static readonly object syn = new object();
 
+            public static Singleton1 Instance
+            {
+                get
+                {
+                    if (_instance == null)
+                    {
+                        lock (syn)
+                        {
+                            if (_instance == null)
+                            {
+                                _instance = new Singleton1();
+                            }
+                        }
+                    }
+                    return _instance;
+                }
+            }
+
             public static Singleton1 GetInstance()
             {
                 if (_instance == null)

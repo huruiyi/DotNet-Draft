@@ -1,10 +1,10 @@
 ﻿using Codaxy.WkHtmlToPdf;
 
-namespace HtmlToPdf
+namespace ConApp.Samples
 {
-    internal class Program
+    public class PdfDemo
     {
-        private static void Main(string[] args)
+        public static void Demo()
         {
             PdfConvert.ConvertHtmlToPdf(new PdfDocument
             {

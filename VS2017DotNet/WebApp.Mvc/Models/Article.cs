@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace WebAppLucene.Models
+namespace WebApp.Mvc.Models
 {
     public class Article
     {

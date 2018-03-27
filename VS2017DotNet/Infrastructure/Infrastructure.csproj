@@ -67,7 +67,6 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="MongoDemo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Singleton.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

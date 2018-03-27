@@ -1,11 +1,11 @@
 ﻿using PinYinParse.Plan;
 using System;
 
-namespace PinYinParse
+namespace ConApp
 {
-    internal class Program
+    public class ChineseDemo
     {
-        private static void Main(string[] args)
+        public static void Demo()
         {
             #region ChineseChar 小试
 

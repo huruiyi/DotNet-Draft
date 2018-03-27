@@ -35,6 +35,9 @@
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="ChnCharInfo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=18f031bd02e5e291, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.International.Converters.PinYinConverter.1.0.0\lib\ChnCharInfo.dll</HintPath>
+    </Reference>
     <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unity.5.7.4\lib\net47\CommonServiceLocator.dll</HintPath>
     </Reference>
@@ -103,9 +106,13 @@
     <Compile Include="Model\Tweet.cs" />
     <Compile Include="OOP\OOP1.cs" />
     <Compile Include="OOP\OOP2.cs" />
+    <Compile Include="Samples\PdfConvert.cs" />
+    <Compile Include="Plan\PinYinConverter.cs" />
+    <Compile Include="Plan\PinYinConverterHelp.cs" />
     <Compile Include="Samples\AdoNetDemo.cs" />
     <Compile Include="Samples\AutoMapperDemo.cs" />
     <Compile Include="Samples\BasicDemo.cs" />
+    <Compile Include="Samples\ChineseDemo.cs" />
     <Compile Include="Samples\ContextBoundClass.cs" />
     <Compile Include="Samples\CSVector.cs" />
     <Compile Include="EnumModel\BoilingPoints.cs" />
@@ -137,6 +144,7 @@
     <Compile Include="Samples\ElasticNetDemo.cs" />
     <Compile Include="Samples\IOCUnity.cs" />
     <Compile Include="Samples\NpgsqlDemo.cs" />
+    <Compile Include="Samples\PdfDemo.cs" />
     <Compile Include="Samples\Pkcs12ProtectedConfigurationProvider.cs" />
     <Compile Include="Samples\RedisDemo.cs" />
     <Compile Include="Samples\ReflectionDemo.cs" />

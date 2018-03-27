@@ -9,12 +9,13 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
-using WebAppLucene.Models;
+using WebApp.Mvc.Models;
 
-namespace WebAppLucene.Controllers
+namespace WebApp.Mvc.Controllers
 {
-    public class HomeController : Controller
+    public class LuceneNetController : Controller
     {
+        // GET: LuceneNet
         public ActionResult Index()
         {
             return View();
