@@ -1,4 +1,4 @@
-﻿namespace ConApp.Model
+﻿namespace ConApp.ReflectionDemo.Model
 {
     public class MyTester4
     {

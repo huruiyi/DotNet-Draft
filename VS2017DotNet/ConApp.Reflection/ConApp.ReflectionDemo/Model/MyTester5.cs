@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
-   public class MyTester5
+    public class MyTester5
     {
         public MyTester5()
         {
@@ -23,6 +19,7 @@ namespace ConApp.Model
         }
 
         public string PInfo { get; }
+
         public int Id { get; set; }
 
         public string Method(string s1, string s2 = "123")

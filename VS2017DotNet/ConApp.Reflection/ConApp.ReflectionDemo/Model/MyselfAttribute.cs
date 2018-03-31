@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
     //定制特性也可以应用在其他定制特性上，
     //应用AttributeUsage，来控制如何应用新定义的特性

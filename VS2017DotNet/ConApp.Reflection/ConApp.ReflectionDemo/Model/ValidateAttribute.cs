@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
     /// <summary>
     /// 为元素添加验证信息的特性类

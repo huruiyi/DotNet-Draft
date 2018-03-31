@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
     public class ValidateAgeAttribute : Attribute
     {

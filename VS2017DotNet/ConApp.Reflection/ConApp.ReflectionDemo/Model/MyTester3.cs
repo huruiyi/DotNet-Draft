@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
-   public class MyTester3
+    public class MyTester3
     {
         [Obsolete("此方法已过期")]
         public void Method1()

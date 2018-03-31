@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
     /// <summary>
     /// 验证类型

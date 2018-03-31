@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConApp.Model
+namespace ConApp.ReflectionDemo.Model
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, Inherited = true)]
     public class TestAttribute : Attribute

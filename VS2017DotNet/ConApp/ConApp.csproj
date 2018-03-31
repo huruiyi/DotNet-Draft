@@ -122,18 +122,6 @@
     <Compile Include="Model\DataType.cs" />
     <Compile Include="Model\EmitData.cs" />
     <Compile Include="Model\Int16Collection.cs" />
-    <Compile Include="Model\MyselfAttribute.cs" />
-    <Compile Include="Model\MyTest.cs" />
-    <Compile Include="Model\MyTester.cs" />
-    <Compile Include="Model\MyTester3.cs" />
-    <Compile Include="Model\MyTester4.cs" />
-    <Compile Include="Model\MyTester5.cs" />
-    <Compile Include="Model\OrderRequest.cs" />
-    <Compile Include="Model\TestAttribute.cs" />
-    <Compile Include="Model\ValidateAgeAttribute.cs" />
-    <Compile Include="Model\ValidateAgeComplexAttribute.cs" />
-    <Compile Include="Model\ValidateAttribute.cs" />
-    <Compile Include="Model\ValidateType.cs" />
     <Compile Include="Model\VolatileDef.cs" />
     <Compile Include="Model\Worker.cs" />
     <Compile Include="Program.cs" />
@@ -147,7 +135,6 @@
     <Compile Include="Samples\PdfDemo.cs" />
     <Compile Include="Samples\Pkcs12ProtectedConfigurationProvider.cs" />
     <Compile Include="Samples\RedisDemo.cs" />
-    <Compile Include="Samples\ReflectionDemo.cs" />
     <Compile Include="Samples\SecurityHelper.cs" />
     <Compile Include="Samples\SortDemo.cs" />
     <Compile Include="Samples\TaskDemo.cs" />

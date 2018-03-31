@@ -7,7 +7,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
 using System.Linq.Expressions;
 using System.Management;
 using System.Management.Automation;
@@ -47,15 +46,6 @@ namespace ConApp
         public int A;
         public int B;
         public int C;
-    }
-
-    internal abstract class Player
-    {
-        public void Play()
-        {
-            //判断文件的类型 来找不同的解码器
-            Console.WriteLine("播放文件");
-        }
     }
 
     #region 原始:Notification类依赖Email类，这违反了DIP，而且当我们要发送短信/保存到数据库的时候，我们还要改变Notification类。
@@ -575,10 +565,10 @@ namespace ConApp
         }
 
         //静态变量存储在堆上，查看指针时需用fixed固定
-        public static int m_sZ = 100;
+        public static int MSz = 100;
 
         //普通数据成员，也是放在堆上了，查看指针时需用fixed固定
-        public int m_nData = 100;
+        public int MnData = 100;
 
         //等价于C/C++的 #define 语句，不分配内存
         public const int PI = 31415;
@@ -756,256 +746,6 @@ namespace ConApp
             Console.WriteLine("\nNorms are:\nv1 is {0,20:N}\nv2 is {1,20:N}", v1, v2);
         }
 
-        public static void AttributeDemo1()
-        {
-            //如何以反射确定特性信息
-            Type tp = typeof(MyTest);
-            MemberInfo info = tp;
-            var myAttribute = (MyselfAttribute)Attribute.GetCustomAttribute(info, typeof(MyselfAttribute));
-            if (myAttribute != null)
-            {
-                //嘿嘿，在运行时查看注释内容，是不是很爽
-                Console.WriteLine("Name: " + myAttribute.Name);
-                Console.WriteLine("Age: " + myAttribute.Age);
-                Console.WriteLine("Memo of  is " + myAttribute.Name, myAttribute.Memo);
-                myAttribute.ShowName();
-            }
-
-            //多点反射
-            object obj = Activator.CreateInstance(typeof(MyTest));
-
-            MethodInfo mi = tp.GetMethod("SayHello");
-            mi.Invoke(obj, null);
-        }
-
-        public static void AttributeDemo2()
-        {
-            var orderRequest = new OrderRequest
-            {
-                CommodityAmount = "1050",
-                CommodityName = "Name",
-                CommodityValue = "Value",
-                CommodityWeight = "123",
-                HopeArriveTime = "2014-06-10",
-                OrderNo = "123456798",
-                PayMent = "XX",
-                Remark = "dadsad"
-            };
-            string checkMessage = GetValidateResult(orderRequest);
-
-            if (!string.IsNullOrEmpty(checkMessage))
-            {
-                Console.WriteLine(checkMessage);
-            }
-        }
-
-        public static void AttributeDemo3()
-        {
-            Type tp = typeof(MyTester);
-            MemberInfo memberInfo = tp.GetMethod("CannotRun");
-            var myAtt = (TestAttribute)Attribute.GetCustomAttribute(memberInfo, typeof(TestAttribute));
-            myAtt.RunTest();
-
-            MyTester tester = new MyTester();
-            tester.Age = 10;
-            Type type = tester.GetType();
-            PropertyInfo propertyInfo = type.GetProperty("Age");
-            ValidateAgeAttribute validateAgeAttribute = (ValidateAgeAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(ValidateAgeAttribute));
-            Console.WriteLine(validateAgeAttribute.MaxAge);
-            validateAgeAttribute.IsRight(tester.Age);
-        }
-
-        public static void AttributeDemo4()
-        {
-            Type type = typeof(MyTester3);
-            MemberInfo memberInfo1 = type.GetMethod("Method1");
-            bool isDef1 = Attribute.IsDefined(memberInfo1, typeof(ObsoleteAttribute));
-            var objObsolete = (ObsoleteAttribute)Attribute.GetCustomAttribute(memberInfo1, typeof(ObsoleteAttribute));
-            Console.WriteLine(objObsolete.Message);
-            Console.WriteLine(isDef1);
-
-            MemberInfo memberInfo2 = type.GetMethod("Method2");
-            bool isDef2 = Attribute.IsDefined(memberInfo2, typeof(ObsoleteAttribute));
-            Console.WriteLine(isDef2);
-        }
-
-        public static void AttributeDemo5()
-        {
-            var person = new MyTester4 { Name = "TT", Age = 20 };
-            Type type = person.GetType();
-            PropertyInfo propertyInfo = type.GetProperty("Age");
-            var attr = (ValidateAgeComplexAttribute)Attribute.GetCustomAttribute(propertyInfo, typeof(ValidateAgeComplexAttribute));
-            Console.WriteLine("允许的最大年龄：" + attr.MaxAge);
-            attr.Validate(person.Age);
-            Console.WriteLine(attr.ValidateResult);
-        }
-
-        public static void AttributeDemo6()
-        {
-            Type myType = typeof(MyTester);
-            MemberInfo[] myMembers = myType.GetMembers();
-
-            for (int i = 0; i < myMembers.Length; i++)
-            {
-                object[] myAttributes = myMembers[i].GetCustomAttributes(true);
-                if (myAttributes.Length > 0)
-                {
-                    Console.WriteLine(myMembers[i]);
-                    for (int j = 0; j < myAttributes.Length; j++)
-                        Console.WriteLine("\t" + myAttributes[j]);
-                }
-            }
-        }
-
-        /// <summary>
-        /// 验证实体对象的所有带验证特性的元素  并返回验证结果  如果返回结果为String.Empty 则说明元素符合验证要求
-        /// </summary>
-        /// <param name="entityObject">实体对象</param>
-        /// <returns></returns>
-        public static string GetValidateResult(object entityObject)
-        {
-            if (entityObject == null)
-                throw new ArgumentNullException("entityObject");
-
-            Type type = entityObject.GetType();
-            PropertyInfo[] properties = type.GetProperties();
-
-            string validateResult = string.Empty;
-
-            foreach (PropertyInfo property in properties)
-            {
-                //获取验证特性
-                object[] validateContent = property.GetCustomAttributes(typeof(ValidateAttribute), true);
-
-                if (validateContent != null)
-                {
-                    //获取属性的值
-                    object value = property.GetValue(entityObject, null);
-
-                    foreach (ValidateAttribute validateAttribute in validateContent)
-                    {
-                        switch (validateAttribute.ValidateType)
-                        {
-                            //验证元素是否为空字串
-                            case ValidateType.IsEmpty:
-                                if (null == value || value.ToString().Length < 1)
-                                    validateResult = string.Format("元素 {0} 不能为空", property.Name);
-                                break;
-                            //验证元素的长度是否小于指定最小长度
-                            case ValidateType.MinLength:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (value.ToString().Length < validateAttribute.MinLength)
-                                    validateResult = string.Format("元素 {0} 的长度不能小于 {1}", property.Name, validateAttribute.MinLength);
-                                break;
-                            //验证元素的长度是否大于指定最大长度
-                            case ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (value.ToString().Length > validateAttribute.MaxLength)
-                                    validateResult = string.Format("元素 {0} 的长度不能大于{1}", property.Name, validateAttribute.MaxLength);
-                                break;
-                            //验证元素的长度是否符合指定的最大长度和最小长度的范围
-                            case ValidateType.MinLength | ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (value.ToString().Length > validateAttribute.MaxLength || value.ToString().Length < validateAttribute.MinLength)
-                                    validateResult = string.Format("元素 {0} 不符合指定的最小长度和最大长度的范围,应该在 {1} 与 {2} 之间", property.Name, validateAttribute.MinLength, validateAttribute.MaxLength);
-                                break;
-                            //验证元素的值是否为值类型
-                            case ValidateType.IsNumber:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (!Regex.IsMatch(value.ToString(), @"^\d+$"))
-                                    validateResult = string.Format("元素 {0} 的值不是值类型", property.Name);
-                                break;
-                            //验证元素的值是否为正确的时间格式
-                            case ValidateType.IsDateTime:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (!Regex.IsMatch(value.ToString(), @"(\d{2,4})[-/]?([0]?[1-9]|[1][12])[-/]?([0][1-9]|[12]\d|[3][01])\s*([01]\d|[2][0-4])?[:]?([012345]?\d)?[:]?([012345]?\d)?"))
-                                    validateResult = string.Format("元素 {0} 不是正确的时间格式", property.Name);
-                                break;
-                            //验证元素的值是否为正确的浮点格式
-                            case ValidateType.IsDecimal:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (!Regex.IsMatch(value.ToString(), @"^\d+[.]?\d+$"))
-                                    validateResult = string.Format("元素 {0} 不是正确的金额格式", property.Name);
-                                break;
-                            //验证元素的值是否在指定的数据源中
-                            case ValidateType.IsInCustomArray:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (null == validateAttribute.CustomArray || validateAttribute.CustomArray.Length < 1)
-                                    validateResult = string.Format("系统内部错误：元素 {0} 指定的数据源为空或没有数据", property.Name);
-
-                                bool isHas = Array.Exists<string>(validateAttribute.CustomArray, delegate (string str)
-                                {
-                                    return str == value.ToString();
-                                }
-                                );
-
-                                if (!isHas)
-                                    validateResult = string.Format("元素 {0} 的值设定不正确 , 应该为 {1} 中的一种", property.Name, string.Join(",", validateAttribute.CustomArray));
-                                break;
-                            //验证元素的值是否为固定电话号码格式
-                            case ValidateType.IsTelphone:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (!Regex.IsMatch(value.ToString(), @"^(\d{3,4}-)?\d{6,8}$"))
-                                    validateResult = string.Format("元素 {0} 不是正确的固定电话号码格式", property.Name);
-                                break;
-                            //验证元素的值是否为手机号码格式
-                            case ValidateType.IsMobile:
-                                if (null == value || value.ToString().Length < 1) break;
-                                if (!Regex.IsMatch(value.ToString(), @"^[1]+[3,5]+\d{9}$"))
-                                    validateResult = string.Format("元素 {0} 不是正确的手机号码格式", property.Name);
-                                break;
-                            //验证元素是否为空且符合指定的最小长度
-                            case ValidateType.IsEmpty | ValidateType.MinLength:
-                                if (null == value || value.ToString().Length < 1) goto case ValidateType.IsEmpty;
-                                goto case ValidateType.MinLength;
-                            //验证元素是否为空且符合指定的最大长度
-                            case ValidateType.IsEmpty | ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.MaxLength;
-                            //验证元素是否为空且符合指定的长度范围
-                            case ValidateType.IsEmpty | ValidateType.MinLength | ValidateType.MaxLength:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.MinLength | ValidateType.MaxLength;
-                            //验证元素是否为空且值为数值型
-                            case ValidateType.IsEmpty | ValidateType.IsNumber:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsNumber;
-                            //验证元素是否为空且值为浮点型
-                            case ValidateType.IsEmpty | ValidateType.IsDecimal:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsDecimal;
-                            //验证元素是否为空且值为时间类型
-                            case ValidateType.IsEmpty | ValidateType.IsDateTime:
-                                if (null == value || value.ToString().Length < 1)
-                                    goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsDateTime;
-                            //验证元素是否为空且值在指定的数据源中
-                            case ValidateType.IsEmpty | ValidateType.IsInCustomArray:
-                                if (null == value || value.ToString().Length < 1) goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsInCustomArray;
-                            //验证元素是否为空且值为固定电话号码格式
-                            case ValidateType.IsEmpty | ValidateType.IsTelphone:
-                                if (null == value || value.ToString().Length < 1) goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsTelphone;
-                            //验证元素是否为空且值为手机号码格式
-                            case ValidateType.IsEmpty | ValidateType.IsMobile:
-                                if (null == value || value.ToString().Length < 1) goto case ValidateType.IsEmpty;
-                                goto case ValidateType.IsMobile;
-                        }
-                    }
-                }
-
-                if (!string.IsNullOrEmpty(validateResult))
-                    break;
-            }
-
-            return validateResult;
-        }
-
         public static void CdromManagement()
         {
             ManagementEventWatcher watcher = null;
@@ -1096,38 +836,6 @@ namespace ConApp
             Trace.WriteLine("Exiting Main");
             Trace.Unindent();
             Trace.Assert(123 > 100);
-        }
-
-        public static List<MyTester5> GetList(bool isTrue)
-        {
-            if (isTrue)
-            {
-                List<MyTester5> list = new List<MyTester5>();
-                MyTester5 t = new MyTester5();
-                list.Add(t);
-                return list;
-            }
-            else
-            {
-                return null;
-            }
-        }
-
-        public static void TypeDemo()
-        {
-            List<MyTester5> list = GetList(true);
-            if (list != null && list.Any())
-            {
-                Type listType = list.GetType();
-
-                Console.WriteLine(listType.Name);
-                Console.WriteLine(typeof(List<>).Name);
-                Console.WriteLine("Hello");
-            }
-            else
-            {
-                Console.WriteLine("fuck");
-            }
         }
 
         public static void CollectionDemo()
@@ -1378,7 +1086,7 @@ namespace ConApp
 
         #region 表达式树实现
 
-        private static Func<object, int> LmdGetProp; //Func<EmitData, int>
+        private static Func<object, int> _lmdGetProp; //Func<EmitData, int>
 
         public static void LmdGet(Type entityType, string propName)
         {
@@ -1394,7 +1102,7 @@ namespace ConApp
 
             //调用获取属性的方法
             var body = Expression.Call(body_obj, p.GetGetMethod());
-            LmdGetProp = Expression.Lambda<Func<object, int>>(body, param_obj).Compile();
+            _lmdGetProp = Expression.Lambda<Func<object, int>>(body, param_obj).Compile();
 
             #endregion 通过方法取值
 
@@ -1411,7 +1119,7 @@ namespace ConApp
             #endregion 表达式取值
         }
 
-        private static Action<object, object> LmdSetProp;
+        private static Action<object, object> _lmdSetProp;
 
         public static void LmdSet(Type entityType, string propName)
         {
@@ -1425,7 +1133,7 @@ namespace ConApp
             var body_val = Expression.Convert(param_val, p.PropertyType);
             //调用给属性赋值的方法
             var body = Expression.Call(body_obj, p.GetSetMethod(), body_val);
-            LmdSetProp = Expression.Lambda<Action<object, object>>(body, param_obj, param_val).Compile();
+            _lmdSetProp = Expression.Lambda<Action<object, object>>(body, param_obj, param_val).Compile();
         }
 
         #endregion 表达式树实现
@@ -1438,7 +1146,7 @@ namespace ConApp
 
         public Program(int mNData)
         {
-            m_nData = mNData;
+            MnData = mNData;
         }
 
         public static void BuildEmitMethod(Type entityType, string propertyName)
@@ -1550,7 +1258,7 @@ namespace ConApp
             time = DateTime.Now;
             for (int i = 0; i < max; i++)
             {
-                LmdSetProp(d, i);
+                _lmdSetProp(d, i);
             }
             ts = DateTime.Now - time;
             Console.Write("表达式树赋值方法:" + ts.TotalMilliseconds + "<br/>");
@@ -1562,11 +1270,11 @@ namespace ConApp
             time = DateTime.Now;
             for (int i = 0; i < max; i++)
             {
-                LmdGetProp(d);
+                _lmdGetProp(d);
             }
             ts = DateTime.Now - time;
             Console.Write("表达式树取值方法:" + ts.TotalMilliseconds + "<br/>");
-            Console.Write("v:" + LmdGetProp(d) + "<br/>");
+            Console.Write("v:" + _lmdGetProp(d) + "<br/>");
 
             //EMIT动态方法赋值
             d.Name = -1;
