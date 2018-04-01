@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConApp.Model
+﻿namespace ConApp.Model
 {
-    class VolatileDef
+    internal class VolatileDef
     {
         public volatile int i;
 

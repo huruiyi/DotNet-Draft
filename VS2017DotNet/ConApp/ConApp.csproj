@@ -115,13 +115,7 @@
     <Compile Include="Samples\ChineseDemo.cs" />
     <Compile Include="Samples\ContextBoundClass.cs" />
     <Compile Include="Samples\CSVector.cs" />
-    <Compile Include="EnumModel\BoilingPoints.cs" />
-    <Compile Include="EnumModel\Colors.cs" />
-    <Compile Include="EnumModel\Days.cs" />
     <Compile Include="EnumModel\DeviceEnum.cs" />
-    <Compile Include="Model\DataType.cs" />
-    <Compile Include="Model\EmitData.cs" />
-    <Compile Include="Model\Int16Collection.cs" />
     <Compile Include="Model\VolatileDef.cs" />
     <Compile Include="Model\Worker.cs" />
     <Compile Include="Program.cs" />
