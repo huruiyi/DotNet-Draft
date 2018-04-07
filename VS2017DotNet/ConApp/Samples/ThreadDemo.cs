@@ -164,5 +164,35 @@ namespace ConApp
             {
             }
         }
+
+        public static void AsyncFuncDemo()
+        {
+            Func<bool> ascyRun = ProcessCount;
+            IAsyncResult reslu = ascyRun.BeginInvoke(MyAsyncCallback, ascyRun);
+
+            for (int i = 0; i < 10; i++)
+            {
+                Thread.Sleep(200);
+
+                Console.WriteLine("End。。。。。。。。");
+            }
+        }
+
+        public static void MyAsyncCallback(IAsyncResult ar)
+        {
+            Func<bool> pc = (Func<bool>)ar.AsyncState;
+            var endInvoke = pc.EndInvoke(ar);
+            Console.WriteLine(endInvoke ? "处理完成。。" : "处理失败。。");
+        }
+
+        public static bool ProcessCount()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(i + "\t");
+                Thread.Sleep(100);
+            }
+            return true;
+        }
     }
 }

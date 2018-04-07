@@ -102,7 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DesignPattern\SingletonDemo.cs" />
-    <Compile Include="Model\IndexClass.cs" />
     <Compile Include="Model\Tweet.cs" />
     <Compile Include="OOP\OOP1.cs" />
     <Compile Include="OOP\OOP2.cs" />
