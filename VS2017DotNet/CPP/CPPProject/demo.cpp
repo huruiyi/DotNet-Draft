@@ -215,5 +215,12 @@ void demo09()
 
 int main()
 {
-	return  0;
+	for (size_t i = 0; i < 10; i++)
+	{
+		static  int a = 0;
+		cout << a << endl;
+		a++;
+		cout << a << endl;
+	}
+	return 0;
 }

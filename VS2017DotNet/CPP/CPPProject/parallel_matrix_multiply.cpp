@@ -65,6 +65,8 @@ void parallel_matrix_multiply(double** m1, double** m2, double** result, size_t 
 
 int wmain()
 {
+
+
 	// The number of rows and columns in each matrix.
 	// TODO: Change this value to experiment with serial
 	// versus parallel performance.
