@@ -60,6 +60,73 @@ namespace ConApp
         }
     }
 
+    public class User
+    {
+        public enum UserClass
+        {
+            ClassAdmin,
+            ClassUser
+        }
+
+        public void AdminMethod()
+        {
+            Console.WriteLine("Admin Method has procceed!");
+        }
+
+        public void UserMethod()
+        {
+            Console.WriteLine("User Method has procceed!");
+        }
+
+        public void ExecuteFor(UserClass uc)
+        {
+            //由于是静态的方法不需要实例化也可以进行访问
+            ThreadStart tsAd = AdminMethod;
+            ThreadStart tsUs = UserMethod;
+
+            var ts = uc == UserClass.ClassAdmin ? tsAd : tsUs;
+
+            Thread t = new Thread(ts);
+            t.Start();
+        }
+    }
+
+    public class Animal
+    {
+        //成员变量
+        public string Name { get; set; }
+
+        public string Id { get; set; }
+
+        //构造器
+        public Animal()
+        {
+            Name = "Kitty";
+            Id = "0516";
+        }
+
+        public Animal(string a_id, string a_name)
+        {
+            Name = a_name;
+            Id = a_id;
+        }
+
+        //成员函数
+        public void sports()
+        {
+            Console.WriteLine("There is a girl called " + Name + " doing sports!");
+        }
+
+        public void Thread_person()
+        {
+            for (int i = 0; i < 200; i++)
+            {
+                Console.WriteLine("Animal id is " + i);
+            }
+            Console.WriteLine("There is a thread calling that called :" + AppDomain.GetCurrentThreadId());
+        }
+    }
+
     public class ThreadDemo
     {
         #region Demo1
@@ -116,7 +183,69 @@ namespace ConApp
 
         private static object objlock = new object();
 
-        private void ThreadDemo1()
+        private static void Thread_Demo0()
+        {
+            Console.WriteLine("From the thread ID is:" + AppDomain.GetCurrentThreadId());
+            Console.WriteLine("This code caculate the value " + 123 + "from thread ID:" + Thread.CurrentThread.ManagedThreadId);
+        }
+
+        public static void WorkFunction()
+        {
+            string ThreadState;
+            for (int i = 1; i < 100000; i++)
+            {
+                if (i % 5000 == 0)
+                {
+                    ThreadState = Thread.CurrentThread.ThreadState.ToString();
+                    Console.WriteLine("Worker :" + ThreadState);
+                }
+            }
+            Console.WriteLine("Worker function Completed!");
+        }
+
+        private static void Thread_Demo1()
+        {
+            Animal ps = new Animal();
+            ThreadStart p = ps.sports;
+            ThreadStart p2 = ps.Thread_person;
+            Thread p1 = new Thread(p);
+            for (int i = 0; i < 200; i++)
+            {
+                Console.WriteLine("Primary id is " + i.ToString());
+            }
+            Thread p3 = new Thread(p2);
+
+            p1.Start();
+            p3.Start();
+        }
+
+        private static void Thread_Demo2()
+        {
+            Thread thread1 = new Thread(WorkFunction);
+
+            thread1.Start();
+
+            while (thread1.IsAlive)
+            {
+                Thread thread2 = new Thread(WorkFunction);
+                thread2.Start();
+                if (thread2.IsAlive)
+                {
+                    Console.WriteLine("Please wait a min...");
+                    Thread.Sleep(5000);
+                }
+                Console.WriteLine("still wating...");
+                Thread.Sleep(200);
+            }
+
+            var st = thread1.ThreadState.ToString();
+            Console.WriteLine("He's finally done!Thread static is :" + st);
+
+            User c = new User();
+            c.ExecuteFor(User.UserClass.ClassAdmin);
+        }
+
+        private static void Thread_Demo3()
         {
             Thread t1 = new Thread(delegate ()
             {
