@@ -1,0 +1,26 @@
+﻿<html>
+<head>
+    <script src="../Scripts/jquery-3.3.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("div").ajaxSuccess(function (data) {
+                console.log(data);
+                alert("AJAX 请求已成功完成");
+            });
+            $("#button1").click(function () {
+                $("div").load("../AjaxHandler.ashx?action=Demo1_Success");
+            });
+            $("#button2").click(function () {
+                $("div").load("../AjaxHandler.ashx?action=Demo1_Success");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div id="txt"><h2>通过 AJAX 改变文本</h2></div>
+    <button id="button1">改变内容1</button>
+    <button id="button2">改变内容2</button>
+</body>
+</html>
