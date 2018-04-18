@@ -1,8 +1,8 @@
-﻿using ODataService.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Web.OData;
+using WebApp.Models;
 
-namespace ODataService.Controllers
+namespace WebApp.Controllers
 {
     public class ProductsController : ODataController
     {

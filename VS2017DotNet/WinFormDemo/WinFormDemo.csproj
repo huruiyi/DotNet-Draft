@@ -78,6 +78,12 @@
     </Compile>
     <Compile Include="Services\IAfterText.cs" />
     <Compile Include="Services\SendTextEventArgs.cs" />
+    <Compile Include="SimpleNotePad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SimpleNotePad.designer.cs">
+      <DependentUpon>SimpleNotePad.cs</DependentUpon>
+    </Compile>
     <Compile Include="不规则控件.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +129,9 @@
     </Compile>
     <EmbeddedResource Include="RunPeople.resx">
       <DependentUpon>RunPeople.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SimpleNotePad.resx">
+      <DependentUpon>SimpleNotePad.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="不规则控件.resx">
       <DependentUpon>不规则控件.cs</DependentUpon>

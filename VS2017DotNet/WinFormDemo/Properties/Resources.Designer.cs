@@ -61,62 +61,62 @@ namespace WinFormDemo.Properties {
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Abort {
+        internal static System.Drawing.Bitmap Abort {
             get {
                 object obj = ResourceManager.GetObject("Abort", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Bold {
+        internal static System.Drawing.Bitmap Bold {
             get {
                 object obj = ResourceManager.GetObject("Bold", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Color {
+        internal static System.Drawing.Bitmap Color {
             get {
                 object obj = ResourceManager.GetObject("Color", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Font {
+        internal static System.Drawing.Bitmap Font {
             get {
                 object obj = ResourceManager.GetObject("Font", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Italic {
+        internal static System.Drawing.Bitmap Italic {
             get {
                 object obj = ResourceManager.GetObject("Italic", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Open {
+        internal static System.Drawing.Bitmap Open {
             get {
                 object obj = ResourceManager.GetObject("Open", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -841,12 +841,12 @@ namespace WinFormDemo.Properties {
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Save {
+        internal static System.Drawing.Bitmap Save {
             get {
                 object obj = ResourceManager.GetObject("Save", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -881,12 +881,12 @@ namespace WinFormDemo.Properties {
         }
         
         /// <summary>
-        ///   查找类似于 (图标) 的 System.Drawing.Icon 类型的本地化资源。
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        internal static System.Drawing.Icon Underline {
+        internal static System.Drawing.Bitmap Underline {
             get {
                 object obj = ResourceManager.GetObject("Underline", resourceCulture);
-                return ((System.Drawing.Icon)(obj));
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }
