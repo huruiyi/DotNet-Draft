@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h1>Text to Speech via MVC</h1>
+<div class="row">
+    <div class="col-sm-4">
+
+        <label for="inputText">Type it!</label><br />
+        <textarea id="inputText" class="form-control" rows="5" style="width:100%;"></textarea><br />
+        <button id="playAudio" type="button" class="btn btn-primary btn-lg btn-block">Say it!</button>
+
+        <div id="divAudio_Player" class="hidden">
+            <audio id="audio_player">
+                <source id="audio_player_wav" src="@Url.Action("PlayTextArea", "Home", new { text = "type something in first" })" type="audio/mp3" />
+                <embed height="50" width="100" src="@Url.Action("PlayTextArea", "Home", new { text = "type something in first" })">
+            </audio>
+        </div>
+    </div>
+
+</div>
+
+
+
+@section scripts{
+
+    <script type="text/javascript">
+$(function () {
+
+    $('#playAudio').click(function () {
+        var newUrl = '@Url.Action("PlayTextArea", "Home")?text='+ encodeURIComponent($('#inputText').text())  + '&timestamp=' + new Date().getTime();
+
+        var new_audio = $(this).attr('rel');
+        var source = '<audio id="audio_player">';
+        source += '<source id="audio_player_wav" src="' + newUrl + '"  type="audio/mp3" />';
+        source += '</audio>';
+            //play it
+        setTimeout(function() {
+                    $('#divAudio_Player').html(source);
+            var aud = $('#audio_player').get(0);
+            aud.play();
+        }, 500);
+    });
+});
+    </script>
+
+
+}
