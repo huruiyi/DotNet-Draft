@@ -96,6 +96,7 @@
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="AjaxHandler.ashx" />
+    <Content Include="Handlers\WSHandler.ashx" />
     <None Include="packages.config" />
     <Content Include="Html\ajaxSuccess.html" />
     <Content Include="Html\angular.html" />
@@ -106,6 +107,7 @@
     <Content Include="Html\sample_继承1_prototype.html" />
     <Content Include="Html\sample_继承2_constructor.html" />
     <Content Include="Html\sample_继承3_call_apply.html" />
+    <Content Include="Html\websocket.html" />
     <Content Include="Html\基本表单元素操作_jq.html" />
     <Content Include="Html\基本表单元素操作_js.html" />
     <Content Include="Page\ExecuteDst.aspx" />
@@ -1412,6 +1414,9 @@
     </Compile>
     <Compile Include="Handlers\TestRemapHandler.ashx.cs">
       <DependentUpon>TestRemapHandler.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\WSHandler.ashx.cs">
+      <DependentUpon>WSHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Page\ExecuteDst.aspx.cs">
       <DependentUpon>ExecuteDst.aspx</DependentUpon>

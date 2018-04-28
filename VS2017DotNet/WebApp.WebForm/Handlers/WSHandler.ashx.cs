@@ -1,21 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Net.WebSockets;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.WebSockets;
-using System.Net.WebSockets;
-using System.Threading.Tasks;
-using System.Threading;
-using System.Text;
 
-namespace WSChat
+namespace WebApp.WebForm.Handlers
 {
     /// <summary>
-    /// Summary description for WSHandler
+    /// WSHandler 的摘要说明
     /// </summary>
     public class WSHandler : IHttpHandler
     {
-
         public void ProcessRequest(HttpContext context)
         {
             if (context.IsWebSocketRequest)
@@ -23,8 +20,6 @@ namespace WSChat
                 context.AcceptWebSocketRequest(ProcessWSChat);
             }
         }
-
-        public bool IsReusable { get { return false; } }
 
         private async Task ProcessWSChat(AspNetWebSocketContext context)
         {
@@ -44,6 +39,14 @@ namespace WSChat
                 {
                     break;
                 }
+            }
+        }
+
+        public bool IsReusable
+        {
+            get
+            {
+                return false;
             }
         }
     }

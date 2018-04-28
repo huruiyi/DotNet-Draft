@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ConApp
 {
-    internal class GitDeno
+    public class GitDeno
     {
         private static void SortUrl()
         {
@@ -56,7 +56,7 @@ namespace ConApp
             }
         }
 
-        private static void TaskClone(string urlLines, string destPath)
+        public static void TaskClone(string urlLines, string destPath)
         {
             Queue<string> list = new Queue<string>();
 
