@@ -112,6 +112,7 @@
     <Content Include="Html\基本表单元素操作_js.html" />
     <Content Include="Page\ExecuteDst.aspx" />
     <Content Include="Page\ExecutePage.aspx" />
+    <Content Include="Page\ExportToWord.aspx" />
     <Content Include="Page\ImageWrite.aspx" />
     <Content Include="Page\WebForm1.aspx" />
     <Content Include="Page\WebForm2.aspx" />
@@ -1432,6 +1433,13 @@
     <Compile Include="Page\ExecutePage.aspx.designer.cs">
       <DependentUpon>ExecutePage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Page\ExportToWord.aspx.cs">
+      <DependentUpon>ExportToWord.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Page\ExportToWord.aspx.designer.cs">
+      <DependentUpon>ExportToWord.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Page\ImageWrite.aspx.cs">
       <DependentUpon>ImageWrite.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1455,6 +1463,7 @@
     </Compile>
     <Compile Include="Services\AjaxServices.cs" />
     <Compile Include="Services\CusCounter.cs" />
+    <Compile Include="Services\Helper.cs" />
     <Compile Include="Services\MyTestHandler.cs" />
     <Compile Include="Services\ReusableAshxHandlerFactory.cs" />
     <Compile Include="AjaxPage.aspx.cs">
