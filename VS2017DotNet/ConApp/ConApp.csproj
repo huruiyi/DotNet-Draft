@@ -157,6 +157,7 @@
     <Compile Include="Samples\NpgsqlDemo.cs" />
     <Compile Include="Samples\PdfDemo.cs" />
     <Compile Include="Samples\Pkcs12ProtectedConfigurationProvider.cs" />
+    <Compile Include="Samples\RealProxyDemo.cs" />
     <Compile Include="Samples\RedisDemo.cs" />
     <Compile Include="Samples\SecurityHelper.cs" />
     <Compile Include="Samples\SortDemo.cs" />

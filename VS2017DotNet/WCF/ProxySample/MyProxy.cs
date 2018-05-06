@@ -10,8 +10,8 @@ namespace ProxySample
 {
     public class MyProxy : RealProxy
     {
-        String myURIString;
-        MarshalByRefObject myMarshalByRefObject;
+        private String myURIString;
+        private MarshalByRefObject myMarshalByRefObject;
 
         [PermissionSet(SecurityAction.LinkDemand)]
         public MyProxy(Type myType) : base(myType)
@@ -43,8 +43,7 @@ namespace ProxySample
             IDictionary myIDictionary = myIMessage.Properties;
             // Set the '__Uri' property of 'IMessage' to 'URI' property of 'ObjRef'.
             myIDictionary["__Uri"] = myURIString;
-            IDictionaryEnumerator myIDictionaryEnumerator =
-               (IDictionaryEnumerator)myIDictionary.GetEnumerator();
+            IDictionaryEnumerator myIDictionaryEnumerator = myIDictionary.GetEnumerator();
 
             while (myIDictionaryEnumerator.MoveNext())
             {
@@ -52,22 +51,19 @@ namespace ProxySample
                 String myKeyName = myKey.ToString();
                 Object myValue = myIDictionaryEnumerator.Value;
 
-                Console.WriteLine("\t{0} : {1}", myKeyName,
-                   myIDictionaryEnumerator.Value);
+                Console.WriteLine("\t{0} : {1}", myKeyName, myIDictionaryEnumerator.Value);
                 if (myKeyName == "__Args")
                 {
                     Object[] myObjectArray = (Object[])myValue;
                     for (int aIndex = 0; aIndex < myObjectArray.Length; aIndex++)
-                        Console.WriteLine("\t\targ: {0} myValue: {1}", aIndex,
-                           myObjectArray[aIndex]);
+                        Console.WriteLine("\t\targ: {0} myValue: {1}", aIndex, myObjectArray[aIndex]);
                 }
 
                 if ((myKeyName == "__MethodSignature") && (null != myValue))
                 {
                     Object[] myObjectArray = (Object[])myValue;
                     for (int aIndex = 0; aIndex < myObjectArray.Length; aIndex++)
-                        Console.WriteLine("\t\targ: {0} myValue: {1}", aIndex,
-                           myObjectArray[aIndex]);
+                        Console.WriteLine("\t\targ: {0} myValue: {1}", aIndex, myObjectArray[aIndex]);
                 }
             }
 
@@ -81,10 +77,8 @@ namespace ProxySample
 
             // Push return value and OUT parameters back onto stack.
 
-            IMethodReturnMessage myMethodReturnMessage = (IMethodReturnMessage)
-               myReturnMessage;
-            Console.WriteLine("IMethodReturnMessage.ReturnValue: {0}",
-               myMethodReturnMessage.ReturnValue);
+            IMethodReturnMessage myMethodReturnMessage = (IMethodReturnMessage)myReturnMessage;
+            Console.WriteLine("IMethodReturnMessage.ReturnValue: {0}", myMethodReturnMessage.ReturnValue);
 
             Console.WriteLine("MyProxy.Invoke - Finish");
 
