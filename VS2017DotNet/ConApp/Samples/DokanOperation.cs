@@ -256,6 +256,11 @@ namespace ConApp
             return DokanResult.NotImplemented;
         }
 
+        public NtStatus GetVolumeInformation(out string volumeLabel, out FileSystemFeatures features, out string fileSystemName, out uint maximumComponentLength, DokanFileInfo info)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion DokanOperations member
     }
 }

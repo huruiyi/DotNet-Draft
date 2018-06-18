@@ -32,7 +32,7 @@ namespace ConApp
             return url.Substring(url.LastIndexOf("/") + 1).Replace(".git", ""); ;
         }
 
-        public static void Clone(string url, string destPath)
+        private static void Clone(string url, string destPath)
         {
             string dstDir = GetDirName(url);
             CheckoutProgressHandler checkoutProgressHandler = (path, completedSteps, totalSteps) =>
