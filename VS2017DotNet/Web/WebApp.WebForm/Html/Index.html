@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+        function ff() {
+            alert(">>this is index's js function");
+        }
+    </script>
+</head>
+<body>
+    <div style="background: greenyellow;">
+        This is index page.
+        <input type="button" value="run index's function" onclick="ff();" />
+        <input type="button" value="run inner page's function" onclick='window.frames["childPage"].ff();' />
+    </div>
+    <div>
+        <iframe id="childPage" style="margin: 0; padding: 0" name="childPage" src="inner.htm" width="500" frameborder="0"></iframe>
+    </div>
+</body>
+</html>

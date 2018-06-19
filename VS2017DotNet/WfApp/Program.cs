@@ -29,7 +29,7 @@ namespace WfApp
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-                Application.Run(new LogForm());
+                Application.Run(new ExplorerSample());
             }
             catch (Exception ex)
             {

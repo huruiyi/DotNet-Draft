@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>构造函数实现继承</title>
+    <script type="text/javascript">
+        function Parent(name) {
+            this.name = name;
+            this.sayParent = function () {
+                alert("Parent:" + this.name);
+            }
+        }
+
+        function Child(name, age) {
+            this.tempMethod = Parent;
+            this.tempMethod(name);
+            this.age = age;
+            this.sayChild = function () {
+                alert("Child:" + this.name + "age:" + this.age);
+            }
+        }
+
+        var parent = new Parent("江剑臣");
+        parent.sayParent();
+        var child = new Child("李鸣", 24);
+        child.sayChild();
+    </script>
+</head>
+<body>
+</body>
+</html>
