@@ -9,10 +9,10 @@ namespace Infrastructure
 {
     public class MongoDemo
     {
-        private const string CONNECTION_STRING = "mongodb://root:root@127.0.0.1:27017";
-        private const string DB_NAME = "test";
-        private const string COLL_NAME = "foo";
-        private static MongoClient _client = null;
+        private const string ConnectionString = "mongodb://root:root@127.0.0.1:27017";
+        private const string DbName = "test";
+        private const string CollName = "foo";
+        private static MongoClient _client;
 
         public MongoClient Client
         {
@@ -20,7 +20,7 @@ namespace Infrastructure
             {
                 if (_client == null)
                 {
-                    _client = new MongoClient(CONNECTION_STRING);
+                    _client = new MongoClient(ConnectionString);
                 }
 
                 return _client;
@@ -49,13 +49,13 @@ namespace Infrastructure
                           }}
             };
 
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             await coll.InsertOneAsync(document);
         }
 
         public async void InsertMany()
         {
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             IEnumerable<BsonDocument> mList = Enumerable.Range(0, 100).Select(x => new BsonDocument
             {
                 {"name", "Oracle"+x},
@@ -74,21 +74,21 @@ namespace Infrastructure
 
         public async Task<BsonDocument> SimpleQuery()
         {
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             BsonDocument doc = await coll.Find(new BsonDocument()).FirstOrDefaultAsync();
             return doc;
         }
 
         public async Task<List<BsonDocument>> SimpleQueryAll()
         {
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             List<BsonDocument> docs = await coll.Find(new BsonDocument()).ToListAsync();
             return docs;
         }
 
         public async Task<List<BsonDocument>> Query()
         {
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             FilterDefinitionBuilder<BsonDocument> filterBuilder = Builders<BsonDocument>.Filter;
             FilterDefinition<BsonDocument> filter = filterBuilder.Eq("name", "MongoDB") & filterBuilder.Gt("count", 1);
             return await coll.Find(filter).ToListAsync();
@@ -96,7 +96,7 @@ namespace Infrastructure
 
         public async Task<UpdateResult> Update()
         {
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("name", "MongoDB");
             UpdateDefinition<BsonDocument> update = Builders<BsonDocument>.Update.Set("count", 2);
             return await coll.UpdateOneAsync(filter, update);
@@ -104,7 +104,7 @@ namespace Infrastructure
 
         public async Task<DeleteResult> Delete()
         {
-            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DB_NAME, COLL_NAME);
+            IMongoCollection<BsonDocument> coll = GetCollection<BsonDocument>(DbName, CollName);
             FilterDefinition<BsonDocument> filter = Builders<BsonDocument>.Filter.Eq("type", "Database");
             return await coll.DeleteManyAsync(filter);
         }
@@ -116,7 +116,7 @@ namespace Infrastructure
         public async void InsertOneModel()
         {
             Person person = new Person { Int1 = 1, Int2 = 2, Str1 = "s1", Str2 = "s2" };
-            IMongoCollection<Person> col = GetCollection<Person>(DB_NAME, "person");
+            IMongoCollection<Person> col = GetCollection<Person>(DbName, "person");
             await col.InsertOneAsync(person);
         }
 
@@ -129,7 +129,7 @@ namespace Infrastructure
                 new Person {Int1 = 111, Int2 = 222, Str1 = "s1", Str2 = "s2",Int3 = 333},
             };
 
-            IMongoCollection<Person> col = GetCollection<Person>(DB_NAME, "person");
+            IMongoCollection<Person> col = GetCollection<Person>(DbName, "person");
             await col.InsertManyAsync(listPersons);
         }
 
