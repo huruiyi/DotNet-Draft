@@ -4,9 +4,9 @@ using WinFormDemo.Services;
 
 namespace WinFormDemo
 {
-    public partial class Form2 : Form, IAfterText
+    public partial class FormChild : Form, IAfterText
     {
-        public Form2()
+        public FormChild()
         {
             InitializeComponent();
         }

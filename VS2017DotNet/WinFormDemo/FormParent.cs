@@ -5,15 +5,15 @@ using WinFormDemo.Services;
 
 namespace WinFormDemo
 {
-    public partial class Form1 : Form
+    public partial class FormParent : Form
     {
-        public Form1()
+        public FormParent()
         {
             InitializeComponent();
         }
 
         public Action<string> SendMsg;
-        public Form2 F2Demo { get; set; }
+        public FormChild F2Demo { get; set; }
 
         public List<IAfterText> ListOb = new List<IAfterText>();
 

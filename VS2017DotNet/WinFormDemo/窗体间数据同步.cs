@@ -10,13 +10,13 @@ namespace WinFormDemo
             InitializeComponent();
         }
 
-        public Form1 F1Demo { get; set; }
+        public FormParent F1Demo { get; set; }
 
-        public Form2 F2Demo { get; set; }
+        public FormChild F2Demo { get; set; }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Form1 form1 = new Form1();
+            FormParent form1 = new FormParent();
             F1Demo = form1;
             form1.Show();
         }
@@ -29,7 +29,7 @@ namespace WinFormDemo
             }
             else
             {
-                Form2 form2 = new Form2();
+                FormChild form2 = new FormChild();
                 F2Demo = form2;
 
                 //if (F1Demo.SendMsg == null)
