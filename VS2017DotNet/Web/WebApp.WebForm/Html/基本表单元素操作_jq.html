@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title></title>
     <link href="../Content/bootstrap.css" rel="stylesheet" />
-    <script src="../Scripts/jquery-3.2.1.js"></script>
+    <script src="../Scripts/jquery-3.3.1.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function () {
@@ -22,8 +22,9 @@
             });
         }
 
-        function SetValue() {
-
+        function Set(val) {
+            $("#sltBirthDayYear").find("option:selected").removeAttr("selected");
+            $("#sltBirthDayYear").find("option[value='"+val+"']").attr("selected", true);
         }
     </script>
 </head>
@@ -68,7 +69,7 @@
         <div class="form-group form-inline">
             <label class="control-label col-sm-2">生日:</label>
             <div class="col-sm-10">
-                <select id="sltBirthDayYear" class="form-control">
+                <select id="sltBirthDayYear" name="BirthDayYear" class="form-control">
                     <option value="1990">1990年</option>
                     <option value="1991">1991年</option>
                     <option value="1992">1992年</option>
@@ -77,7 +78,7 @@
                     <option value="1995">1995年</option>
                     <option value="1996">1996年</option>
                 </select>
-                <select id="sltBirthDayMonth" class="form-control">
+                <select id="sltBirthDayMonth" name="BirthDayMonth" class="form-control">
                     <option value="1">1月</option>
                     <option value="2">2月</option>
                     <option value="3">3月</option>

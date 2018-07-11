@@ -97,6 +97,7 @@
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="WebSocket.html" />
+    <Content Include="Handlers\FormHandler.ashx" />
     <None Include="packages.config" />
     <Content Include="Html\ajaxSuccess.html" />
     <Content Include="Html\angular.html" />
@@ -1427,6 +1428,9 @@
     </Compile>
     <Compile Include="Handlers\CalcService.ashx.cs">
       <DependentUpon>CalcService.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="Handlers\FormHandler.ashx.cs">
+      <DependentUpon>FormHandler.ashx</DependentUpon>
     </Compile>
     <Compile Include="Handlers\TestRemapHandler.ashx.cs">
       <DependentUpon>TestRemapHandler.ashx</DependentUpon>
