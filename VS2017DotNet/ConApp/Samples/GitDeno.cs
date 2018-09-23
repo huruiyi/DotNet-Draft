@@ -48,14 +48,22 @@ namespace ConApp
                     return true;
                 },
             };
-
-            string clonedRepoPath = Repository.Clone(url, Path.Combine(destPath, dstDir), options);
-            using (Repository repo = new Repository(clonedRepoPath))
+            try
             {
-                Console.WriteLine(repo.Stashes);
+                string clonedRepoPath = Repository.Clone(url, Path.Combine(destPath, dstDir), options);
+                using (Repository repo = new Repository(clonedRepoPath))
+                {
+                    Console.WriteLine(repo.Stashes);
+                }
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+          
         }
 
+      
         public static void TaskClone(string urlLines, string destPath)
         {
             Queue<string> list = new Queue<string>();

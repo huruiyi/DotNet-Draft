@@ -20,8 +20,8 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
-            GitDeno.TaskClone("d:\\ttt", "D:\\Git\\git_Ninject");
-
+            GitDeno.TaskClone(@"D:\Apress\git_Packt_shell\url", @"D:\Apress\git_Packt_shell");
+            Console.Write("Ok.........");
             Console.ReadKey();
 
             //string input = "1851 1999 1950 1905 2003";
