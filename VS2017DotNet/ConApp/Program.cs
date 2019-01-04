@@ -20,10 +20,29 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
-            GitDeno.TaskClone(@"D:\Apress\git_Packt_shell\url", @"D:\Apress\git_Packt_shell");
-            Console.Write("Ok.........");
-            Console.ReadKey();
+            //GitDemo.TaskClone(@"D:\git_Java_Thymeleaf_URL", @"D:\git\git_Java_Thymeleaf", 10);
+            //GitDemo.TaskFetch(@"D:\new\git_Apress_Java", 10);
 
+      
+
+            //DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\new");
+            //FileInfo[] files = directoryInfo.GetFiles();
+            //foreach (FileInfo file in files)
+            //{
+            //    Console.WriteLine(file.FullName);
+            //    string[] lines = File.ReadAllLines(file.FullName);
+            //    foreach (string line in lines)
+            //    {
+            //        string pushUrl = GitDemo.GetPushUrl(line);
+            //        Console.WriteLine(pushUrl);
+            //    }
+            //}
+
+            Console.ReadKey();
+        }
+
+        public static void Other()
+        {
             //string input = "1851 1999 1950 1905 2003";
             //string pattern = @"(?<=19)\d{2}\b";
             //foreach (Match match in Regex.Matches(input, pattern))
