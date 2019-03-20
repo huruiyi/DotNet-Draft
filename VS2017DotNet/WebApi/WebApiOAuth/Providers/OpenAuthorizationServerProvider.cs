@@ -30,6 +30,7 @@ namespace WebApiOAuth.Providers
             return base.ValidateClientAuthentication(context);
         }
 
+        /// <inheritdoc />
         /// <summary>
         /// 生成 access_token（client credentials 授权方式）
         /// </summary>

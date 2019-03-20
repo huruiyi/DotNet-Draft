@@ -24,6 +24,9 @@ namespace OnlineAPI.Models
         [JsonProperty("songLink")]
         public string SongLink { get; set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
         [JsonProperty("showLink")]
         public string ShowLink { get; set; }
         /// <summary>

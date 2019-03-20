@@ -6,6 +6,9 @@ using Newtonsoft.Json;
 
 namespace OnlineAPI.Models
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class MusicSummary
     {
         /// <summary>

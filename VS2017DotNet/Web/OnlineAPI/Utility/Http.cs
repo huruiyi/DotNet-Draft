@@ -80,11 +80,11 @@ namespace OnlineAPI.Utility
                 throw new ArgumentNullException("requestEncoding");
             }
 
-            HttpWebRequest request = null;
+            HttpWebRequest request;
             //如果是发送HTTPS请求  
             if (url.StartsWith("https", StringComparison.OrdinalIgnoreCase))
             {
-                ServicePointManager.ServerCertificateValidationCallback = new RemoteCertificateValidationCallback(CheckValidationResult);
+                ServicePointManager.ServerCertificateValidationCallback = CheckValidationResult;
                 request = WebRequest.Create(url) as HttpWebRequest;
                 request.ProtocolVersion = HttpVersion.Version10;
             }
@@ -94,13 +94,7 @@ namespace OnlineAPI.Utility
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
 
-            if (!string.IsNullOrEmpty(userAgent))
-            {
-                request.UserAgent = userAgent;
-            }
-            else {
-                request.UserAgent = DefaultUserAgent;
-            }
+            request.UserAgent = !string.IsNullOrEmpty(userAgent) ? userAgent : DefaultUserAgent;
 
             if (timeout.HasValue)
             {
@@ -199,33 +193,38 @@ namespace OnlineAPI.Utility
         {
             if (string.IsNullOrEmpty(htmlString))
                 return "";
-            return Nohtml(htmlString, 0);
+            return NoHtml(htmlString, 0);
         }
         /// <summary>
         /// 移除字符串的HTML代码，返回指定长度的字符.
         /// </summary>
-        /// <param name="Htmlstr"></param>
-        /// <param name="leng"></param>
+        /// <param name="htmlStr"></param>
+        /// <param name="length"></param>
         /// <returns></returns>
-        public static string Nohtml(string Htmlstr, int leng)
+        public static string NoHtml(string htmlStr, int length)
         {
-            string htmlstring = string.Empty;
-            if (!string.IsNullOrEmpty(Htmlstr))
+            string htmlString = string.Empty;
+            if (!string.IsNullOrEmpty(htmlStr))
             {
-                Htmlstr = RemoveHtmlAll(Htmlstr);
-                htmlstring = leng > 0 ? SubString(Htmlstr, leng) : Htmlstr;
+                htmlStr = RemoveHtmlAll(htmlStr);
+                htmlString = length > 0 ? SubString(htmlStr, length) : htmlStr;
             }
-            return htmlstring;
+            return htmlString;
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sourceStr"></param>
+        /// <returns></returns>
         public static string RemoveHtmlAll(string sourceStr)
         {
-            string destStr = "";
             //先去掉代码块
             Regex r = new Regex(@"<style.*?\/style>");
             //Server.HtmlDecode  HttpServerUtility
             //string sourceStrdecode = System.Web.HttpUtility.HtmlDecode(sourceStr);//编码转换
-            string sourceStrdecode = sourceStr;
-            destStr = r.Replace(sourceStrdecode, "");
+            string sourceStrode = sourceStr;
+            var destStr = r.Replace(sourceStrode, "");
             r = new Regex(@"<script.*?\/script>");
             destStr = r.Replace(destStr, "");
             //再去除html标记<>，包括<iframe>和闭合块
@@ -240,6 +239,11 @@ namespace OnlineAPI.Utility
             destStr = r.Replace(destStr, "");
             return destStr;
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <returns></returns>
         public static string GetHttpValue(string url)
         {
             try
@@ -264,6 +268,12 @@ namespace OnlineAPI.Utility
                 return "";
             }
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="param"></param>
+        /// <returns></returns>
         public static string PostHttpValue(string url, Dictionary<string, string> param)
         {
             try

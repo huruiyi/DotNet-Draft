@@ -66,7 +66,7 @@ namespace ConApp
             }
         }
 
-        private static void Fetch(String path)
+        public static void Fetch(String path)
         {
             try
             {
@@ -74,9 +74,9 @@ namespace ConApp
                 using (var repo = new Repository(path))
                 {
                     var remote = repo.Network.Remotes["origin"];
-                    //var refSpecs = remote.FetchRefSpecs.Select(x => x.Specification);
-                    //Commands.Fetch(repo, remote.Name, refSpecs, null, logMessage);
-                    if(remote!=null&& remote.PushUrl != null)
+                    var refSpecs = remote.FetchRefSpecs.Select(x => x.Specification);
+                    Commands.Fetch(repo, remote.Name, refSpecs, new FetchOptions { TagFetchMode = TagFetchMode.All }, logMessage);
+                    if (remote != null && remote.PushUrl != null)
                     {
                         Console.WriteLine(remote.PushUrl);
                     }
@@ -85,7 +85,7 @@ namespace ConApp
                         Console.WriteLine(path);
                     }
                 }
-            
+
             }
             catch (Exception ex)
             {
@@ -96,7 +96,7 @@ namespace ConApp
 
         public static String GetPushUrl(String filePath)
         {
-             
+
             try
             {
                 using (var repo = new Repository(filePath))
@@ -106,12 +106,12 @@ namespace ConApp
                     {
                         filePath = remote.PushUrl;
                     }
-                     
+
                 }
             }
             catch (Exception e)
             {
-              
+
             }
 
             return filePath;
@@ -139,13 +139,14 @@ namespace ConApp
             Task.WaitAll(tasks);
         }
 
-        public static void TaskFetch(string urlLines, int taskCount)
+        public static void TaskFetch(string directory, int taskCount)
         {
             Queue<string> list = new Queue<string>();
-            String[] strs = File.ReadAllLines(urlLines);
-            foreach (string pathStr in strs)
+
+            string[] directories = Directory.GetDirectories(directory);
+            foreach (string path in directories)
             {
-                list.Enqueue(pathStr);
+                list.Enqueue(path);
             }
             Task task;
             Task[] tasks = new Task[taskCount];

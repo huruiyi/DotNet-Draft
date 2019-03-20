@@ -34,7 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\NLog.4.5.6\lib\net45\NLog.dll</HintPath>
+      <HintPath>..\..\packages\NLog.4.5.11\lib\net45\NLog.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -207,16 +207,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Analyzer Include="..\..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
-    <Analyzer Include="..\..\packages\Microsoft.DependencyValidation.Analyzers.0.9.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Images\Back.PNG" />
     <Content Include="Images\Details.PNG" />
     <Content Include="Images\Forward.PNG" />
     <Content Include="Images\tree\1.png" />
     <Content Include="Images\tree\2.png" />
     <Content Include="Images\Up.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Analyzer Include="..\..\packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\cs\Microsoft.DependencyValidation.Analyzers.resources.dll" />
+    <Analyzer Include="..\..\packages\Microsoft.DependencyValidation.Analyzers.0.10.0\analyzers\dotnet\Microsoft.DependencyValidation.Analyzers.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

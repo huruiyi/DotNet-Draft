@@ -9,8 +9,17 @@ using Swashbuckle.Swagger;
 
 namespace OnlineAPI.Utility
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class HttpHeaderFilter : IOperationFilter
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="schemaRegistry"></param>
+        /// <param name="apiDescription"></param>
         public void Apply(Operation operation, SchemaRegistry schemaRegistry, ApiDescription apiDescription)
         {
             if (operation.parameters == null) operation.parameters = new List<Parameter>();

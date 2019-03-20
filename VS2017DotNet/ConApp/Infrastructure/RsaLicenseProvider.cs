@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web;
@@ -28,7 +29,7 @@ namespace ConsoleApp1.Infrastructure
             RsaLicense license = licenseCache.GetLicense(type);
             if (license == null)
             {
-                var keyValue = LoadLicenseData(type);
+                var keyValue = LoadLicenseData(type, "");
 
                 DateTime expireDate = new DateTime();
                 if (IsKeyValid(keyValue, publicKey, attrGuid, expireDate))
@@ -51,12 +52,11 @@ namespace ConsoleApp1.Infrastructure
             return null;
         }
 
-        protected string LoadLicenseData(Type type)
+        protected string LoadLicenseData(Type type, String licFilePath)
         {
             string keyValue = "";
             string assemblyName = type.Assembly.GetName().Name;
             string relativePath = "~\\license\\" + assemblyName + ".lic";
-            string licFilePath = HttpContext.Current.Server.MapPath(relativePath);
 
             if (File.Exists(licFilePath))
             {

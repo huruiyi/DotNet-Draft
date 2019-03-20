@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Diagnostics;
 using System.Reflection;
 
 namespace MEFDemo1
@@ -22,7 +23,7 @@ namespace MEFDemo1
 
         //导出公有属性
         [Export(typeof(string))]
-        public string _publicBookName = "Public Music BookName";
+        public string PublicBookName = "Public Music BookName";
 
         public string BookName { get; set; }
 
@@ -30,6 +31,9 @@ namespace MEFDemo1
         [Export(typeof(Func<string>))]
         public string GetBookName()
         {
+            Debug.Write(_privateBookName);
+            Debug.Write(PublicBookName);
+
             return "MusicBook";
         }
 
@@ -74,15 +78,20 @@ namespace MEFDemo1
 
         //导入无参数方法
         [Import]
-        public Func<string> methodWithoutPara { get; set; }
+        public Func<string> MethodWithoutPara { get; set; }
 
         //导入有参数方法
         [Import]
-        public Func<int, string> methodWithPara { get; set; }
+        public Func<int, string> MethodWithPara { get; set; }
 
-        private static void Main(string[] args)
+        private static void Main()
         {
-            Program pro = new Program();
+
+            Program pro = new Program
+            {
+                MethodWithoutPara = () => "",
+                MethodWithPara = a => a.ToString()
+            };
             pro.Compose();
             if (pro.Services != null)
             {
@@ -98,14 +107,14 @@ namespace MEFDemo1
             }
 
             //调用无参数方法
-            if (pro.methodWithoutPara != null)
+            if (pro.MethodWithoutPara != null)
             {
-                Console.WriteLine(pro.methodWithoutPara());
+                Console.WriteLine(pro.MethodWithoutPara());
             }
             //调用有参数方法
-            if (pro.methodWithPara != null)
+            if (pro.MethodWithPara != null)
             {
-                Console.WriteLine(pro.methodWithPara(3000));
+                Console.WriteLine(pro.MethodWithPara(3000));
             }
 
             Console.Read();

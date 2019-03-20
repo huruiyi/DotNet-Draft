@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using System.Web.OData;
+using Microsoft.AspNet.OData;
 using WebApp.Models;
 
 namespace WebApp.Controllers

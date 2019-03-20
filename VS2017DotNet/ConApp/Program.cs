@@ -20,10 +20,10 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
-            //GitDemo.TaskClone(@"D:\git_Java_Thymeleaf_URL", @"D:\git\git_Java_Thymeleaf", 10);
-            //GitDemo.TaskFetch(@"D:\new\git_Apress_Java", 10);
+            // GitDemo.TaskClone(@"D:\vue", @"D:\Apress\git_Packt_Vue", 10);
+            GitDemo.TaskFetch(@"D:\Spring\", 10);
 
-      
+
 
             //DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\new");
             //FileInfo[] files = directoryInfo.GetFiles();
@@ -322,10 +322,10 @@ namespace ConApp
         public static int MSz = 100;
 
         //普通数据成员，也是放在堆上了，查看指针时需用fixed固定
-        public int MnData = 100;
+        public int MnData;
 
         //等价于C/C++的 #define 语句，不分配内存
-        public const int PI = 31415;
+        public const int Pi = 31415;
 
         public static void NullNum()
         {
@@ -367,13 +367,15 @@ namespace ConApp
                 httpreq.Credentials = CredentialCache.DefaultCredentials;
                 //获取需要的商户验证信息
                 string userNamePassword = sMerId + ":" + sMerPw;
-                CredentialCache mycache = new CredentialCache();
-                mycache.Add(new Uri(sUrl), "Basic", new NetworkCredential(sMerId, sMerPw));
+                CredentialCache mycache = new CredentialCache
+                {
+                    { new Uri(sUrl), "Basic", new NetworkCredential(sMerId, sMerPw) }
+                };
                 httpreq.Credentials = mycache;
                 httpreq.Headers.Add("Authorization", "Basic " + Convert.ToBase64String(new ASCIIEncoding().GetBytes(userNamePassword)));
                 //加载证书
-                X509Certificate2 objX509_2 = new X509Certificate2(prikeyPath, prikeyPassword);
-                httpreq.ClientCertificates.Add(objX509_2);
+                X509Certificate2 objX5092 = new X509Certificate2(prikeyPath, prikeyPassword);
+                httpreq.ClientCertificates.Add(objX5092);
                 //利用二进制流发送数据
                 Stream newStream = httpreq.GetRequestStream();
                 //发送数据
