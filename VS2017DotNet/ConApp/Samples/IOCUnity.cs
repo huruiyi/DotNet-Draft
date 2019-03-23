@@ -1,7 +1,7 @@
-﻿using Microsoft.Practices.Unity.Configuration;
+﻿using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 using System;
 using System.Configuration;
-using Unity;
 
 namespace ConApp
 {
@@ -95,19 +95,6 @@ namespace ConApp
             mycontainer.RegisterType<IOtherHelper, MyOtherHelper>();
             IOtherHelper mssql = mycontainer.Resolve<IOtherHelper>();
             Console.WriteLine(mssql.GetSqlConnection());
-        }
-
-        public static void Demo4()
-        {
-            #region 配置文件注册-未完待续
-
-            IUnityContainer mycontainer = new UnityContainer();
-            //配置文件注册
-            UnityConfigurationSection section = (UnityConfigurationSection)ConfigurationManager.GetSection("unity");
-            section.Configure(mycontainer);
-            mycontainer.LoadConfiguration();
-
-            #endregion 配置文件注册-未完待续
         }
     }
 }

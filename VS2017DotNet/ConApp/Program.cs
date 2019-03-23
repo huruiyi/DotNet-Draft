@@ -21,8 +21,8 @@ namespace ConApp
         public static void Main(string[] args)
         {
             // GitDemo.TaskClone(@"D:\vue", @"D:\Apress\git_Packt_Vue", 10);
-            GitDemo.TaskFetch(@"D:\Spring\", 10);
-
+            // GitDemo.TaskFetch(@"D:\Spring\", 10);
+            IOCUnity.Demo4();
 
 
             //DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\new");
