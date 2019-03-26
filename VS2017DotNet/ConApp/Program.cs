@@ -20,51 +20,35 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
-            // GitDemo.TaskClone(@"D:\vue", @"D:\Apress\git_Packt_Vue", 10);
+            // GitDemo.TaskClone(@"D:\Oauth.txt", @"D:\Git\git_oAuth\", 10);
             // GitDemo.TaskFetch(@"D:\Spring\", 10);
-            IOCUnity.Demo4();
 
-
-            //DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\new");
-            //FileInfo[] files = directoryInfo.GetFiles();
-            //foreach (FileInfo file in files)
-            //{
-            //    Console.WriteLine(file.FullName);
-            //    string[] lines = File.ReadAllLines(file.FullName);
-            //    foreach (string line in lines)
-            //    {
-            //        string pushUrl = GitDemo.GetPushUrl(line);
-            //        Console.WriteLine(pushUrl);
-            //    }
-            //}
-
+            RegexDemo03();
             Console.ReadKey();
         }
 
-        public static void Other()
+        private static void GetPushUrl()
         {
-            //string input = "1851 1999 1950 1905 2003";
-            //string pattern = @"(?<=19)\d{2}\b";
-            //foreach (Match match in Regex.Matches(input, pattern))
-            //{
-            //    Console.WriteLine(match.Value);
-            //}
-            //Console.ReadKey();
+            DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\new");
+            FileInfo[] files = directoryInfo.GetFiles();
+            foreach (FileInfo file in files)
+            {
+                Console.WriteLine(file.FullName);
+                string[] lines = File.ReadAllLines(file.FullName);
+                foreach (string line in lines)
+                {
+                    string pushUrl = GitDemo.GetPushUrl(line);
+                    Console.WriteLine(pushUrl);
+                }
+            }
+        }
 
-            //string s = "例如：http://www.asd.com,http://wwww.gongjuji.net?name=zhangsan&age=10,http://md5.gongjuji.net/dencrypt/";
-            //Regex re = new Regex(@"(?<urladdress>http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?)");
-            //MatchCollection mc = re.Matches(s);
-            //foreach (Match m in mc)
-            //{
-            //    string url = m.Result("${urladdress}");
-            //    Console.WriteLine(url);
-            //}
-            //Console.ReadKey();
-
+        public static void RegexDemo03()
+        {
             WebClient webClient = new WebClient();
             byte[] bytes = webClient.DownloadData("https://github.com/mono");
             string result = Encoding.Default.GetString(bytes);
-            Regex re = new Regex("ref=\"(//mono//.*?)\" item");
+            Regex re = new Regex("href=\"/mono/.*?\"");
             MatchCollection mc = re.Matches(result);
             foreach (Match match in mc)
             {
@@ -72,16 +56,32 @@ namespace ConApp
                 //Console.WriteLine(url);
                 Console.WriteLine(match.Value);
             }
-
-            Console.WriteLine("++++++++++++++++++++++++++++++");
-            Console.ReadKey();
-
-            //  ref="/golang/.*?" item
-
-            // stackalloc
+            //stackalloc
             //TypeFilter
             //WeakReference
             //volatile
+        }
+
+        private static void RegexDemo02()
+        {
+            string input = "1851 1999 1950 1905 2003";
+            string pattern = @"(?<=19)\d{2}\b";
+            foreach (Match match in Regex.Matches(input, pattern))
+            {
+                Console.WriteLine(match.Value);
+            }
+        }
+
+        private static void RegexDemo01()
+        {
+            string s = "例如：http://www.asd.com,http://wwww.gongjuji.net?name=zhangsan&age=10,http://md5.gongjuji.net/dencrypt/";
+            Regex re = new Regex(@"(?<urladdress>http(s)?://([\w-]+\.)+[\w-]+(/[\w- ./?%&=]*)?)");
+            MatchCollection mc = re.Matches(s);
+            foreach (Match m in mc)
+            {
+                string url = m.Result("${urladdress}");
+                Console.WriteLine(url);
+            }
         }
 
         private static bool FindText(string str)

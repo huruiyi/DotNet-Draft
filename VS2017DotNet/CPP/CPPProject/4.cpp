@@ -1,6 +1,5 @@
 #include<stdio.h>
 
-
 void mainx()
 {
 	//char* p1;
@@ -16,5 +15,3 @@ void mainx()
 
 	getchar();
 }
-
- 
