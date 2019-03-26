@@ -1,4 +1,5 @@
 ﻿using ConApp.Model;
+using Microsoft.VisualBasic;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -20,10 +21,24 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
+            var simplified = ChineseStringUtility.ToSimplified("雅致的咖啡館裏");
+            Console.WriteLine(simplified);
+
+            Console.Write(Strings.StrConv("雅致的咖啡館裏",
+                    VbStrConv.SimplifiedChinese, 0));
+            String path = @"D:\x.txt";
+            String path2 = path.Insert(path.Length - 4, "new");
+            Console.WriteLine();
+            string allText = File.ReadAllText(path);
+
+            string strConv =Strings.StrConv(allText,VbStrConv.SimplifiedChinese, 0);
+
+ 
+            File.WriteAllText(path2, strConv);
+
             // GitDemo.TaskClone(@"D:\Oauth.txt", @"D:\Git\git_oAuth\", 10);
             // GitDemo.TaskFetch(@"D:\Spring\", 10);
 
-            RegexDemo03();
             Console.ReadKey();
         }
 

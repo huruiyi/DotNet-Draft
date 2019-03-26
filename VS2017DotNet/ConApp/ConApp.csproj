@@ -171,6 +171,7 @@
     <Compile Include="Model\Tweet.cs" />
     <Compile Include="OOP\OOP1.cs" />
     <Compile Include="OOP\OOP2.cs" />
+    <Compile Include="Samples\ChineseStringUtility.cs" />
     <Compile Include="Samples\EventDemo.cs" />
     <Compile Include="Samples\GitDemo.cs" />
     <Compile Include="Samples\MysqlDemo.cs" />
