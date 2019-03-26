@@ -28,7 +28,7 @@ namespace WinFormDemo
 
             //F2Demo.SetText("sss");
 
-            //AfterSendText(this,new SendTextEventArgs(){Text =  this.txtMsg.Text});
+            AfterSendText(this,new SendTextEventArgs(){Text =  this.txtMsg.Text});
 
             foreach (var afterText in ListOb)
             {

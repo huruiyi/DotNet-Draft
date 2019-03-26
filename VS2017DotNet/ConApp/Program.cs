@@ -21,11 +21,12 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
+            //https://www.cnblogs.com/dmhp/p/5291129.html
+            //https://www.cnblogs.com/dmhp/p/5291106.html
             var simplified = ChineseStringUtility.ToSimplified("雅致的咖啡館裏");
             Console.WriteLine(simplified);
 
-            Console.Write(Strings.StrConv("雅致的咖啡館裏",
-                    VbStrConv.SimplifiedChinese, 0));
+            Console.Write(Strings.StrConv("雅致的咖啡館裏",VbStrConv.SimplifiedChinese, 0));
             String path = @"D:\x.txt";
             String path2 = path.Insert(path.Length - 4, "new");
             Console.WriteLine();

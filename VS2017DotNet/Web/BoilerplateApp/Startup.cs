@@ -3,7 +3,6 @@
 namespace BoilerplateApp
 {
     using System.Web.Mvc;
-    using NWebsec.Owin;
     using Owin;
 
     public partial class Startup
