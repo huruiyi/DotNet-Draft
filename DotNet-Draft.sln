@@ -126,12 +126,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestMySpline", "DotNet-Draft\TestMySpline\TestMySpline.csproj", "{2449264D-0767-4C0F-8A6B-C8045546A2A4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Multithreading", "Multithreading", "{5FCD5D78-9005-4763-8249-CDB73F7E37D6}"
-	ProjectSection(SolutionItems) = preProject
-		DotNet-Draft\Multithreading\IneffectiveLockingConsoleApp\IneffectiveLockingConsoleApp.csproj = DotNet-Draft\Multithreading\IneffectiveLockingConsoleApp\IneffectiveLockingConsoleApp.csproj
-		DotNet-Draft\Multithreading\ProperCriticalSectionConsoleApp\ProperCriticalSectionConsoleApp.csproj = DotNet-Draft\Multithreading\ProperCriticalSectionConsoleApp\ProperCriticalSectionConsoleApp.csproj
-		DotNet-Draft\Multithreading\RaceConditionConsoleApp\RaceConditionConsoleApp.csproj = DotNet-Draft\Multithreading\RaceConditionConsoleApp\RaceConditionConsoleApp.csproj
-		DotNet-Draft\Multithreading\SampleParallelConsoleApp\SampleParallelConsoleApp.csproj = DotNet-Draft\Multithreading\SampleParallelConsoleApp\SampleParallelConsoleApp.csproj
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyNotepad", "DotNet-Draft\MyNotepad\MyNotepad.csproj", "{9E3EE28E-3BC6-4E12-9BA6-5DED08EE814F}"
 EndProject
@@ -178,6 +172,14 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpeakingAspNetSite", "DotNet-Draft\Web\SpeakingAspNetSite\SpeakingAspNetSite.csproj", "{FAB847FB-352C-4479-81DE-B1E34A6ECF41}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LicenseGenerator", "DotNet-Draft\LicenseGenerator\LicenseGenerator.csproj", "{DC7EC1E4-0F7F-4610-96AE-6C16B8FD5338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IneffectiveLockingConsoleApp", "DotNet-Draft\Multithreading\IneffectiveLockingConsoleApp\IneffectiveLockingConsoleApp.csproj", "{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProperCriticalSectionConsoleApp", "DotNet-Draft\Multithreading\ProperCriticalSectionConsoleApp\ProperCriticalSectionConsoleApp.csproj", "{C7E0EE39-8135-4085-8581-50CABAB45004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RaceConditionConsoleApp", "DotNet-Draft\Multithreading\RaceConditionConsoleApp\RaceConditionConsoleApp.csproj", "{0D6435D8-356C-4795-9C1F-DAF9E703DB29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleParallelConsoleApp", "DotNet-Draft\Multithreading\SampleParallelConsoleApp\SampleParallelConsoleApp.csproj", "{5E217D78-09FE-48F9-B5F8-B257DEA69620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1036,6 +1038,54 @@ Global
 		{DC7EC1E4-0F7F-4610-96AE-6C16B8FD5338}.Release|x64.Build.0 = Release|Any CPU
 		{DC7EC1E4-0F7F-4610-96AE-6C16B8FD5338}.Release|x86.ActiveCfg = Release|Any CPU
 		{DC7EC1E4-0F7F-4610-96AE-6C16B8FD5338}.Release|x86.Build.0 = Release|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Debug|x64.Build.0 = Debug|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Debug|x86.Build.0 = Debug|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Release|x64.ActiveCfg = Release|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Release|x64.Build.0 = Release|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Release|x86.ActiveCfg = Release|Any CPU
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861}.Release|x86.Build.0 = Release|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Release|x64.Build.0 = Release|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7E0EE39-8135-4085-8581-50CABAB45004}.Release|x86.Build.0 = Release|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Debug|x64.Build.0 = Debug|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Debug|x86.Build.0 = Debug|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Release|x64.ActiveCfg = Release|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Release|x64.Build.0 = Release|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Release|x86.ActiveCfg = Release|Any CPU
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29}.Release|x86.Build.0 = Release|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Debug|x64.Build.0 = Debug|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Debug|x86.Build.0 = Debug|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Release|x64.ActiveCfg = Release|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Release|x64.Build.0 = Release|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Release|x86.ActiveCfg = Release|Any CPU
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1096,6 +1146,10 @@ Global
 		{689DB8B8-A625-4B74-B997-C37156A61170} = {BF43DECB-F687-4343-A57B-C255320C776A}
 		{A94DF4D6-D4F5-4C3F-A062-5B9624022E96} = {BF43DECB-F687-4343-A57B-C255320C776A}
 		{FAB847FB-352C-4479-81DE-B1E34A6ECF41} = {BF43DECB-F687-4343-A57B-C255320C776A}
+		{8CE36915-47B0-4D32-8BDB-BDFFA4A6C861} = {5FCD5D78-9005-4763-8249-CDB73F7E37D6}
+		{C7E0EE39-8135-4085-8581-50CABAB45004} = {5FCD5D78-9005-4763-8249-CDB73F7E37D6}
+		{0D6435D8-356C-4795-9C1F-DAF9E703DB29} = {5FCD5D78-9005-4763-8249-CDB73F7E37D6}
+		{5E217D78-09FE-48F9-B5F8-B257DEA69620} = {5FCD5D78-9005-4763-8249-CDB73F7E37D6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B27951EA-EC4F-4544-AE45-FD8E8F1DCF9B}

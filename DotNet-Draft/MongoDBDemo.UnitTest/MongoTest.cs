@@ -23,7 +23,7 @@ namespace MongoDBDemo.UnitTest
         {
             try
             {
-                Assert.IsType(typeof(MongoClient), Test.Client);
+                Assert.IsType<MongoClient>(Test.Client);
             }
             catch
             {
@@ -35,7 +35,7 @@ namespace MongoDBDemo.UnitTest
         public void should_return_collection()
         {
             IMongoCollection<BsonDocument> actual = Test.GetCollection<BsonDocument>(DbName, CollName);
-            Assert.IsAssignableFrom(typeof(IMongoCollection<BsonDocument>), actual);
+            Assert.IsAssignableFrom<IMongoCollection<BsonDocument>>(actual);
         }
 
         [Fact]
@@ -70,7 +70,7 @@ namespace MongoDBDemo.UnitTest
         public void should_return_single_doc()
         {
             BsonDocument actual = Test.SimpleQuery().Result;
-            Assert.IsType(typeof(BsonDocument), actual);
+            Assert.IsType<BsonDocument>(actual);
         }
 
         [Fact]
