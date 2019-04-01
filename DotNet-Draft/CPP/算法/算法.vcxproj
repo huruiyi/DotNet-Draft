@@ -11,22 +11,23 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E0252C4E-C3F4-4586-BF20-5844A2B8DCCA}</ProjectGuid>
-    <RootNamespace>My20151228</RootNamespace>
+    <ProjectGuid>{DC37359E-1F8C-49E8-8857-EC19B4B992BB}</ProjectGuid>
+    <RootNamespace>算法</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
-    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>MultiByte</CharacterSet>
+    <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -64,9 +65,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="01.cpp" />
-    <ClCompile Include="02.cpp" />
-    <ClCompile Include="03.cpp" />
+    <ClCompile Include="1.cpp" />
+    <ClCompile Include="2.cpp" />
+    <ClCompile Include="3.cpp" />
+    <ClCompile Include="4.cpp" />
+    <ClCompile Include="5.cpp" />
+    <ClCompile Include="6.cpp" />
+    <ClCompile Include="7.cpp" />
+    <ClCompile Include="8.cpp" />
+    <ClCompile Include="9.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

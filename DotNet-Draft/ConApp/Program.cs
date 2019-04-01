@@ -1,4 +1,5 @@
-﻿using ConApp.Model;
+﻿using ConApp.Infrastructure;
+using ConApp.Model;
 using Microsoft.VisualBasic;
 using System;
 using System.Collections;
@@ -23,24 +24,29 @@ namespace ConApp
         {
             //https://www.cnblogs.com/dmhp/p/5291129.html
             //https://www.cnblogs.com/dmhp/p/5291106.html
+
             var simplified = ChineseStringUtility.ToSimplified("雅致的咖啡館裏");
             Console.WriteLine(simplified);
-
-            Console.Write(Strings.StrConv("雅致的咖啡館裏",VbStrConv.SimplifiedChinese, 0));
-            String path = @"D:\x.txt";
-            String path2 = path.Insert(path.Length - 4, "new");
-            Console.WriteLine();
-            string allText = File.ReadAllText(path);
-
-            string strConv =Strings.StrConv(allText,VbStrConv.SimplifiedChinese, 0);
-
- 
-            File.WriteAllText(path2, strConv);
 
             // GitDemo.TaskClone(@"D:\Oauth.txt", @"D:\Git\git_oAuth\", 10);
             // GitDemo.TaskFetch(@"D:\Spring\", 10);
 
             Console.ReadKey();
+        }
+
+        private static void ToSimpleChinese(String directory)
+        {
+            string[] files = Directory.GetFiles(directory);
+            foreach (string file in files)
+            {
+                Encoding encoding = TxtFileEncoder.GetEncoding(file);
+
+                string readAllText = File.ReadAllText(file, Encoding.GetEncoding(encoding.BodyName));
+                string strConv = Strings.StrConv(readAllText, VbStrConv.SimplifiedChinese, 0);
+
+                String path2 = file.Insert(file.Length - 4, "new");
+                File.WriteAllText(path2, strConv);
+            }
         }
 
         private static void GetPushUrl()

@@ -11,20 +11,21 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{95592EB9-98BF-45E8-8033-3FC709BA1D6B}</ProjectGuid>
-    <RootNamespace>My20131005</RootNamespace>
+    <ProjectGuid>{AD5733BD-84F0-4462-9BBB-193059F1C617}</ProjectGuid>
+    <RootNamespace>CProject</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -64,24 +65,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="01.cpp" />
-    <ClCompile Include="02.cpp" />
-    <ClCompile Include="03.cpp" />
-    <ClCompile Include="04.cpp" />
-    <ClCompile Include="05.cpp" />
-    <ClCompile Include="06.cpp" />
-    <ClCompile Include="07.cpp" />
-    <ClCompile Include="08.cpp" />
-    <ClCompile Include="09.cpp" />
-    <ClCompile Include="10.cpp" />
-    <ClCompile Include="11.cpp" />
-    <ClCompile Include="a.cpp" />
-    <ClCompile Include="b.cpp" />
-    <ClCompile Include="c.cpp" />
-    <ClCompile Include="d.cpp" />
-    <ClCompile Include="e.cpp" />
-    <ClCompile Include="f.cpp" />
-    <ClCompile Include="g.cpp" />
+    <ClCompile Include="1.cpp" />
+    <ClCompile Include="2.cpp" />
+    <ClCompile Include="3.cpp" />
+    <ClCompile Include="4.cpp" />
+    <ClCompile Include="5.cpp" />
+    <ClCompile Include="6.cpp" />
+    <ClCompile Include="7.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

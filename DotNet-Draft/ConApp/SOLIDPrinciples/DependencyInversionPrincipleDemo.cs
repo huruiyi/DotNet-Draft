@@ -90,10 +90,10 @@ namespace ConApp.SOLIDPrinciples
     {
         public decimal Amount { get; set; }
 
-        public void Transfer(ITransferSource TransferSource, ITransferDestination TransferDestination)
+        public void Transfer(ITransferSource transferSource, ITransferDestination transferDestination)
         {
-            TransferSource.RemoveFunds(Amount);
-            TransferDestination.AddFunds(Amount);
+            transferSource.RemoveFunds(Amount);
+            transferDestination.AddFunds(Amount);
         }
     }
 

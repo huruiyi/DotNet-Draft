@@ -68,7 +68,9 @@
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="Microsoft.VisualBasic">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5.2\Microsoft.VisualBasic.dll</HintPath>
+    </Reference>
     <Reference Include="MySql.Data, Version=8.0.15.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MySql.Data.8.0.15\lib\net452\MySql.Data.dll</HintPath>
     </Reference>
@@ -131,6 +133,7 @@
   <ItemGroup>
     <Compile Include="DesignPattern\SingletonDemo.cs" />
     <Compile Include="DesignPattern\工厂设计模式.cs" />
+    <Compile Include="Infrastructure\TxtFileEncoder.cs" />
     <Compile Include="Infrastructure\RsaLicense.cs" />
     <Compile Include="Infrastructure\RsaLicenseCache.cs" />
     <Compile Include="Infrastructure\RsaLicenseDataAttribute.cs" />
@@ -166,7 +169,6 @@
     <Compile Include="Samples\PdfDemo.cs" />
     <Compile Include="Samples\Pkcs12ProtectedConfigurationProvider.cs" />
     <Compile Include="Samples\RealProxyDemo.cs" />
-    <Compile Include="Samples\RedisDemo.cs" />
     <Compile Include="Samples\SecurityHelper.cs" />
     <Compile Include="Samples\SortDemo.cs" />
     <Compile Include="Samples\TaskDemo.cs" />
