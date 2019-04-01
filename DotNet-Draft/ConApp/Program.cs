@@ -49,22 +49,6 @@ namespace ConApp
             }
         }
 
-        private static void GetPushUrl()
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(@"D:\new");
-            FileInfo[] files = directoryInfo.GetFiles();
-            foreach (FileInfo file in files)
-            {
-                Console.WriteLine(file.FullName);
-                string[] lines = File.ReadAllLines(file.FullName);
-                foreach (string line in lines)
-                {
-                    string pushUrl = GitDemo.GetPushUrl(line);
-                    Console.WriteLine(pushUrl);
-                }
-            }
-        }
-
         public static void RegexDemo03()
         {
             WebClient webClient = new WebClient();
