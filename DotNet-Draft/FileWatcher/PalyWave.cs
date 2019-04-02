@@ -28,7 +28,6 @@ namespace FileWatcher
             list.Remove(this);
         }
 
-        private bool isPlay = false;
         private SoundPlayer player = new SoundPlayer();//C#≤•∑≈¿‡
 
         //-------------------------------------------------------------------

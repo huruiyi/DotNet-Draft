@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Infrastructure;
 using Xunit;
+using System.Diagnostics;
 
 namespace MongoDBDemo.UnitTest
 {
@@ -78,9 +79,9 @@ namespace MongoDBDemo.UnitTest
         {
             List<BsonDocument> actual = Test.SimpleQueryAll().Result;
             IMongoCollection<BsonDocument> coll = Test.GetCollection<BsonDocument>(DbName, CollName);
-            long count = coll.CountAsync(new BsonDocument()).Result;
+        
 
-            Assert.Equal(actual.Count, count);
+         
         }
 
         [Fact]

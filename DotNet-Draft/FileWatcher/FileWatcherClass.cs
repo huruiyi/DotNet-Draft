@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -114,9 +113,6 @@ namespace FileWatcher
             del d = Open;
             Frm.Invoke(d, e.Name);
             ToPaly();
-            //用线程播放声音
-            //Tpaly = new Thread(new ThreadStart(ToPaly));
-            //Tpaly.Start();
         }
 
         private void watcher_Renamed(object sender, RenamedEventArgs e)
@@ -129,9 +125,6 @@ namespace FileWatcher
             del d = Open;
             Frm.Invoke(d, e.Name);
             ToPaly();
-            //用线程播放声音
-            //Tpaly = new Thread(new ThreadStart(ToPaly));
-            //Tpaly.Start();
         }
 
         private Thread Tpaly = null;
@@ -144,7 +137,7 @@ namespace FileWatcher
                 Frm.WindowState = FormWindowState.Normal;
                 Frm.TopLevel = true;
             }
-         //   ((TaskbarNotifier)(obj)).Hide();
+            //   ((TaskbarNotifier)(obj)).Hide();
         }
 
         private delegate void del(string content);
@@ -168,7 +161,7 @@ namespace FileWatcher
 
         private void taskbarNotifier_CloseClick(object sender, EventArgs e)
         {
-           // ((TaskbarNotifier)(sender)).Hide();
+            // ((TaskbarNotifier)(sender)).Hide();
         }
 
         private void ToPaly()

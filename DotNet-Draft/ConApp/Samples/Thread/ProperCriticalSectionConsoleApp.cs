@@ -9,7 +9,7 @@ namespace ProperCriticalSectionConsoleApp
 
         public static int Count { get; set; }
 
-        private static void Main()
+        private static void Run()
         {
 
             Parallel.For(0, 100, new ParallelOptions
