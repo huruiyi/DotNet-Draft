@@ -5,15 +5,14 @@
 然后设计一个查找函数，查找出最小的数。
 然后设计一个查找函数，查找出最大的数。
 实现输入一个数，检测是否存在
-姓名：伍奇
-版本：1.0
-时间：2013-10-5
+
 思路：
 用rand函数生成100以内的随机数然后加上100，然后存进去就OK了
 然后是GetMaxNum函数，得到最大值
 然后是GetMinNum函数，得到最大值
 然后用二分法查找
 */
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -22,7 +21,7 @@
 
 typedef int Status;
 
-const int ArraySize = 20;//定义数组大小常量
+const int ArraySize = 100;//定义数组大小常量
 
 void PrintArray(int a[], int n);
 void bubble_sort_ascend(int a[], int n);
@@ -31,17 +30,15 @@ int GetMaxNum(int a[], int n);
 int GetMinNum(int a[], int n);
 int BinarySearch(int a[], int n, int elem);
 
-int main()
+int main1()
 {
-	int iArray[] = { 1, 2, 7, 8, 9, 3, 4, 5, 6 };//初始化数组
-	bubble_sort_ascend(iArray, 9);
-	PrintArray(iArray, 9);
-	printf("逆置数为：");
-	for (int i = 9 - 1; i >= 0; i--)
+	int iArray[ArraySize] = { 0 };//初始化数组
+
+	for (int i = 0; i < ArraySize; i++)
 	{
-		printf("  %d ", iArray[i]);
+		iArray[i] = rand() % 100 + 100;
 	}
-	/*
+
 	PrintArray(iArray, ArraySize);
 	bubble_sort_ascend(iArray, ArraySize);
 	PrintArray(iArray, ArraySize);
@@ -50,9 +47,8 @@ int main()
 	printf("In this array, the max value is:%d\n", GetMaxNum(iArray, ArraySize));
 	printf("In this array, the min value is:%d\n", GetMinNum(iArray, ArraySize));
 	bubble_sort_ascend(iArray, ArraySize);
-	printf("The element %d in this array No.%d\n", 112, BinarySearch(iArray, ArraySize, 112)+1);
+	printf("The element %d in this array No.%d\n", 112, BinarySearch(iArray, ArraySize, 112) + 1);
 
-	*/
 	system("pause");
 
 	return 0;
@@ -75,13 +71,13 @@ void bubble_sort_ascend(int a[], int n)
 	for (i = n - 1, change = TRUE; i > 1 && change; --i)
 	{
 		change = FALSE;
-		for (j = 0; j<i; ++j)
-			if (a[j]>a[j + 1])
+		for (j = 0; j < i; ++j)
+			if (a[j] > a[j + 1])
 			{
-			t = a[j];
-			a[j] = a[j + 1];
-			a[j + 1] = t;
-			change = TRUE;
+				t = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = t;
+				change = TRUE;
 			}
 	}
 }
@@ -94,13 +90,15 @@ void bubble_sort_descend(int a[], int n)
 	{
 		change = FALSE;
 		for (j = 0; j < i; ++j)
+		{
 			if (a[j] < a[j + 1])
 			{
-			t = a[j];
-			a[j] = a[j + 1];
-			a[j + 1] = t;
-			change = TRUE;
+				t = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = t;
+				change = TRUE;
 			}
+		}
 	}
 }
 

@@ -9,9 +9,9 @@ namespace SampleParallelConsoleApp
     /// It's using a SyncRoot pattern inside the Action because the shared resource, NumberList,
     /// is not thread-safe.  Also demonstrates basic exception handling.
     /// </summary>
-    internal class Program
+    internal class SampleParallelConsoleApp
     {
-        private static void Main()
+        private static void Run()
         {
             NumberList = new List<int>();
 

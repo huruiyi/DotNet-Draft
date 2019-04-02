@@ -1,18 +1,23 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace ProperCriticalSectionConsoleApp
+namespace IneffectiveLockingConsoleApp
 {
-    internal class Program
+    /// <summary>
+    /// This program shows how locking more than what's needed reduces multithreading efficiency.
+    /// This output will always be in sequential order because it's effectively single threaded.
+    /// </summary>
+    internal class IneffectiveLockingConsoleApp
     {
         private static object _syncRoot = new object();
 
         public static int Count { get; set; }
 
-        private static void Main()
+        private static void Run()
         {
+            int iterations = 100;
 
-            Parallel.For(0, 100, new ParallelOptions
+            Parallel.For(0, iterations, new ParallelOptions
             {
                 MaxDegreeOfParallelism = Environment.ProcessorCount
             }, i =>
@@ -24,24 +29,16 @@ namespace ProperCriticalSectionConsoleApp
             Console.ReadKey();
         }
 
-
-
         public static void ThreadingMethod()
         {
-            int localCount = 0;
-
+            // NOTE:  No work is being done outside the lock.
             lock (_syncRoot)
             {
                 // Critical section（临界区）
-                localCount = ++Count;
+                ++Count;
                 Console.WriteLine("Count is now " + Count);
+                Console.WriteLine("Completing ThreadingMethod " + Count + " execution.");
             }
-
-            // Use a slight delay to help show threading behavior
-            System.Threading.Thread.Sleep(10);
-
-            // Do more work here
-            Console.WriteLine("Completing ThreadingMethod " + localCount + " execution.");
         }
     }
 }

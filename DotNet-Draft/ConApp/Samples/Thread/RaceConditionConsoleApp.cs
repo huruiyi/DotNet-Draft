@@ -7,12 +7,13 @@ namespace RaceConditionConsoleApp
     /// This test app has a race condition between exiting the lock and printing the Count again.
     /// You'll see duplicated and missing iteration values in the output.
     /// </summary>
-    internal class Program
+    internal class RaceConditionConsoleApp
     {
         private static object _syncRoot = new object();
 
         public static int Count { get; set; }
-        private static void Main(string[] args)
+
+        private static void Run(string[] args)
         {
             Parallel.For(0, 100, new ParallelOptions
             {
@@ -25,8 +26,6 @@ namespace RaceConditionConsoleApp
             Console.WriteLine("Press any key to continue...");
             Console.ReadKey();
         }
-
-     
 
         public static void ThreadingMethod()
         {

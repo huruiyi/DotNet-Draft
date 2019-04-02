@@ -48,25 +48,13 @@
     <ClCompile Include="11.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="a.cpp">
+    <ClCompile Include="A.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="b.cpp">
+    <ClCompile Include="B.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="c.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="d.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="e.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="f.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="g.cpp">
+    <ClCompile Include="C.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

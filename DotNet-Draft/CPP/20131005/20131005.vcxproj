@@ -76,13 +76,9 @@
     <ClCompile Include="09.cpp" />
     <ClCompile Include="10.cpp" />
     <ClCompile Include="11.cpp" />
-    <ClCompile Include="a.cpp" />
-    <ClCompile Include="b.cpp" />
-    <ClCompile Include="c.cpp" />
-    <ClCompile Include="d.cpp" />
-    <ClCompile Include="e.cpp" />
-    <ClCompile Include="f.cpp" />
-    <ClCompile Include="g.cpp" />
+    <ClCompile Include="A.cpp" />
+    <ClCompile Include="B.cpp" />
+    <ClCompile Include="C.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
