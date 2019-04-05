@@ -16,7 +16,7 @@
         /// </summary>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> signifying if the request is cancelled.</param>
         /// <returns>A <see cref="SyndicationFeed"/>.</returns>
-        Task<SyndicationFeed> GetFeed(CancellationToken cancellationToken);
+        SyndicationFeed GetFeed(CancellationToken cancellationToken);
 
         /// <summary>
         /// Publishes the fact that the feed has updated to subscribers using the PubSubHubbub v0.4 protocol.

@@ -71,12 +71,12 @@
         /// <returns>The Atom 1.0 feed for the current site.</returns>
         [OutputCache(CacheProfile = CacheProfileName.Feed)]
         [Route("feed", Name = HomeControllerRoute.GetFeed)]
-        public async Task<ActionResult> Feed()
+        public ActionResult Feed()
         {
             // A CancellationToken signifying if the request is cancelled. See
             // http://www.davepaquette.com/archive/2015/07/19/cancelling-long-running-queries-in-asp-net-mvc-and-web-api.aspx
             CancellationToken cancellationToken = this.Response.ClientDisconnectedToken;
-            return new AtomActionResult(await this.feedService.GetFeed(cancellationToken));
+            return new AtomActionResult(  feedService.GetFeed(cancellationToken));
         }
 
         [Route("search", Name = HomeControllerRoute.GetSearch)]

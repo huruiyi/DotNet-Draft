@@ -49,7 +49,7 @@
         /// </summary>
         /// <param name="cancellationToken">A <see cref="CancellationToken"/> signifying if the request is cancelled.</param>
         /// <returns>A <see cref="SyndicationFeed"/>.</returns>
-        public async Task<SyndicationFeed> GetFeed(CancellationToken cancellationToken)
+        public SyndicationFeed GetFeed(CancellationToken cancellationToken)
         {
             SyndicationFeed feed = new SyndicationFeed()
             {
@@ -149,9 +149,7 @@
                     new KeyValuePair<string, string>[]
                     {
                         new KeyValuePair<string, string>("hub.mode", "publish"),
-                        new KeyValuePair<string, string>(
-                            "hub.url",
-                            this.urlHelper.AbsoluteRouteUrl(HomeControllerRoute.GetFeed))
+                        new KeyValuePair<string, string>("hub.url", this.urlHelper.AbsoluteRouteUrl(HomeControllerRoute.GetFeed))
                     }));
         }
 

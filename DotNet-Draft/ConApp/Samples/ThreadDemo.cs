@@ -123,6 +123,7 @@ namespace ConApp
             {
                 Console.WriteLine("Animal id is " + i);
             }
+ 
             Console.WriteLine("There is a thread calling that called :" + AppDomain.GetCurrentThreadId());
         }
     }
