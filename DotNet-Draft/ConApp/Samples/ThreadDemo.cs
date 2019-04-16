@@ -123,8 +123,9 @@ namespace ConApp
             {
                 Console.WriteLine("Animal id is " + i);
             }
- 
-            Console.WriteLine("There is a thread calling that called :" + AppDomain.GetCurrentThreadId());
+
+            //Console.WriteLine("There is a thread calling that called :" + AppDomain.GetCurrentThreadId());            
+            Console.WriteLine("There is a thread calling that called :" + Thread.CurrentThread.ManagedThreadId);
         }
     }
 
@@ -186,7 +187,7 @@ namespace ConApp
 
         private static void Thread_Demo0()
         {
-            Console.WriteLine("From the thread ID is:" + AppDomain.GetCurrentThreadId());
+            //Console.WriteLine("From the thread ID is:" + AppDomain.GetCurrentThreadId());
             Console.WriteLine("This code caculate the value " + 123 + "from thread ID:" + Thread.CurrentThread.ManagedThreadId);
         }
 

@@ -2,6 +2,7 @@
 using ConApp.Model;
 using Microsoft.VisualBasic;
 using System;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,14 +23,25 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
+            String[] files = Directory.GetFiles(@"E:\ISO\Code\Java开发实例提高卷\xxx");
+            foreach (String file in files)
+            {
+            }
+            File.Delete("");
+
             //https://www.cnblogs.com/dmhp/p/5291129.html
             //https://www.cnblogs.com/dmhp/p/5291106.html
 
+            int[] a = { 90, 91, 92, 93, 94, 95, 96, 97, 98, 99 };
+            Memory<int> memory = new Memory<int>(a);
+            Console.WriteLine(memory.Length);
+
+            memory = memory.Slice(6);
+
+            Console.WriteLine(memory.Length);
+
             var simplified = ChineseStringUtility.ToSimplified("雅致的咖啡館裏");
             Console.WriteLine(simplified);
-
-            // GitDemo.TaskClone(@"D:\Oauth.txt", @"D:\Git\git_oAuth\", 10);
-            // GitDemo.TaskFetch(@"D:\Spring\", 10);
 
             Console.ReadKey();
         }
@@ -420,16 +432,6 @@ namespace ConApp
             }
         }
 
-        public static void VectorDemo()
-        {
-            CSVector v1 = new CSVector(1, 32, 5);
-            CSVector v2 = new CSVector(845.4, 54.3, -7.8);
-            Console.WriteLine("\nIn IJK format,\nv1 is {0,30:IJK}\nv2 is {1,30:IJK}", v1, v2);
-            Console.WriteLine("\nIn default format,\nv1 is {0,30}\nv2 is {1,30}", v1, v2);
-            Console.WriteLine("\nIn VE format\nv1 is {0,30:VE}\nv2 is {1,30:VE}", v1, v2);
-            Console.WriteLine("\nNorms are:\nv1 is {0,20:N}\nv2 is {1,20:N}", v1, v2);
-        }
-
         public static void CdromManagement()
         {
             WqlEventQuery q;
@@ -457,9 +459,7 @@ namespace ConApp
                 ManagementBaseObject mbo = propertyData.Value as ManagementBaseObject;
 
                 // if CD removed VolumeName == null
-                Console.WriteLine(mbo?.Properties["VolumeName"].Value != null
-                    ? "CD has been inserted"
-                    : "CD has been ejected");
+                Console.WriteLine(mbo?.Properties["VolumeName"].Value != null ? "CD has been inserted" : "CD has been ejected");
             };
             watcher.Start();
             // Do something usefull,block thread for testing

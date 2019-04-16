@@ -88,6 +88,7 @@
       <HintPath>..\..\packages\StackExchange.Redis.2.0.593\lib\net472\StackExchange.Redis.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Buffers.4.5.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
     </Reference>
@@ -134,6 +135,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Workflow.Runtime" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -160,7 +162,6 @@
     <Compile Include="Samples\BasicDemo.cs" />
     <Compile Include="Samples\ChineseDemo.cs" />
     <Compile Include="Samples\ContextBoundClass.cs" />
-    <Compile Include="Samples\CSVector.cs" />
     <Compile Include="EnumModel\DeviceEnum.cs" />
     <Compile Include="Model\VolatileDef.cs" />
     <Compile Include="Model\Worker.cs" />

@@ -62,9 +62,7 @@ namespace WebApp.Mvc.Controllers
             }
             finally
             {
-                analyzer.Close();
-                writer?.Close();
-                indexDirectory?.Close();
+                Dispose();
             }
             return RedirectToAction("Index");
         }
@@ -147,7 +145,10 @@ namespace WebApp.Mvc.Controllers
             }
             finally
             {
-                searcher?.Close();
+                if (searcher != null)
+                {
+                    Dispose();
+                }
             }
 
             return View(list);
