@@ -1,6 +1,5 @@
-﻿using Microsoft.Practices.Unity;
-using System;
-using System.Configuration;
+﻿using System;
+using Unity;
 
 namespace ConApp
 {

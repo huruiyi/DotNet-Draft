@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Token.Models
+﻿namespace Token.Models
 {
     public class Product
     {
