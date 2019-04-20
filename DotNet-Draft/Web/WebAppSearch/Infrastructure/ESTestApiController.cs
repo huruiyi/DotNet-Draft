@@ -1,11 +1,10 @@
-﻿using PlainElastic.Net.Serialization;
+﻿using PlainElastic.Net;
+using PlainElastic.Net.Mappings;
+using PlainElastic.Net.Queries;
+using PlainElastic.Net.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
-using PlainElastic.Net;
-using PlainElastic.Net.Mappings;
-using PlainElastic.Net.Queries;
 using WebAppSearch.Models;
 
 namespace WebAppSearch.Infrastructure

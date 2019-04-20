@@ -2,7 +2,7 @@
 
 namespace WebApp.Models
 {
-    public class SalesERPDAL : DbContext
+    public class SalesErpdal : DbContext
     {
         public DbSet<Employee> Employees { get; set; }
 

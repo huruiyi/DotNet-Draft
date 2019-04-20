@@ -7,13 +7,13 @@ namespace WebApp.Models
     {
         public List<Employee> GetEmployees()
         {
-            SalesERPDAL salesDal = new SalesERPDAL();
+            SalesErpdal salesDal = new SalesErpdal();
             return salesDal.Employees.ToList();
         }
 
         public Employee SaveEmployee(Employee e)
         {
-            SalesERPDAL salesDal = new SalesERPDAL();
+            SalesErpdal salesDal = new SalesErpdal();
             salesDal.Employees.Add(e);
             salesDal.SaveChanges();
             return e;

@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http;
 using WebAppSearch.Infrastructure;
 using WebAppSearch.Models;
@@ -10,7 +7,7 @@ using WebAppSearch.Models;
 namespace WebAppSearch.Controllers
 {
     [RoutePrefix("api")]
-    public class ESTestApiController : BaseApiController
+    public class EsTestApiController : BaseApiController
     {
         [Route("estest")]
         [HttpGet]

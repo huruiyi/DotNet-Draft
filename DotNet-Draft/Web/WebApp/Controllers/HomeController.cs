@@ -10,7 +10,7 @@ namespace WebApp.Controllers
         public ActionResult Index()
         {
             XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.Load("demo.xml");
+            xmlDocument.Load(@"D:\Work\Github\res\demo.xml");
             XmlNodeList xmlNodeList = xmlDocument.SelectNodes("/info/collage");
             List<Info> infos = new List<Info>();
             foreach (XmlNode xmlNode in xmlNodeList)
