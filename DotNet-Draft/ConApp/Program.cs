@@ -23,12 +23,7 @@ namespace ConApp
     {
         public static void Main(string[] args)
         {
-            String[] files = Directory.GetFiles(@"E:\ISO\Code\Java开发实例提高卷\xxx");
-            foreach (String file in files)
-            {
-            }
-            File.Delete("");
-
+             
             //https://www.cnblogs.com/dmhp/p/5291129.html
             //https://www.cnblogs.com/dmhp/p/5291106.html
 
