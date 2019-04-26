@@ -15,7 +15,7 @@ namespace Dapper
     {
         #region Query
 
-        public static IEnumerable<dynamic> QuerySP(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<dynamic> QuerySp(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -26,7 +26,7 @@ namespace Dapper
             }
         }
 
-        public static IEnumerable<dynamic> QuerySQL(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<dynamic> QuerySql(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -37,7 +37,7 @@ namespace Dapper
             }
         }
 
-        public static IEnumerable<T> QuerySP<T>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<T> QuerySp<T>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -48,7 +48,7 @@ namespace Dapper
             }
         }
 
-        public static IEnumerable<T> QuerySQL<T>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<T> QuerySql<T>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -59,7 +59,7 @@ namespace Dapper
             }
         }
 
-        public static IEnumerable<object> QuerySP(Type type, string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<object> QuerySp(Type type, string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -70,7 +70,7 @@ namespace Dapper
             }
         }
 
-        public static IEnumerable<object> QuerySQL(Type type, string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<object> QuerySql(Type type, string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, bool buffered = true, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -87,12 +87,12 @@ namespace Dapper
 
         #region IEnumerable<IEnumerable<dynamic>>
 
-        public static IEnumerable<IEnumerable<dynamic>> QueryMultipleSP(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<IEnumerable<dynamic>> QueryMultipleSp(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             return QueryMultiple(storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
         }
 
-        public static IEnumerable<IEnumerable<dynamic>> QueryMultipleSQL(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<IEnumerable<dynamic>> QueryMultipleSql(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             return QueryMultiple(sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
         }
@@ -116,12 +116,12 @@ namespace Dapper
 
         #region IEnumerable<IEnumerable<T>>
 
-        public static IEnumerable<IEnumerable<T>> QueryMultipleSP<T>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<IEnumerable<T>> QueryMultipleSp<T>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             return QueryMultiple<T>(storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
         }
 
-        public static IEnumerable<IEnumerable<T>> QueryMultipleSQL<T>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static IEnumerable<IEnumerable<T>> QueryMultipleSql<T>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             return QueryMultiple<T>(sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
         }
@@ -145,7 +145,7 @@ namespace Dapper
 
         #region Tuples
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>> QueryMultipleSP<T1, T2>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>> QueryMultipleSp<T1, T2>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, object, object, object, object, object, object, object, object, object, object, object, object>(2, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>>(
@@ -154,7 +154,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>> QueryMultipleSQL<T1, T2>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>> QueryMultipleSql<T1, T2>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, object, object, object, object, object, object, object, object, object, object, object, object>(2, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>>(
@@ -173,7 +173,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>> QueryMultipleSQL<T1, T2, T3>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>> QueryMultipleSql<T1, T2, T3>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, object, object, object, object, object, object, object, object, object, object, object>(3, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>(
@@ -183,7 +183,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> QueryMultipleSP<T1, T2, T3, T4>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> QueryMultipleSp<T1, T2, T3, T4>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, object, object, object, object, object, object, object, object, object, object>(4, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>>(
@@ -194,7 +194,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> QueryMultipleSQL<T1, T2, T3, T4>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> QueryMultipleSql<T1, T2, T3, T4>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, object, object, object, object, object, object, object, object, object, object>(4, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>>(
@@ -205,7 +205,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>> QueryMultipleSP<T1, T2, T3, T4, T5>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>> QueryMultipleSp<T1, T2, T3, T4, T5>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, object, object, object, object, object, object, object, object, object>(5, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>>(
@@ -217,7 +217,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>> QueryMultipleSQL<T1, T2, T3, T4, T5>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>> QueryMultipleSql<T1, T2, T3, T4, T5>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, object, object, object, object, object, object, object, object, object>(5, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>>(
@@ -229,7 +229,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>> QueryMultipleSP<T1, T2, T3, T4, T5, T6>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>> QueryMultipleSp<T1, T2, T3, T4, T5, T6>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, object, object, object, object, object, object, object, object>(6, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>>(
@@ -242,7 +242,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>> QueryMultipleSql<T1, T2, T3, T4, T5, T6>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, object, object, object, object, object, object, object, object>(6, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>>(
@@ -255,7 +255,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, object, object, object, object, object, object, object>(7, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>>(
@@ -269,7 +269,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, object, object, object, object, object, object, object>(7, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>>(
@@ -283,7 +283,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, object, object, object, object, object, object>(8, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>>>(
@@ -300,7 +300,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7, T8>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7, T8>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, object, object, object, object, object, object>(8, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>>>(
@@ -317,7 +317,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, object, object, object, object, object>(9, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>>>(
@@ -335,7 +335,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7, T8, T9>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, object, object, object, object, object>(9, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>>>(
@@ -353,7 +353,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, object, object, object, object>(10, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>>>(
@@ -391,7 +391,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, object, object, object>(11, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>>>(
@@ -411,7 +411,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, object, object, object>(11, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>>>(
@@ -431,7 +431,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, object, object>(12, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>>>(
@@ -452,7 +452,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, object, object>(12, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>>>(
@@ -473,7 +473,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, object>(13, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>>>(
@@ -495,7 +495,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, object>(13, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>>>(
@@ -517,7 +517,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>, IEnumerable<T14>>> QueryMultipleSP<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>, IEnumerable<T14>>> QueryMultipleSp<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(14, storedProcedure, param, outParam, transaction, commandTimeout, CommandType.StoredProcedure, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>, IEnumerable<T14>>>(
@@ -540,7 +540,7 @@ namespace Dapper
             );
         }
 
-        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>, IEnumerable<T14>>> QueryMultipleSQL<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>, IEnumerable<T14>>> QueryMultipleSql<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             IEnumerable[] lists = QueryMultiple<T1, T2, T3, T4, T5, T6, T7, T8, T9, T10, T11, T12, T13, T14>(14, sql, param, outParam, transaction, commandTimeout, CommandType.Text, connectionString);
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>, Tuple<IEnumerable<T8>, IEnumerable<T9>, IEnumerable<T10>, IEnumerable<T11>, IEnumerable<T12>, IEnumerable<T13>, IEnumerable<T14>>>(
@@ -641,7 +641,7 @@ namespace Dapper
 
         #region ExecuteScalar
 
-        public static object ExecuteScalarSP(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static object ExecuteScalarSp(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -652,7 +652,7 @@ namespace Dapper
             }
         }
 
-        public static object ExecuteScalarSQL(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static object ExecuteScalarSql(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -663,7 +663,7 @@ namespace Dapper
             }
         }
 
-        public static T ExecuteScalarSP<T>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static T ExecuteScalarSp<T>(string storedProcedure, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -674,7 +674,7 @@ namespace Dapper
             }
         }
 
-        public static T ExecuteScalarSQL<T>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
+        public static T ExecuteScalarSql<T>(string sql, dynamic param = null, dynamic outParam = null, SqlTransaction transaction = null, int? commandTimeout = null, string connectionString = null)
         {
             CombineParameters(ref param, outParam);
 
@@ -1339,7 +1339,7 @@ namespace Dapper
     partial class DynamicParameters
     {
         // http://msdn.microsoft.com/en-us/library/cc716729(v=vs.100).aspx
-        static readonly Dictionary<SqlDbType, DbType?> sqlDbTypeMap = new Dictionary<SqlDbType, DbType?>
+        static readonly Dictionary<SqlDbType, DbType?> SqlDbTypeMap = new Dictionary<SqlDbType, DbType?>
         {
             {SqlDbType.BigInt, DbType.Int64},
             {SqlDbType.Binary, DbType.Binary},
@@ -1388,7 +1388,7 @@ namespace Dapper
 
         public void Add(string name, object value = null, SqlDbType? sqlDbType = null, ParameterDirection? direction = null, int? size = null, byte? precision = null, byte? scale = null)
         {
-            Add(name, value, (sqlDbType != null ? sqlDbTypeMap[sqlDbType.Value] : (DbType?)null), direction, size, precision, scale);
+            Add(name, value, (sqlDbType != null ? SqlDbTypeMap[sqlDbType.Value] : (DbType?)null), direction, size, precision, scale);
         }
 
         public Dictionary<string, object> Get()

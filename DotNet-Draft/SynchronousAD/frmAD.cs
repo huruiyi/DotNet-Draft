@@ -1,20 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.DirectoryServices;
-using System.Security.Principal;
 
 namespace SynchronousAD
 {
-    public partial class frmAD : Form
+    public partial class FrmAd : Form
     {
 
-        private List<AdModel> list = new List<AdModel>();
+        private readonly List<AdModel> _list = new List<AdModel>();
 
-        public frmAD()
+        public FrmAd()
         {
             InitializeComponent();
         }
@@ -36,21 +33,19 @@ namespace SynchronousAD
 
                 if (IsConnected(txtDomainName.Text.Trim(), txtUserName.Text.Trim(), txtPwd.Text.Trim(), out domain))
                 {
-                    if (IsExistOU(domain, out rootOU))
+                    if (IsExistOu(domain, out rootOU))
                     {
                         SyncAll(rootOU);      //同步所有                                         
                     }
                     else
                     {
                         MessageBox.Show("域中不存在此组织结构!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
                     }
 
                 }
                 else
                 {
                     MessageBox.Show("不能连接到域,请确认输入是否正确!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
                 }
             }
         }
@@ -62,8 +57,8 @@ namespace SynchronousAD
         /// 创建人:Wilson
         /// 创建时间:2012-12-15
         /// </summary>
-        /// <param name="entryOU"></param>
-        public void SyncAll(DirectoryEntry entryOU)
+        /// <param name="entryOu"></param>
+        public void SyncAll(DirectoryEntry entryOu)
         {
             /*
              * 参考：http://msdn.microsoft.com/zh-cn/library/system.directoryservices.directorysearcher.filter(v=vs.80).aspx
@@ -76,17 +71,17 @@ namespace SynchronousAD
              * 打印机         (objectCategory=printQueue)
              * ---------------------------------------------------
              */
-            DirectorySearcher mySearcher = new DirectorySearcher(entryOU, "(objectclass=organizationalUnit)"); //查询组织单位                 
+            DirectorySearcher mySearcher = new DirectorySearcher(entryOu, "(objectclass=organizationalUnit)"); //查询组织单位                 
 
             DirectoryEntry root = mySearcher.SearchRoot;   //查找根OU
 
-            SyncRootOU(root);
+            SyncRootOu(root);
 
             StringBuilder sb = new StringBuilder();
 
             sb.Append("\r\nID\t帐号\t类型\t父ID\r\n");
 
-            foreach (var item in list)
+            foreach (var item in _list)
             {
                 sb.AppendFormat("{0}\t{1}\t{2}\t{3}\r\n", item.Id, item.Name, item.TypeId, item.ParentId);
             }
@@ -106,19 +101,19 @@ namespace SynchronousAD
         /// 创建时间:2012-12-15
         /// </summary>
         /// <param name="entry"></param>
-        private void SyncRootOU(DirectoryEntry entry)
+        private void SyncRootOu(DirectoryEntry entry)
         {
             if (entry.Properties.Contains("ou") && entry.Properties.Contains("objectGUID"))
             {
                 string rootOuName = entry.Properties["ou"][0].ToString();
 
-                byte[] bGUID = entry.Properties["objectGUID"][0] as byte[];
+                byte[] bGuid = entry.Properties["objectGUID"][0] as byte[];
 
-                string id = BitConverter.ToString(bGUID);
+                string id = BitConverter.ToString(bGuid);
 
-                list.Add(new AdModel(id, rootOuName, (int)TypeEnum.OU, "0"));
+                _list.Add(new AdModel(id, rootOuName, (int)TypeEnum.Ou, "0"));
 
-                SyncSubOU(entry, id);
+                SyncSubOu(entry, id);
             }
         }
         #endregion
@@ -131,25 +126,24 @@ namespace SynchronousAD
         /// </summary>
         /// <param name="entry"></param>
         /// <param name="parentId"></param>
-        private void SyncSubOU(DirectoryEntry entry, string parentId)
+        private void SyncSubOu(DirectoryEntry entry, string parentId)
         {
             foreach (DirectoryEntry subEntry in entry.Children)
             {
                 string entrySchemaClsName = subEntry.SchemaClassName;
 
                 string[] arr = subEntry.Name.Split('=');
-                string categoryStr = arr[0];
                 string nameStr = arr[1];
                 string id = string.Empty;
 
                 if (subEntry.Properties.Contains("objectGUID"))   //SID
                 {
-                    byte[] bGUID = subEntry.Properties["objectGUID"][0] as byte[];
+                    byte[] bGuid = subEntry.Properties["objectGUID"][0] as byte[];
 
-                    id = BitConverter.ToString(bGUID);
+                    id = BitConverter.ToString(bGuid);
                 }
 
-                bool isExist = list.Exists(d => d.Id == id);
+                bool isExist = _list.Exists(d => d.Id == id);
 
                 switch (entrySchemaClsName)
                 {
@@ -157,10 +151,10 @@ namespace SynchronousAD
 
                         if (!isExist)
                         {
-                            list.Add(new AdModel(id, nameStr, (int)TypeEnum.OU, parentId));
+                            _list.Add(new AdModel(id, nameStr, (int)TypeEnum.Ou, parentId));
                         }
 
-                        SyncSubOU(subEntry, id);
+                        SyncSubOu(subEntry, id);
                         break;
                     case "user":
                         string accountName = string.Empty;
@@ -172,7 +166,7 @@ namespace SynchronousAD
 
                         if (!isExist)
                         {
-                            list.Add(new AdModel(id, accountName, (int)TypeEnum.USER, parentId));
+                            _list.Add(new AdModel(id, accountName, (int)TypeEnum.User, parentId));
                         }
                         break;
                 }
@@ -187,6 +181,7 @@ namespace SynchronousAD
         //}
 
         #region## 是否连接到域
+
         /// <summary>
         /// 功能：是否连接到域
         /// 作者：Wilson
@@ -196,7 +191,6 @@ namespace SynchronousAD
         /// <param name="domainName">域名或IP</param>
         /// <param name="userName">用户名</param>
         /// <param name="userPwd">密码</param>
-        /// <param name="entry">域</param>
         /// <returns></returns>
         private bool IsConnected(string domainName, string userName, string userPwd, out DirectoryEntry domain)
         {
@@ -228,14 +222,14 @@ namespace SynchronousAD
         /// <param name="entry"></param>
         /// <param name="ou"></param>
         /// <returns></returns>
-        private bool IsExistOU(DirectoryEntry entry, out DirectoryEntry ou)
+        private bool IsExistOu(DirectoryEntry entry, out DirectoryEntry ou)
         {
             ou = new DirectoryEntry();
             try
             {
                 ou = entry.Children.Find("OU=" + txtRootOU.Text.Trim());
 
-                return (ou != null);
+                return (true);
             }
             catch (Exception ex)
             {
@@ -307,12 +301,12 @@ namespace SynchronousAD
         /// <summary>
         /// 组织单位
         /// </summary>
-        OU = 1,
+        Ou = 1,
 
         /// <summary>
         /// 用户
         /// </summary>
-        USER = 2
+        User = 2
     }
 
     #region## Ad域实体

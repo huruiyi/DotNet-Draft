@@ -7,16 +7,17 @@ public class Example : MarshalByRefObject
     private static void Main()
     {
         // Prepare to create a new application domain.
-        AppDomainSetup setup = new AppDomainSetup();
-
         // Set the application name before setting the dynamic base.
-        setup.ApplicationName = "Example";
+        AppDomainSetup setup = new AppDomainSetup
+        {
+            ApplicationName = "Example",
+            DynamicBase = "C:\\DynamicAssemblyDir"
+        };
 
         // Set the location of the base directory where assembly resolution
         // probes for dynamic assemblies. Note that the hash code of the
         // application name is concatenated to the base directory name you
         // supply.
-        setup.DynamicBase = "C:\\DynamicAssemblyDir";
         Console.WriteLine("DynamicBase is set to '{0}'.", setup.DynamicBase);
 
         AppDomain ad = AppDomain.CreateDomain("MyDomain", null, setup);
@@ -58,11 +59,11 @@ public class Example : MarshalByRefObject
         // specifies the location where the assembly will be saved. The
         // assembly version is 1.0.0.0.
         //
-        AssemblyName asmName = new AssemblyName("DynamicHelloWorld") {Version = new Version("1.0.0.0")};
+        AssemblyName asmName = new AssemblyName("DynamicHelloWorld") { Version = new Version("1.0.0.0") };
 
         AssemblyBuilder ab = AppDomain.CurrentDomain.DefineDynamicAssembly(asmName, AssemblyBuilderAccess.Save, location);
 
-        String moduleName = asmName.Name + ".exe";
+        String moduleName = asmName.Name + ".dll";
         ModuleBuilder mb = ab.DefineDynamicModule(asmName.Name, moduleName);
 
         // Define the "HelloWorld" type, with one static method.

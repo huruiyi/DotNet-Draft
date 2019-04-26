@@ -18,7 +18,7 @@ namespace SqlServerDapper
                 Console.WriteLine("------------------------");
                 while (ex != null)
                 {
-                    Console.WriteLine(string.Format("{0}\n{1}\n------------------------", ex.GetType().ToString(), ex.Message));
+                    Console.WriteLine($"{ex.GetType()}\n{ex.Message}\n------------------------");
                     ex = ex.InnerException;
                 }
             }

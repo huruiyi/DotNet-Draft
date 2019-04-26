@@ -27,12 +27,12 @@ namespace SqlServerDapper
 
         private void QuerySQL1()
         {
-            var products = SqlHelper.QuerySQL<Product>("select * from Production.Product where ProductID = @ProductID", new { ProductID = 1 });
+            var products = SqlHelper.QuerySql<Product>("select * from Production.Product where ProductID = @ProductID", new { ProductID = 1 });
 
             Console.WriteLine("Query 1");
             Console.WriteLine();
             foreach (var product in products)
-                Console.WriteLine(product.ProductID + " " + product.Name);
+                Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
@@ -42,12 +42,12 @@ namespace SqlServerDapper
 
         private void QuerySQL2()
         {
-            var products = SqlHelper.QuerySQL<Product>("select top 4 * from Production.Product order by ProductID");
+            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID");
 
             Console.WriteLine("Query 2");
             Console.WriteLine();
             foreach (var product in products)
-                Console.WriteLine(product.ProductID + " " + product.Name);
+                Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
@@ -57,7 +57,7 @@ namespace SqlServerDapper
 
         private void QueryMultipleSQL1()
         {
-            var results = SqlHelper.QueryMultipleSQL<Product, Person>(@"
+            var results = SqlHelper.QueryMultipleSql<Product, Person>(@"
                 select top 4 * from Production.Product order by ProductID;
                 select top 4 * from Person.Person order by BusinessEntityID;
             ");
@@ -68,10 +68,10 @@ namespace SqlServerDapper
             Console.WriteLine("Query Multiple 1 (Different Types of Result Sets)");
             Console.WriteLine();
             foreach (var product in products)
-                Console.WriteLine(product.ProductID + " " + product.Name);
+                Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             foreach (var person in people)
-                Console.WriteLine(person.BusinessEntityID + " " + person.FirstName + " " + person.LastName);
+                Console.WriteLine(person.BusinessEntityId + " " + person.FirstName + " " + person.LastName);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
@@ -83,7 +83,7 @@ namespace SqlServerDapper
 
         private void QueryMultipleSQL2()
         {
-            var results = SqlHelper.QueryMultipleSQL<Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product>(@"
+            var results = SqlHelper.QueryMultipleSql<Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product, Product>(@"
                 select top 1 * from Production.Product order by ProductID;
                 select top 1 * from Production.Product order by ProductID;
                 select top 1 * from Production.Product order by ProductID;
@@ -125,7 +125,7 @@ namespace SqlServerDapper
             {
 
                 var product = products.First();
-                Console.WriteLine("Result Set " + (++index) + ": " + product.ProductID + " " + product.Name);
+                Console.WriteLine("Result Set " + (++index) + ": " + product.ProductId + " " + product.Name);
                 Console.WriteLine();
             }
             Console.WriteLine();
@@ -140,7 +140,7 @@ namespace SqlServerDapper
 
         private void ToDataTable()
         {
-            var products = SqlHelper.QuerySQL<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable<Product>();
+            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable<Product>();
 
             Console.WriteLine("To DataTable");
             Console.WriteLine();
@@ -155,12 +155,12 @@ namespace SqlServerDapper
 
         private void ToEnumerable()
         {
-            var products = SqlHelper.QuerySQL<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable<Product>().Cast<Product>();
+            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable<Product>().Cast<Product>();
 
             Console.WriteLine("To Enumerable");
             Console.WriteLine();
             foreach (var product in products)
-                Console.WriteLine(product.ProductID + " " + product.Name);
+                Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
@@ -170,7 +170,7 @@ namespace SqlServerDapper
 
         private void ToDataSet()
         {
-            var results = SqlHelper.QueryMultipleSQL<Product, Person>(@"
+            var results = SqlHelper.QueryMultipleSql<Product, Person>(@"
                 select top 4 * from Production.Product order by ProductID;
                 select top 4 * from Person.Person order by BusinessEntityID;
             ").ToDataSet<Product, Person>();
@@ -196,8 +196,8 @@ namespace SqlServerDapper
 
         private void ExecuteScalarSQL()
         {
-            int minProductID = SqlHelper.ExecuteScalarSQL<int>("select min(ProductID) from Production.Product");
-            int maxProductID = SqlHelper.ExecuteScalarSQL<int>("select max(ProductID) from Production.Product");
+            int minProductID = SqlHelper.ExecuteScalarSql<int>("select min(ProductID) from Production.Product");
+            int maxProductID = SqlHelper.ExecuteScalarSql<int>("select max(ProductID) from Production.Product");
 
             Console.WriteLine("Execute Scalar");
             Console.WriteLine();

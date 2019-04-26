@@ -1,6 +1,6 @@
 ﻿namespace SynchronousAD
 {
-    partial class frmAD
+    partial class FrmAd
     {
         /// <summary>
         /// Required designer variable.
@@ -128,7 +128,7 @@
             this.Controls.Add(this.lblPwd);
             this.Controls.Add(this.lblUserName);
             this.Controls.Add(this.lblDomainName);
-            this.Name = "frmAD";
+            this.Name = "FrmAd";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AD域同步";
             this.Load += new System.EventHandler(this.frmAD_Load);
