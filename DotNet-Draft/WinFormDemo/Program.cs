@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using WFA_04;
 
 namespace WinFormDemo
 {
@@ -13,7 +14,7 @@ namespace WinFormDemo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new 窗体间数据同步());
+            Application.Run(new 不规则控件());
         }
     }
 }

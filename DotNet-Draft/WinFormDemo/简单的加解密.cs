@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WinFormDemo
 {
-    public partial class 简单的加解密 : Form
+    public partial class 简单的加解密 : System.Windows.Forms.Form
     {
         public 简单的加解密()
         {

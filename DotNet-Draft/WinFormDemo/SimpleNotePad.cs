@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace WinFormDemo
 {
-    public partial class SimpleNotePad : Form
+    public partial class SimpleNotePad : System.Windows.Forms.Form
     {
         public SimpleNotePad()
         {

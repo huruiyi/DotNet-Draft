@@ -1,45 +1,44 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace Gobang
 {
-    sealed class Explore
+    internal sealed class Explore
     {
         public static Point FindOptimalPoint(int[,] table)
         {
-            int[,] score_1 = CalScore(table, true);
-            int[,] score_2 = CalScore(table, false);
-            int i, j, max_1 = 0, max_2 = 0;
+            int[,] score1 = CalScore(table, true);
+            int[,] score2 = CalScore(table, false);
+            int i, j, max1 = 0, max2 = 0;
             for (i = 0; i < 15; i++)
             {
                 for (j = 0; j < 15; j++)
                 {
-                    if (max_1 < score_1[i, j])
-                        max_1 = score_1[i, j];
-                    if (max_2 < score_2[i, j])
-                        max_2 = score_2[i, j];
+                    if (max1 < score1[i, j])
+                        max1 = score1[i, j];
+                    if (max2 < score2[i, j])
+                        max2 = score2[i, j];
                 }
             }
             ArrayList alist = new ArrayList();
-            if (max_1 >= max_2)
+            if (max1 >= max2)
             {
                 for (i = 0; i < 15; i++)
                     for (j = 0; j < 15; j++)
-                        if (score_1[i, j] == max_1)
+                        if (score1[i, j] == max1)
                             alist.Add(new Point(i, j));
             }
             else
             {
                 for (i = 0; i < 15; i++)
                     for (j = 0; j < 15; j++)
-                        if (score_2[i, j] == max_2)
+                        if (score2[i, j] == max2)
                             alist.Add(new Point(i, j));
             }
             return (Point)alist[new Random().Next(alist.Count)];
         }
+
         public static bool Test(int[,] table)
         {
             int i, j, white = 0, black = 0;
@@ -82,7 +81,7 @@ namespace Gobang
             return false;
         }
 
-        private static int[,] values = { { 7, 15, 400, 1800, 100000 }, { 35, 0, 0, 0, 0 }, 
+        private static int[,] values = { { 7, 15, 400, 1800, 100000 }, { 35, 0, 0, 0, 0 },
                                        { 800, 0, 0, 0, 0 }, { 15000, 0, 0, 0, 0 }, { 800000, 0, 0, 0, 0 } };
 
         #region 过程方法...
@@ -163,6 +162,7 @@ namespace Gobang
         }
 
         #region 检测四个方向的五元组...
+
         private static void Right(int[,] table, int row, int column, ref int white, ref int black)
         {
             white = 0; black = 0;
@@ -174,6 +174,7 @@ namespace Gobang
                     black++;
             }
         }
+
         private static void Down(int[,] table, int row, int column, ref int white, ref int black)
         {
             white = 0; black = 0;
@@ -185,6 +186,7 @@ namespace Gobang
                     black++;
             }
         }
+
         private static void RightDown(int[,] table, int row, int column, ref int white, ref int black)
         {
             white = 0; black = 0;
@@ -196,6 +198,7 @@ namespace Gobang
                     black++;
             }
         }
+
         private static void LeftDown(int[,] table, int row, int column, ref int white, ref int black)
         {
             white = 0; black = 0;
@@ -207,8 +210,9 @@ namespace Gobang
                     black++;
             }
         }
-        #endregion
 
-        #endregion
+        #endregion 检测四个方向的五元组...
+
+        #endregion 过程方法...
     }
 }

@@ -7,7 +7,7 @@ using WinFormDemo.Properties;
 
 namespace WinFormDemo
 {
-  public partial class 不规则控件 : Form
+  public partial class 不规则控件 : System.Windows.Forms.Form
   {
     private const int CS_DropSHADOW = 0x20000;
     private const int GCL_STYLE = (-26);

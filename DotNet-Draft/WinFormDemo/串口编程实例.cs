@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WinFormDemo
 {
-    public partial class 串口编程实例 : Form
+    public partial class 串口编程实例 : System.Windows.Forms.Form
     {
         public 串口编程实例()
         {

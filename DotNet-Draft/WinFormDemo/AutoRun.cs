@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WinFormDemo
 {
-    public partial class AutoRun : Form
+    public partial class AutoRun : System.Windows.Forms.Form
     {
         public AutoRun()
         {

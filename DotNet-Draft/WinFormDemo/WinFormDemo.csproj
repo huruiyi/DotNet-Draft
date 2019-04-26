@@ -50,18 +50,6 @@
       <DependentUpon>AutoRun.cs</DependentUpon>
     </Compile>
     <Compile Include="Config.cs" />
-    <Compile Include="FormParent.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormParent.designer.cs">
-      <DependentUpon>FormParent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="FormChild.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormChild.designer.cs">
-      <DependentUpon>FormChild.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RunPeople.cs">
@@ -70,8 +58,6 @@
     <Compile Include="RunPeople.designer.cs">
       <DependentUpon>RunPeople.cs</DependentUpon>
     </Compile>
-    <Compile Include="Services\IAfterText.cs" />
-    <Compile Include="Services\SendTextEventArgs.cs" />
     <Compile Include="SimpleNotePad.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,12 +76,6 @@
     <Compile Include="串口编程实例.designer.cs">
       <DependentUpon>串口编程实例.cs</DependentUpon>
     </Compile>
-    <Compile Include="窗体间数据同步.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="窗体间数据同步.Designer.cs">
-      <DependentUpon>窗体间数据同步.cs</DependentUpon>
-    </Compile>
     <Compile Include="简单的加解密.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,12 +84,6 @@
     </Compile>
     <EmbeddedResource Include="AutoRun.resx">
       <DependentUpon>AutoRun.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormParent.resx">
-      <DependentUpon>FormParent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormChild.resx">
-      <DependentUpon>FormChild.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -132,9 +106,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="串口编程实例.resx">
       <DependentUpon>串口编程实例.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="窗体间数据同步.resx">
-      <DependentUpon>窗体间数据同步.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="简单的加解密.resx">
       <DependentUpon>简单的加解密.cs</DependentUpon>
