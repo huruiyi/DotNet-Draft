@@ -1,10 +1,9 @@
-﻿using MongoDB.Bson;
+﻿using Infrastructure;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using Infrastructure;
 using Xunit;
-using System.Diagnostics;
 
 namespace MongoDBDemo.UnitTest
 {
@@ -79,9 +78,6 @@ namespace MongoDBDemo.UnitTest
         {
             List<BsonDocument> actual = Test.SimpleQueryAll().Result;
             IMongoCollection<BsonDocument> coll = Test.GetCollection<BsonDocument>(DbName, CollName);
-        
-
-         
         }
 
         [Fact]
