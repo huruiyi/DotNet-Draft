@@ -14,7 +14,6 @@ namespace TemplateMethodDemo
             BoilWater();
             Brew();
             PourInCup();
-            //有个判断方法来添加调料
             if (WantCondiments())
             {
                 AddCondiments();

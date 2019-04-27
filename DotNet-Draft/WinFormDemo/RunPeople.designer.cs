@@ -1,4 +1,4 @@
-﻿namespace WFA_04
+﻿namespace WinFormDemo
 {
     partial class RunPeople
     {

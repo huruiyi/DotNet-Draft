@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace WinFormDemo
 {
-    public partial class 串口编程实例 : System.Windows.Forms.Form
+    public partial class 串口编程实例 : Form
     {
         public 串口编程实例()
         {
@@ -15,20 +15,20 @@ namespace WinFormDemo
         }
 
         //设置变量
-        public string iPort = "com1";           //默认串口为1
+        public string Port = "com1";           //默认串口为1
 
-        public int iRate = 9600;                //波特率. 有1200 2400 4800 9600
-        public byte bSize = 8;                  //数据位 8bits
-        public int iTimeout = 1000;             //延时时长  1秒
-        public SerialPort serialPort1 = new SerialPort();       //定义一个串口类的串口变量
+        public int Rate = 9600;                //波特率. 有1200 2400 4800 9600
+        public byte BSize = 8;                  //数据位 8bits
+        public int Timeout = 1000;             //延时时长  1秒
+        public SerialPort SerialPort1 = new SerialPort();       //定义一个串口类的串口变量
         public bool IsCirlce;                   //是否循环发送
-        public Thread Thd_Send;                 //开辟一个专用于发送数据的线程
-        public byte[] recb;                     //用于存放接受数据的数组
+        public Thread ThdSend;                 //开辟一个专用于发送数据的线程
+        public byte[] Recb;                     //用于存放接受数据的数组
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            Microsoft.VisualBasic.Devices.Computer cmbCOM = new Microsoft.VisualBasic.Devices.Computer();
-            foreach (string s in cmbCOM.Ports.SerialPortNames)
+            Microsoft.VisualBasic.Devices.Computer cmbCom = new Microsoft.VisualBasic.Devices.Computer();
+            foreach (string s in cmbCom.Ports.SerialPortNames)
             {
                 cmbPort.Items.Add(s);
             }
@@ -39,9 +39,9 @@ namespace WinFormDemo
         {
             try
             {
-                if (serialPort1.IsOpen)
+                if (SerialPort1.IsOpen)
                 {
-                    serialPort1.Close();
+                    SerialPort1.Close();
                     btnOpenPort.Text = "开启串口";
                     txtShow.AppendText("串口被关闭……\r\n");
                 }
@@ -50,14 +50,14 @@ namespace WinFormDemo
                     Parity myParity = Parity.None;          //校验位
                     StopBits MyStopBits = StopBits.One;     //停止位
 
-                    serialPort1.PortName = cmbPort.Text;
-                    serialPort1.BaudRate = iRate;
-                    serialPort1.DataBits = bSize;
-                    serialPort1.Parity = myParity;
-                    serialPort1.StopBits = MyStopBits;
-                    serialPort1.ReadTimeout = iTimeout;
+                    SerialPort1.PortName = cmbPort.Text;
+                    SerialPort1.BaudRate = Rate;
+                    SerialPort1.DataBits = BSize;
+                    SerialPort1.Parity = myParity;
+                    SerialPort1.StopBits = MyStopBits;
+                    SerialPort1.ReadTimeout = Timeout;
 
-                    serialPort1.Open();
+                    SerialPort1.Open();
 
                     btnOpenPort.Text = "关闭串口";
                     txtShow.AppendText("串口成功开启……\r\n");
@@ -74,13 +74,13 @@ namespace WinFormDemo
         {
             try
             {
-                if (serialPort1.IsOpen)
+                if (SerialPort1.IsOpen)
                 {
                     txtShow.AppendText("串口已打开\r\n");
                 }
                 else
                 {
-                    serialPort1.Open();//打开串口
+                    SerialPort1.Open();//打开串口
                 }
                 return true;
             }
@@ -96,14 +96,14 @@ namespace WinFormDemo
             if (txtSetDataPakge.Text == "")
             { MessageBox.Show("发送数据为空！"); return; }
 
-            Thd_Send = new Thread(new ThreadStart(SendData));
-            Thd_Send.Start();
+            ThdSend = new Thread(SendData);
+            ThdSend.Start();
         }
 
         //发送数据函数
         public void SendData()
         {
-            if (System.Convert.ToBoolean(btnSendData.Text == "发送"))
+            if (Convert.ToBoolean(btnSendData.Text == "发送"))
             {
                 if (IsCirlce)
                 {
@@ -111,7 +111,7 @@ namespace WinFormDemo
 
                     while (true)
                     {
-                        if (IsCirlce && serialPort1.IsOpen && (System.Convert.ToBoolean(btnSendData.Text == "停止")))
+                        if (IsCirlce && SerialPort1.IsOpen && (Convert.ToBoolean(btnSendData.Text == "停止")))
                         {
                             SubSendData();
                         }
@@ -137,18 +137,15 @@ namespace WinFormDemo
         {
             //byte[] ZhengHeHouData = new byte[mycom1.ReadBufferSize];
             //定义一个无空格二位16进制排列的数组，这样可控制用户输入
-            byte[] ZhengHeHouData = NoSpace_2Hex_SendData_ZhengHe(); //这里是整合后的发送的数组，每二位组成一个16进制的数排列
-            int SendNumB = 0;
+            byte[] zhengHeHouData = NoSpace_2Hex_SendData_ZhengHe(); //这里是整合后的发送的数组，每二位组成一个16进制的数排列
 
             try
             {
-                serialPort1.WriteLine(Dis_Package(ZhengHeHouData));
+                SerialPort1.WriteLine(Dis_Package(zhengHeHouData));
 
-                SendNumB = serialPort1.BytesToWrite;
+                txtShow.Invoke(new MethodInvoker(delegate { txtShow.AppendText("\r\n发送数据！(" + SerialPort1.BytesToWrite + ")：" + Dis_Package(zhengHeHouData)); }));
 
-                txtShow.Invoke(new MethodInvoker(delegate { txtShow.AppendText("\r\n发送数据！(" + serialPort1.BytesToWrite + ")：" + Dis_Package(ZhengHeHouData)); }));
-
-                Thread.Sleep(System.Convert.ToInt32(txtTimeCell.Text));
+                Thread.Sleep(Convert.ToInt32(txtTimeCell.Text));
             }
 
             //mycom1.Read(ZhengHeHouData,1,1);
@@ -166,21 +163,19 @@ namespace WinFormDemo
             {
                 //msg.AppendText("\r\n发送失败！");
                 txtShow.Invoke(new MethodInvoker(delegate { txtShow.AppendText("\r\n" + ex.Message); }));
-
-                return;
             }
         }
 
         //去掉发送数组中的空格
-        public string Delspace(string txt_SendData)
+        public string Delspace(string txtSendData)
         {
-            string Infact_SendData = "";
-            for (int i = 0; i < txt_SendData.Length; i++)  //txt_SendData.Length为发送框内的数据
+            string sendData = "";
+            for (int i = 0; i < txtSendData.Length; i++)  //txt_SendData.Length为发送框内的数据
             {
-                if (txt_SendData[i] != ' ')
-                    Infact_SendData += txt_SendData[i];
+                if (txtSendData[i] != ' ')
+                    sendData += txtSendData[i];
             }
-            return Infact_SendData;
+            return sendData;
         }
 
         //提取数据包--数组函数，返回整合后的数据，无空格二位16进制排列的数组
@@ -188,14 +183,14 @@ namespace WinFormDemo
         {
             try
             {
-                string NoSpace_SendData = Delspace(txtSetDataPakge.Text);   //去掉所有空格，整合数据
-                byte[] SendData = new byte[50];
+                string noSpaceSendData = Delspace(txtSetDataPakge.Text);   //去掉所有空格，整合数据
+                byte[] sendData = new byte[50];
                 int j = 0;
-                for (int i = 0; i < NoSpace_SendData.Length; i = i + 2, j++) //将无空格发送的数据每二位组成一个数，存放在新的数组SendData中
-                    SendData[j] = Convert.ToByte(NoSpace_SendData.Substring(i, 2), 16);
-                byte[] Last_SendData = new byte[j];  //Last_SendData最终返回的发送数据
-                Array.Copy(SendData, Last_SendData, j); //复制整合后的数据，放入最终返回的数组里，以便调用
-                return Last_SendData;  //最终返回的发送数据
+                for (int i = 0; i < noSpaceSendData.Length; i = i + 2, j++) //将无空格发送的数据每二位组成一个数，存放在新的数组SendData中
+                    sendData[j] = Convert.ToByte(noSpaceSendData.Substring(i, 2), 16);
+                byte[] lastSendData = new byte[j];  //Last_SendData最终返回的发送数据
+                Array.Copy(sendData, lastSendData, j); //复制整合后的数据，放入最终返回的数组里，以便调用
+                return lastSendData;  //最终返回的发送数据
             }
             catch (Exception ex)
             {
@@ -226,10 +221,10 @@ namespace WinFormDemo
                 Parity myParity = Parity.None;
                 StopBits MyStopBits = StopBits.One;
 
-                if (serialPort1.IsOpen)
+                if (SerialPort1.IsOpen)
                 {
                     //msg.AppendText("串口处于开启状态，若要重新更换端口，请先关闭！\r\n");
-                    serialPort1.Close();
+                    SerialPort1.Close();
                 }
                 if (cmbPort.Text == "")
                 {
@@ -237,17 +232,14 @@ namespace WinFormDemo
                 }
                 else
                 {
-                    serialPort1.PortName = Convert.ToString(cmbPort.Text);  //1,2,3,4
+                    SerialPort1.PortName = Convert.ToString(cmbPort.Text);  //1,2,3,4
 
-                    serialPort1.BaudRate = Convert.ToInt16(txtBuad.Text); //1200,2400,4800,9600
-                    serialPort1.DataBits = Convert.ToByte(txtDatabit.Text, 10); //8 bits
-                    serialPort1.Parity = myParity; // 0-4=no,odd,even,mark,space
-                    serialPort1.StopBits = MyStopBits;
+                    SerialPort1.BaudRate = Convert.ToInt16(txtBuad.Text); //1200,2400,4800,9600
+                    SerialPort1.DataBits = Convert.ToByte(txtDatabit.Text, 10); //8 bits
+                    SerialPort1.Parity = myParity; // 0-4=no,odd,even,mark,space
+                    SerialPort1.StopBits = MyStopBits;
                     //iTimeout=3;
-                    if (this.OpenCom())
-                        txtShow.AppendText("串口初始化成功……\r\n");
-                    else
-                        txtShow.AppendText("串口初始化失败！\r\n");
+                    txtShow.AppendText(this.OpenCom() ? "串口初始化成功……\r\n" : "串口初始化失败！\r\n");
                 }
             }
             catch (Exception ex)
@@ -258,25 +250,25 @@ namespace WinFormDemo
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            serialPort1.Close();
+            SerialPort1.Close();
         }
 
-        public string serialReadString;
+        public string SerialReadString;
 
         private void serialPort1_DataReceived(object sender, SerialDataReceivedEventArgs e)
         {
-            serialReadString = "";
-            serialReadString += serialPort1.ReadExisting();
-            txtShow.Invoke(new MethodInvoker(delegate { txtShow.AppendText("\r\n接收数据：" + serialReadString); }));
+            SerialReadString = "";
+            SerialReadString += SerialPort1.ReadExisting();
+            txtShow.Invoke(new MethodInvoker(delegate { txtShow.AppendText("\r\n接收数据：" + SerialReadString); }));
         }
 
         //发送文本框内限制输入，须偶数位
         private void t_send_TextChanged(object sender, EventArgs e)
         {
             btnSendData.Enabled = false;
-            string SendDataLength = Delspace(txtSetDataPakge.Text);   //去掉所有空格，整合数据
+            string sendDataLength = Delspace(txtSetDataPakge.Text);   //去掉所有空格，整合数据
 
-            if (SendDataLength.Length % 2 != 0)
+            if (sendDataLength.Length % 2 != 0)
             {
                 txtSetDataPakge.Focus();
             }

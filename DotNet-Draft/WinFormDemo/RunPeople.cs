@@ -3,16 +3,16 @@ using System.Drawing;
 using System.Windows.Forms;
 using WinFormDemo.Properties;
 
-namespace WFA_04
+namespace WinFormDemo
 {
     public partial class RunPeople : Form
     {
-        private Random r = new Random();
-        private Bitmap[] pics_Shang = { Resources.Role1_01, Resources.Role1_02, Resources.Role1_03, Resources.Role1_04, Resources.Role1_05, Resources.Role1_06 };
-        private Bitmap[] pics_Xia = { Resources.Role1_07, Resources.Role1_08, Resources.Role1_09, Resources.Role1_10, Resources.Role1_11, Resources.Role1_12 };
-        private Bitmap[] pics_Zuo = { Resources.Role1_13, Resources.Role1_14, Resources.Role1_15, Resources.Role1_16, Resources.Role1_17, Resources.Role1_18 };
-        private Bitmap[] pics_You = { Resources.Role1_19, Resources.Role1_20, Resources.Role1_21, Resources.Role1_22, Resources.Role1_23, Resources.Role1_24 };
-        private int count = 0;
+        private Random _random = new Random();
+        private readonly Bitmap[] _picsUp = { Resources.Role1_01, Resources.Role1_02, Resources.Role1_03, Resources.Role1_04, Resources.Role1_05, Resources.Role1_06 };
+        private readonly Bitmap[] _picsDown = { Resources.Role1_07, Resources.Role1_08, Resources.Role1_09, Resources.Role1_10, Resources.Role1_11, Resources.Role1_12 };
+        private readonly Bitmap[] _picsLeft = { Resources.Role1_13, Resources.Role1_14, Resources.Role1_15, Resources.Role1_16, Resources.Role1_17, Resources.Role1_18 };
+        private readonly Bitmap[] _picsRight = { Resources.Role1_19, Resources.Role1_20, Resources.Role1_21, Resources.Role1_22, Resources.Role1_23, Resources.Role1_24 };
+        private int _count;
 
         public RunPeople()
         {
@@ -113,21 +113,21 @@ namespace WFA_04
             //余数为0往右走时候切换的图片
             if ((pcbImage.Top / 64) % 2 == 0)
             {
-                pcbImage.Image = pics_You[count++ % 6];
+                pcbImage.Image = _picsRight[_count++ % 6];
                 //如果碰到边缘，那么就切换向下走的图片
                 if (pcbImage.Left >= (panel1.Width - pcbImage.Width))
                 {
-                    pcbImage.Image = pics_Xia[count++ % 6];
+                    pcbImage.Image = _picsDown[_count++ % 6];
                 }
             }
             //余数为1往左走时候切换的图片
             if ((pcbImage.Top / 64) % 2 == 1)
             {
-                pcbImage.Image = pics_Zuo[count++ % 6];
+                pcbImage.Image = _picsLeft[_count++ % 6];
                 //如果碰到边缘，那么就切换向下走的图片
                 if (pcbImage.Left == 0)
                 {
-                    pcbImage.Image = pics_Xia[count++ % 6];
+                    pcbImage.Image = _picsDown[_count++ % 6];
                 }
             }
             lblX.Text = pcbImage.Left.ToString();
@@ -142,20 +142,20 @@ namespace WFA_04
             //余数为0往右走时候切换的图片
             if ((pcbImage.Top / 64) % 2 == 0)
             {
-                pcbImage.Image = pics_You[count++ % 6];
+                pcbImage.Image = _picsRight[_count++ % 6];
                 if (pcbImage.Left == (panel1.Width - pcbImage.Width))
                 {
-                    pcbImage.Image = pics_Shang[count++ % 6];
+                    pcbImage.Image = _picsUp[_count++ % 6];
                 }
             }
             //余数为1往左走时候切换的图片
             if ((pcbImage.Top / 64) % 2 == 1)
             {
-                pcbImage.Image = pics_Zuo[count++ % 6];
+                pcbImage.Image = _picsLeft[_count++ % 6];
                 //如果碰到边缘，那么就切换向下走的图片
                 if (pcbImage.Left <= 0)
                 {
-                    pcbImage.Image = pics_Shang[count++ % 6];
+                    pcbImage.Image = _picsUp[_count++ % 6];
                 }
             }
         }
@@ -163,7 +163,7 @@ namespace WFA_04
         //向左走一行的图片
         private void timer6_Tick(object sender, EventArgs e)
         {
-            pcbImage.Image = pics_Zuo[count++ % 6];
+            pcbImage.Image = _picsLeft[_count++ % 6];
         }
     }
 }
