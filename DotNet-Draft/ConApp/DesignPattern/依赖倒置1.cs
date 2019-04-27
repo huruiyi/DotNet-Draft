@@ -9,48 +9,48 @@ namespace 依赖倒置1
 
     public class AutoSystem
     {
-        private HondaCar hcar = new HondaCar();
-        private FordCar fcar = new FordCar();
-        private CarType type;
+        private readonly HondaCar _hcar = new HondaCar();
+        private readonly FordCar _fcar = new FordCar();
+        private readonly CarType _type;
 
         public AutoSystem(CarType type)
         {
-            this.type = type;
+            this._type = type;
         }
 
-        private void RunCar()
+        public void RunCar()
         {
-            if (type == CarType.Ford)
+            if (_type == CarType.Ford)
             {
-                fcar.Run();
+                _fcar.Run();
             }
             else
             {
-                hcar.Run();
+                _hcar.Run();
             }
         }
 
-        private void TurnCar()
+        public void TurnCar()
         {
-            if (type == CarType.Ford)
+            if (_type == CarType.Ford)
             {
-                fcar.Turn();
+                _fcar.Turn();
             }
             else
             {
-                hcar.Turn();
+                _hcar.Turn();
             }
         }
 
-        private void StopCar()
+        public void StopCar()
         {
-            if (type == CarType.Ford)
+            if (_type == CarType.Ford)
             {
-                fcar.Stop();
+                _fcar.Stop();
             }
             else
             {
-                hcar.Stop();
+                _hcar.Stop();
             }
         }
     }
@@ -91,10 +91,12 @@ namespace 依赖倒置1
         }
     }
 
-    public class Program
+    public class 依赖倒置1
     {
-        private static void Main(string[] args)
+        private static void Test()
         {
+            AutoSystem system = new AutoSystem(CarType.Ford);
+            system.RunCar();
         }
     }
 }

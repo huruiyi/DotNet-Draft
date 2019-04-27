@@ -4,26 +4,26 @@ namespace 依赖倒置2
 {
     public class AutoSystem
     {
-        private ICar car;
+        private readonly ICar _car;
 
         public AutoSystem(ICar car)
         {
-            this.car = car;
+            this._car = car;
         }
 
         public void RunCar()
         {
-            car.Run();
+            _car.Run();
         }
 
         public void StopCar()
         {
-            car.Stop();
+            _car.Stop();
         }
 
         public void TurnCar()
         {
-            car.Turn();
+            _car.Turn();
         }
     }
 
@@ -72,10 +72,12 @@ namespace 依赖倒置2
         void Turn();
     }
 
-    internal class Program
+    internal class 依赖倒置2
     {
-        private static void Main(string[] args)
+        private static void Test()
         {
+            ICar iCar = new FordCar();
+            iCar.Run();
         }
     }
 }
