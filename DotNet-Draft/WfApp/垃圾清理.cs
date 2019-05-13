@@ -31,14 +31,14 @@ namespace WfApp
         /// </summary>
         /// <param name="tip">是否提示</param>
         /// <param name="form">当前窗体，一般传入this</param>
-        public static void Clear(bool tip, System.Windows.Forms.Form form)
+        public static void Clear(bool tip, Form form)
         {
-            System.Windows.Forms.DialogResult result = System.Windows.Forms.DialogResult.No;
+            DialogResult result;
             if (tip)
-                result = System.Windows.Forms.MessageBox.Show("确定要清空回收站吗?", "友情提示", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information);
+                result = MessageBox.Show("确定要清空回收站吗?", "友情提示", MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information);
             else
-                result = System.Windows.Forms.DialogResult.Yes;
-            if (result == System.Windows.Forms.DialogResult.Yes)
+                result = DialogResult.Yes;
+            if (result == DialogResult.Yes)
             {
                 SHEmptyRecycleBin(form.Handle, "", SHERB_NOCONFIRMATION + SHERB_NOPROGRESSUI + SHERB_NOSOUND);
             }

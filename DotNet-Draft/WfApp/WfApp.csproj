@@ -10,7 +10,7 @@
     <AssemblyName>WfApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <AutoGenerateBindingRedirects>false</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -98,32 +98,14 @@
     <Compile Include="MdiForm.designer.cs">
       <DependentUpon>MdiForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="USB监控.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="USB监控.Designer.cs">
-      <DependentUpon>USB监控.cs</DependentUpon>
-    </Compile>
     <Compile Include="Worker案例.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Worker案例.Designer.cs">
       <DependentUpon>Worker案例.cs</DependentUpon>
     </Compile>
-    <Compile Include="硬盘信息获取.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="硬盘信息获取.Designer.cs">
-      <DependentUpon>硬盘信息获取.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="USBMinitor.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="USBMinitor.Designer.cs">
-      <DependentUpon>USBMinitor.cs</DependentUpon>
-    </Compile>
     <Compile Include="垃圾清理.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -163,9 +145,6 @@
     <EmbeddedResource Include="Worker案例.resx">
       <DependentUpon>Worker案例.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="硬盘信息获取.resx">
-      <DependentUpon>硬盘信息获取.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -176,9 +155,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="USBMinitor.resx">
-      <DependentUpon>USBMinitor.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="垃圾清理.resx">
       <DependentUpon>垃圾清理.cs</DependentUpon>
     </EmbeddedResource>
