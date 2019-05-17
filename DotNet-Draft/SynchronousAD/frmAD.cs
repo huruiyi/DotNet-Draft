@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.DirectoryServices;
 using System.Text;
 using System.Windows.Forms;
-using System.DirectoryServices;
 
 namespace SynchronousAD
 {
     public partial class FrmAd : Form
     {
-
         private readonly List<AdModel> _list = new List<AdModel>();
 
         public FrmAd()
@@ -17,6 +16,7 @@ namespace SynchronousAD
         }
 
         #region## 同步按钮
+
         /// <summary>
         /// 功能：同步按钮
         /// 作者：Wilson
@@ -35,13 +35,12 @@ namespace SynchronousAD
                 {
                     if (IsExistOu(domain, out rootOU))
                     {
-                        SyncAll(rootOU);      //同步所有                                         
+                        SyncAll(rootOU);      //同步所有
                     }
                     else
                     {
                         MessageBox.Show("域中不存在此组织结构!", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-
                 }
                 else
                 {
@@ -49,9 +48,11 @@ namespace SynchronousAD
                 }
             }
         }
+
         #endregion
 
         #region## 同步
+
         /// <summary>
         /// 功能:同步
         /// 创建人:Wilson
@@ -62,8 +63,8 @@ namespace SynchronousAD
         {
             /*
              * 参考：http://msdn.microsoft.com/zh-cn/library/system.directoryservices.directorysearcher.filter(v=vs.80).aspx
-             * 
-             * -----------------其它------------------------------             
+             *
+             * -----------------其它------------------------------
              * 机算机：       (objectCategory=computer)
              * 组：           (objectCategory=group)
              * 联系人：       (objectCategory=contact)
@@ -71,7 +72,7 @@ namespace SynchronousAD
              * 打印机         (objectCategory=printQueue)
              * ---------------------------------------------------
              */
-            DirectorySearcher mySearcher = new DirectorySearcher(entryOu, "(objectclass=organizationalUnit)"); //查询组织单位                 
+            DirectorySearcher mySearcher = new DirectorySearcher(entryOu, "(objectclass=organizationalUnit)"); //查询组织单位
 
             DirectoryEntry root = mySearcher.SearchRoot;   //查找根OU
 
@@ -92,9 +93,11 @@ namespace SynchronousAD
 
             Application.Exit();
         }
+
         #endregion
 
         #region## 同步根组织单位
+
         /// <summary>
         /// 功能: 同步根组织单位
         /// 创建人:Wilson
@@ -109,16 +112,21 @@ namespace SynchronousAD
 
                 byte[] bGuid = entry.Properties["objectGUID"][0] as byte[];
 
-                string id = BitConverter.ToString(bGuid);
+                if (bGuid != null)
+                {
+                    string id = BitConverter.ToString(bGuid);
 
-                _list.Add(new AdModel(id, rootOuName, (int)TypeEnum.Ou, "0"));
+                    _list.Add(new AdModel(id, rootOuName, (int)TypeEnum.Ou, "0"));
 
-                SyncSubOu(entry, id);
+                    SyncSubOu(entry, id);
+                }
             }
         }
+
         #endregion
 
         #region## 同步下属组织单位及下属用户
+
         /// <summary>
         /// 功能: 同步下属组织单位及下属用户
         /// 创建人:Wilson
@@ -140,7 +148,10 @@ namespace SynchronousAD
                 {
                     byte[] bGuid = subEntry.Properties["objectGUID"][0] as byte[];
 
-                    id = BitConverter.ToString(bGuid);
+                    if (bGuid != null)
+                    {
+                        id = BitConverter.ToString(bGuid);
+                    }
                 }
 
                 bool isExist = _list.Exists(d => d.Id == id);
@@ -156,6 +167,7 @@ namespace SynchronousAD
 
                         SyncSubOu(subEntry, id);
                         break;
+
                     case "user":
                         string accountName = string.Empty;
 
@@ -172,8 +184,8 @@ namespace SynchronousAD
                 }
             }
         }
-        #endregion
 
+        #endregion
 
         //foreach (string property in subEntry.Properties.PropertyNames)
         //{
@@ -191,13 +203,14 @@ namespace SynchronousAD
         /// <param name="domainName">域名或IP</param>
         /// <param name="userName">用户名</param>
         /// <param name="userPwd">密码</param>
+        /// <param name="domain"></param>
         /// <returns></returns>
         private bool IsConnected(string domainName, string userName, string userPwd, out DirectoryEntry domain)
         {
             domain = new DirectoryEntry();
             try
             {
-                domain.Path = string.Format("LDAP://{0}", domainName);
+                domain.Path = $"LDAP://{domainName}";
                 domain.Username = userName;
                 domain.Password = userPwd;
                 domain.AuthenticationType = AuthenticationTypes.Secure;
@@ -211,9 +224,11 @@ namespace SynchronousAD
                 return false;
             }
         }
+
         #endregion
 
         #region## 域中是否存在组织单位
+
         /// <summary>
         /// 功能：域中是否存在组织单位
         /// 作者：Wilson
@@ -237,9 +252,11 @@ namespace SynchronousAD
                 return false;
             }
         }
+
         #endregion
 
         #region## 窗体加载
+
         /// <summary>
         /// 窗体加载
         /// </summary>
@@ -252,9 +269,11 @@ namespace SynchronousAD
             txtPwd.Text = "P@ssw0rd";
             txtRootOU.Text = "acompany";
         }
+
         #endregion
 
         #region## 验证输入
+
         /// <summary>
         /// 功能：验证输入
         /// 作者：Wilson
@@ -292,11 +311,11 @@ namespace SynchronousAD
             }
             return true;
         }
+
         #endregion
     }
 
-
-    public enum TypeEnum : int
+    public enum TypeEnum
     {
         /// <summary>
         /// 组织单位
@@ -310,6 +329,7 @@ namespace SynchronousAD
     }
 
     #region## Ad域实体
+
     /// <summary>
     /// Ad域实体
     /// </summary>
@@ -331,5 +351,6 @@ namespace SynchronousAD
 
         public string ParentId { get; set; }
     }
+
     #endregion
 }

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using Dapper;
@@ -31,13 +30,14 @@ namespace SqlServerDapper
 
             Console.WriteLine("Query 1");
             Console.WriteLine();
-            foreach (var product in products)
+            var enumerable = products as Product[] ?? products.ToArray();
+            foreach (var product in enumerable)
                 Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
             Assert.IsNotNull(products);
-            Assert.IsTrue(products.Count() == 1);
+            Assert.IsTrue(enumerable.Count() == 1);
         }
 
         private void QuerySQL2()
@@ -46,13 +46,14 @@ namespace SqlServerDapper
 
             Console.WriteLine("Query 2");
             Console.WriteLine();
-            foreach (var product in products)
+            var enumerable = products as Product[] ?? products.ToArray();
+            foreach (var product in enumerable)
                 Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
             Assert.IsNotNull(products);
-            Assert.IsTrue(products.Count() == 4);
+            Assert.IsTrue(enumerable.Count() == 4);
         }
 
         private void QueryMultipleSQL1()
@@ -67,18 +68,20 @@ namespace SqlServerDapper
 
             Console.WriteLine("Query Multiple 1 (Different Types of Result Sets)");
             Console.WriteLine();
-            foreach (var product in products)
+            var enumerable = products as Product[] ?? products.ToArray();
+            foreach (var product in enumerable)
                 Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
-            foreach (var person in people)
+            var persons = people as Person[] ?? people.ToArray();
+            foreach (var person in persons)
                 Console.WriteLine(person.BusinessEntityId + " " + person.FirstName + " " + person.LastName);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
             Assert.IsNotNull(products);
             Assert.IsNotNull(people);
-            Assert.IsTrue(products.Count() == 4);
-            Assert.IsTrue(people.Count() == 4);
+            Assert.IsTrue(enumerable.Count() == 4);
+            Assert.IsTrue(persons.Count() == 4);
         }
 
         private void QueryMultipleSQL2()
@@ -100,7 +103,7 @@ namespace SqlServerDapper
                 select top 1 * from Production.Product order by ProductID;
             ");
 
-            var productLists = new IEnumerable<Product>[] {
+            var productLists = new[] {
                 results.Item1,
                 results.Item2,
                 results.Item3,
@@ -140,7 +143,7 @@ namespace SqlServerDapper
 
         private void ToDataTable()
         {
-            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable<Product>();
+            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable();
 
             Console.WriteLine("To DataTable");
             Console.WriteLine();
@@ -155,17 +158,18 @@ namespace SqlServerDapper
 
         private void ToEnumerable()
         {
-            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable<Product>().Cast<Product>();
+            var products = SqlHelper.QuerySql<Product>("select top 4 * from Production.Product order by ProductID").ToDataTable().Cast<Product>();
 
             Console.WriteLine("To Enumerable");
             Console.WriteLine();
-            foreach (var product in products)
+            var enumerable = products as Product[] ?? products.ToArray();
+            foreach (var product in enumerable)
                 Console.WriteLine(product.ProductId + " " + product.Name);
             Console.WriteLine();
             Console.WriteLine("----------------------------------");
 
             Assert.IsNotNull(products);
-            Assert.IsTrue(products.Count() == 4);
+            Assert.IsTrue(enumerable.Count() == 4);
         }
 
         private void ToDataSet()
@@ -173,7 +177,7 @@ namespace SqlServerDapper
             var results = SqlHelper.QueryMultipleSql<Product, Person>(@"
                 select top 4 * from Production.Product order by ProductID;
                 select top 4 * from Person.Person order by BusinessEntityID;
-            ").ToDataSet<Product, Person>();
+            ").ToDataSet();
 
             var products = results.Tables[0];
             var people = results.Tables[1];
@@ -215,7 +219,7 @@ namespace SqlServerDapper
             var outParam = new DynamicParameters("MinProductID", sqlDbType: SqlDbType.Int, direction: ParameterDirection.Output);
             outParam.Add("MaxProductID", sqlDbType: SqlDbType.Int, direction: ParameterDirection.Output);
 
-            int rowsAffected = SqlHelper.ExecuteSQL(@"
+            SqlHelper.ExecuteSQL(@"
                 select @MinProductID = min(ProductID) from Production.Product;
                 select @MaxProductID = max(ProductID) from Production.Product;
             ", outParam: outParam);

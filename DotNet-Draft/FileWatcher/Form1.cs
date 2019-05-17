@@ -10,7 +10,7 @@ namespace FileWatcher
         public frmMain()
         {
             InitializeComponent();
-            Control.CheckForIllegalCrossThreadCalls = false;
+            CheckForIllegalCrossThreadCalls = false;
 
             if (con != null)
             {
@@ -42,9 +42,9 @@ namespace FileWatcher
 
         private FileWatcherClass watcher = new FileWatcherClass();
 
-        private void LoadWatcher(Configuration con)
+        private void LoadWatcher(Configuration configuration)
         {
-            watcher.Con = con;
+            watcher.Con = configuration;
             watcher.ClearWatcher();
             //ÎÄ¼þ¼àÊÓ
             watcher.Path = txtPath.Text.Trim();
@@ -56,8 +56,8 @@ namespace FileWatcher
 
         private void frmMain_Load(object sender, EventArgs e)
         {
-          //  this.WindowState = System.Windows.Forms.FormWindowState.Normal;
-           // this.ShowInTaskbar = false;
+            //  this.WindowState = System.Windows.Forms.FormWindowState.Normal;
+            // this.ShowInTaskbar = false;
         }
 
         private void btnSelect_Click(object sender, EventArgs e)
@@ -69,8 +69,8 @@ namespace FileWatcher
                 txtPath.Text = fbd.SelectedPath;
                 watcher.Path = txtPath.Text.Trim();
                 watcher.Filter = txtType.Text.Trim();
-                Configuration con = SerializeHelper<Configuration>.DeSerialize();
-                LoadWatcher(con);
+                Configuration configuration = SerializeHelper<Configuration>.DeSerialize();
+                LoadWatcher(configuration);
             }
         }
 
@@ -96,9 +96,9 @@ namespace FileWatcher
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (con==null)
+            if (con == null)
             {
-                con=new Configuration
+                con = new Configuration
                 {
                     Path = txtPath.Text.Trim(),
                     Filter = txtType.Text.Trim(),
@@ -112,7 +112,6 @@ namespace FileWatcher
                 SerializeHelper<Configuration>.Serialize(con);
                 LoadWatcher(con);
             }
-           
         }
 
         private void ShowOrHide()
@@ -157,7 +156,7 @@ namespace FileWatcher
         {
             if (this.WindowState == FormWindowState.Minimized)
             {
-              //  this.ShowInTaskbar = false;
+                //  this.ShowInTaskbar = false;
             }
         }
 
@@ -201,7 +200,7 @@ namespace FileWatcher
                 content += lvi.SubItems[2].Text;
                 content += "\n";
             }
-            FileWatcher.FileWatcherClass.SaveHis(content);
+            FileWatcherClass.SaveHis(content);
         }
 
         private void chkAuto_CheckedChanged(object sender, EventArgs e)
