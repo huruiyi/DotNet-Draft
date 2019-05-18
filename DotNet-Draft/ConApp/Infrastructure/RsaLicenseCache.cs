@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 
-namespace ConsoleApp1.Infrastructure
+namespace ConApp.Infrastructure
 {
     internal class RsaLicenseCache
     {

@@ -6,7 +6,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Runtime.Remoting.Proxies;
 using System.Security.Permissions;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     // MyProxy extends the CLR Remoting RealProxy.
     // In the same class, in the Invoke method, the methods and properties of the
@@ -29,7 +29,7 @@ namespace ConApp
             // RealProxy uses the Type to generate a transparent proxy.
         }
 
-        [SecurityPermissionAttribute(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
+        [SecurityPermission(SecurityAction.LinkDemand, Flags = SecurityPermissionFlag.Infrastructure)]
         public override IMessage Invoke(IMessage myIMessage)
         {
             Console.WriteLine("**********************************************************************************");

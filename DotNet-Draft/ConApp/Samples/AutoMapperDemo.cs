@@ -1,8 +1,8 @@
-﻿using AutoMapper;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using AutoMapper;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class AutoMapperDemo
     {

@@ -1,8 +1,7 @@
-﻿using ConApp.Model;
-using System;
-using System.Threading;
+﻿using System;
+using ConApp.Model;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class VolatileDemo
     {
@@ -10,7 +9,7 @@ namespace ConApp
         {
             // Create the worker thread object. This does not start the thread.
             Worker workerObject = new Worker();
-            Thread workerThread = new Thread(workerObject.DoWork);
+            System.Threading.Thread workerThread = new System.Threading.Thread(workerObject.DoWork);
 
             // Start the worker thread.
             workerThread.Start();
@@ -21,7 +20,7 @@ namespace ConApp
 
                 // Put the main thread to sleep for 1 millisecond to
                 // allow the worker thread to do some work.
-                Thread.Sleep(1);
+                System.Threading.Thread.Sleep(1);
 
             // Request that the worker thread stop itself.
             workerObject.RequestStop();

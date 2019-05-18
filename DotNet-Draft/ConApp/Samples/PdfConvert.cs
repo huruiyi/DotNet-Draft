@@ -5,7 +5,7 @@ using System.IO;
 using System.Text;
 using System.Threading;
 
-namespace Codaxy.WkHtmlToPdf
+namespace ConApp.Samples
 {
     public class PdfConvertException : Exception
     {

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConApp.OOP2
+namespace ConApp.OOP
 {
     public class A2
     {

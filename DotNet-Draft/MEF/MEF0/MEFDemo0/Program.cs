@@ -48,16 +48,29 @@ namespace MEFDemo0
 
     internal class Program
     {
+        [ImportMany("MathBook")]
+        public IEnumerable<object> MathBookServices { get; set; }
+
+
         [ImportMany("MusicBook")]
-        public IEnumerable<object> Services { get; set; }
+        public IEnumerable<object> MusicBookServices { get; set; }
 
         private static void Main(string[] args)
         {
             Program pro = new Program();
             pro.Compose();
-            if (pro.Services != null)
+            if (pro.MathBookServices != null)
             {
-                foreach (var s in pro.Services)
+                foreach (var s in pro.MathBookServices)
+                {
+                    var ss = (IBookService)s;
+                    Console.WriteLine(ss.GetBookName());
+                }
+            }
+
+            if (pro.MusicBookServices != null)
+            {
+                foreach (var s in pro.MusicBookServices)
                 {
                     var ss = (IBookService)s;
                     Console.WriteLine(ss.GetBookName());

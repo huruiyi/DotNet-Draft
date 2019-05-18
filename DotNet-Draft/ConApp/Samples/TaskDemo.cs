@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class TaskDemo
     {
@@ -123,7 +123,7 @@ namespace ConApp
             while (!cancelTokenSource.IsCancellationRequested)
             {
                 Console.WriteLine(DateTime.Now);
-                Thread.Sleep(1000);
+                System.Threading.Thread.Sleep(1000);
             }
         }
 

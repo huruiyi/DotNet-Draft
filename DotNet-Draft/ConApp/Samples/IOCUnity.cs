@@ -1,7 +1,7 @@
 ﻿using System;
 using Unity;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public interface IOtherHelper
     {

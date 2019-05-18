@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace ProperCriticalSectionConsoleApp
+namespace ConApp.Samples.Thread
 {
     internal class ProperCriticalSectionConsoleApp
     {

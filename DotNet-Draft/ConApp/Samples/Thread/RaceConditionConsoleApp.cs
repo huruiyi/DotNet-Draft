@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace RaceConditionConsoleApp
+namespace ConApp.Samples.Thread
 {
     /// <summary>
     /// This test app has a race condition between exiting the lock and printing the Count again.

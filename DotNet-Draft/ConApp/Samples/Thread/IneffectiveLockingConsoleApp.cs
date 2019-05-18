@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace IneffectiveLockingConsoleApp
+namespace ConApp.Samples.Thread
 {
     /// <summary>
     /// This program shows how locking more than what's needed reduces multithreading efficiency.

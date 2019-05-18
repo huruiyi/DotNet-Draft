@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class TicketSeller
     {
@@ -10,7 +10,7 @@ namespace ConApp
 
         public TicketSeller(string name)
         {
-            Thread th = new Thread(Seller)
+            System.Threading.Thread th = new System.Threading.Thread(Seller)
             {
                 IsBackground = true
             };
@@ -26,7 +26,7 @@ namespace ConApp
                 lock (locker)
                 {
                     TicketCount--;
-                    Console.WriteLine("{1},剩余:{0}", TicketCount, Thread.CurrentThread.Name);
+                    Console.WriteLine("{1},剩余:{0}", TicketCount, System.Threading.Thread.CurrentThread.Name);
                 }
             }
         }
@@ -86,7 +86,7 @@ namespace ConApp
 
             var ts = uc == UserClass.ClassAdmin ? tsAd : tsUs;
 
-            Thread t = new Thread(ts);
+            System.Threading.Thread t = new System.Threading.Thread(ts);
             t.Start();
         }
     }
@@ -125,7 +125,7 @@ namespace ConApp
             }
 
             //Console.WriteLine("There is a thread calling that called :" + AppDomain.GetCurrentThreadId());            
-            Console.WriteLine("There is a thread calling that called :" + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("There is a thread calling that called :" + System.Threading.Thread.CurrentThread.ManagedThreadId);
         }
     }
 
@@ -188,7 +188,7 @@ namespace ConApp
         private static void Thread_Demo0()
         {
             //Console.WriteLine("From the thread ID is:" + AppDomain.GetCurrentThreadId());
-            Console.WriteLine("This code caculate the value " + 123 + "from thread ID:" + Thread.CurrentThread.ManagedThreadId);
+            Console.WriteLine("This code caculate the value " + 123 + "from thread ID:" + System.Threading.Thread.CurrentThread.ManagedThreadId);
         }
 
         public static void WorkFunction()
@@ -198,7 +198,7 @@ namespace ConApp
             {
                 if (i % 5000 == 0)
                 {
-                    ThreadState = Thread.CurrentThread.ThreadState.ToString();
+                    ThreadState = System.Threading.Thread.CurrentThread.ThreadState.ToString();
                     Console.WriteLine("Worker :" + ThreadState);
                 }
             }
@@ -210,12 +210,12 @@ namespace ConApp
             Animal ps = new Animal();
             ThreadStart p = ps.sports;
             ThreadStart p2 = ps.Thread_person;
-            Thread p1 = new Thread(p);
+            System.Threading.Thread p1 = new System.Threading.Thread(p);
             for (int i = 0; i < 200; i++)
             {
                 Console.WriteLine("Primary id is " + i.ToString());
             }
-            Thread p3 = new Thread(p2);
+            System.Threading.Thread p3 = new System.Threading.Thread(p2);
 
             p1.Start();
             p3.Start();
@@ -223,21 +223,21 @@ namespace ConApp
 
         private static void Thread_Demo2()
         {
-            Thread thread1 = new Thread(WorkFunction);
+            System.Threading.Thread thread1 = new System.Threading.Thread(WorkFunction);
 
             thread1.Start();
 
             while (thread1.IsAlive)
             {
-                Thread thread2 = new Thread(WorkFunction);
+                System.Threading.Thread thread2 = new System.Threading.Thread(WorkFunction);
                 thread2.Start();
                 if (thread2.IsAlive)
                 {
                     Console.WriteLine("Please wait a min...");
-                    Thread.Sleep(5000);
+                    System.Threading.Thread.Sleep(5000);
                 }
                 Console.WriteLine("still wating...");
-                Thread.Sleep(200);
+                System.Threading.Thread.Sleep(200);
             }
 
             var st = thread1.ThreadState.ToString();
@@ -249,7 +249,7 @@ namespace ConApp
 
         private static void Thread_Demo3()
         {
-            Thread t1 = new Thread(delegate ()
+            System.Threading.Thread t1 = new System.Threading.Thread(delegate ()
             {
                 for (int i = 0; i < 1000; i++)
                 {
@@ -303,7 +303,7 @@ namespace ConApp
 
             for (int i = 0; i < 10; i++)
             {
-                Thread.Sleep(200);
+                System.Threading.Thread.Sleep(200);
 
                 Console.WriteLine("End。。。。。。。。");
             }
@@ -321,7 +321,7 @@ namespace ConApp
             for (int i = 0; i < 10; i++)
             {
                 Console.WriteLine(i + "\t");
-                Thread.Sleep(100);
+                System.Threading.Thread.Sleep(100);
             }
             return true;
         }

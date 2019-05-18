@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using static System.Linq.Enumerable;
-using static System.String;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class NewFeatures
     {
@@ -76,7 +74,7 @@ namespace ConApp
             long Id = 123456789;
             Console.WriteLine(Id.ToString("N"));
 
-            if (IsNullOrEmpty(""))
+            if (String.IsNullOrEmpty(""))
             {
                 Console.WriteLine("using static System.String; IsNullOrEmpty  ");
             }

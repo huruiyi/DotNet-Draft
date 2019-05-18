@@ -1,7 +1,7 @@
-﻿using Npgsql;
-using System;
+﻿using System;
+using Npgsql;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class NpgsqlDemo
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace SampleParallelConsoleApp
+namespace ConApp.Samples.Thread
 {
     /// <summary>
     /// This shows some really basic implementations of running some Parallel loops.

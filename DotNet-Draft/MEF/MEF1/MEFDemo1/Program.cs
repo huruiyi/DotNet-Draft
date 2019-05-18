@@ -86,7 +86,6 @@ namespace MEFDemo1
 
         private static void Main()
         {
-
             Program pro = new Program
             {
                 MethodWithoutPara = () => "",

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace PinYinParse.Plan
+namespace ConApp.Plan
 {
     /// <summary>
     /// 汉字拼音转换类

@@ -4,9 +4,8 @@ using System.Globalization;
 using System.IO;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
-namespace ConsoleApp1.Infrastructure
+namespace ConApp.Infrastructure
 {
     public class RsaLicenseProvider : LicenseProvider
     {

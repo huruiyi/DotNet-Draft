@@ -1,7 +1,7 @@
-﻿using PinYinParse.Plan;
-using System;
+﻿using System;
+using ConApp.Plan;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class ChineseDemo
     {

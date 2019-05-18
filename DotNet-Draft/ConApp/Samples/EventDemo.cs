@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class Cat
     {

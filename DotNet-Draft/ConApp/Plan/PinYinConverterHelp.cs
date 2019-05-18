@@ -1,9 +1,9 @@
-﻿using Microsoft.International.Converters.PinYinConverter;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.International.Converters.PinYinConverter;
 
-namespace PinYinParse.Plan
+namespace ConApp.Plan
 {
     public class PinYinConverterHelp
     {

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Management;
 using System.Reflection;
-using static System.Management.PropertyDataCollection;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class VMIManagement
     {
@@ -40,7 +39,7 @@ namespace ConApp
                     Console.WriteLine($"{item.Name} ={mo[item.Name]}");
                 }
                 Console.WriteLine("************************************************************");
-                PropertyDataEnumerator pde = pdc.GetEnumerator();
+                PropertyDataCollection.PropertyDataEnumerator pde = pdc.GetEnumerator();
 
                 QualifierDataCollection qd = mo.Qualifiers;
                 ManagementScope ms = mo.Scope;

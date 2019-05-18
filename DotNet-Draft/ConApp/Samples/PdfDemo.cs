@@ -1,6 +1,4 @@
-﻿using Codaxy.WkHtmlToPdf;
-
-namespace ConApp.Samples
+﻿namespace ConApp.Samples
 {
     public class PdfDemo
     {

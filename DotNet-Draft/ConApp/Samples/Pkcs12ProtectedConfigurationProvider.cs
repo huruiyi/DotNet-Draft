@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Xml;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class Pkcs12ProtectedConfigurationProvider : ProtectedConfigurationProvider
     {
@@ -52,7 +52,7 @@ namespace ConApp
             xml.AddKeyNameMapping("rsaKey", cryptoServiceProvider);
             xml.DecryptDocument();
             cryptoServiceProvider.Clear();
-            return document.DocumentElement;
+            return document.DocumentElement ?? throw new InvalidOperationException();
         }
 
         /// <summary>
@@ -85,7 +85,7 @@ namespace ConApp
             symmetricAlgorithm.GenerateIV();
             symmetricAlgorithm.Padding = PaddingMode.PKCS7;
 
-            byte[] buffer = xml.EncryptData(documentElement, symmetricAlgorithm, true);
+            byte[] buffer = xml.EncryptData(documentElement ?? throw new InvalidOperationException(), symmetricAlgorithm, true);
 
             // Construct an EncryptedData object and populate
             // it with the encryption information.

@@ -1,11 +1,11 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.IO;
 using System.Management;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Win32;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class SecurityHelper
     {

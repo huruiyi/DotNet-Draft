@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ConsoleApp1.Infrastructure
+namespace ConApp.Infrastructure
 {
     /// <summary>
     /// Custom attribute for annotating licensing data on LiveSearch Lib controls

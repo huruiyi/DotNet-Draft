@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public class AdoNetDemo
     {

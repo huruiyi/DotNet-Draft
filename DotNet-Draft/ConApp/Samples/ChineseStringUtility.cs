@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 
-namespace ConApp
+namespace ConApp.Samples
 {
     public static class ChineseStringUtility
     {
