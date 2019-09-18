@@ -43,9 +43,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CompareMethod.cs" />
-    <Compile Include="Data02.cs" />
-    <Compile Include="Data01.cs" />
     <Compile Include="ExtMethod.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
